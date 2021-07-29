@@ -1,0 +1,69 @@
+.linear-grad
+{
+    -fx-background-color: linear-gradient(to bottom left, #6666ff, #00004d);
+}
+
+.button1
+{
+-fx-background-color: #6666ff;
+-fx-text-fill: #ffffff;
+}
+
+.button1:hover
+{
+	-fx-background-color: #4d4dff;
+	-fx-opacity: 1;
+	-fx-cursor: hand;
+}
+
+.button1:pressed
+{
+	-fx-background-color: #4d4dff;
+	-fx-opacity: 1;
+	-fx-background-radius: 20;
+	-fx-cursor: hand;
+}
+
+.button2
+{
+    -fx-background-color: #b3b3ff;
+    -fx-opacity: 0.8;
+    -fx-text-fill: #4d4dff;
+    -fx-border-color: #4d4dff;
+    -fx-border-radius: 5;
+}
+
+.button2:hover
+{
+	-fx-background-color: #ccccff;
+	-fx-opacity: 1;
+	-fx-cursor: hand;
+}
+
+.button2:pressed
+{
+	-fx-background-color: #ccccff;
+	-fx-opacity: 1;
+	-fx-background-radius: 20;
+	-fx-border-radius: 25;
+	-fx-cursor: hand;
+}
+
+.label1:hover
+{
+    -fx-opacity: 1;
+    -fx-cursor: hand;
+}
+
+.label2
+{
+    -fx-text-fill: #6666ff;
+}
+
+.label2:hover
+{
+    -fx-text-fill: #4d4dff;
+    -fx-cursor: hand;
+}
+
+

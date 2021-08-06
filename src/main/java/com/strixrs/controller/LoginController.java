@@ -1,5 +1,6 @@
 package com.strixrs.controller;
 
+import com.strixrs.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,7 +13,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class LoginController {
+import java.io.IOException;
+
+public class LoginController extends AbsctractController{
 
     @FXML private TextField tfEmail;
     @FXML private TextField tfPassword;
@@ -22,15 +25,21 @@ public class LoginController {
     @FXML private Button btnSignUp;
     @FXML private Button btnSignUpR;
     @FXML private Label lblForgotPassword;
+    @FXML private Label btnOfflineLogin;
     @FXML private ImageView btnClose;
-    @FXML private ImageView btnMinimize;
+    @FXML private ImageView btnIconify;
     @FXML private ImageView btnCloseR;
-    @FXML private ImageView btnMinimizeR;
+    @FXML private ImageView btnIconifyR;
     @FXML private ImageView btnBackR;
+    @FXML private ImageView iconStrixRS;
     @FXML private AnchorPane anchorPane;
     @FXML private Pane pnlLogin;
     @FXML private Pane pnlSignUp;
-    @FXML private ImageView iconStrixRS;
+
+    @Override
+    public void setStage(Stage stage){
+        this.stage = stage;
+    }
 
     @FXML
     private void handleButtonEvent(ActionEvent event){
@@ -39,22 +48,25 @@ public class LoginController {
 
         if(source.equals(btnSignUp))
             pnlSignUp.toFront();
-
     }
 
     @FXML
-    private void handleMouseClickedEvent(MouseEvent event){
+    private void handleMouseClickedEvent(MouseEvent event) throws IOException {
 
         Object source = event.getSource();
 
         if(source.equals(btnClose) || source.equals(btnCloseR))
             System.exit(0);
 
-        if(source.equals(btnMinimize) || source.equals(btnMinimizeR))
-            ((Stage) (anchorPane.getScene().getWindow())).setIconified(true);
+        if(source.equals(btnIconify) || source.equals(btnIconifyR))
+            stage.setIconified(true);
 
         if(source.equals(btnBackR))
             pnlLogin.toFront();
+
+        if(source.equals(btnOfflineLogin)){
+            App.setRoot("/com/strixrs/view/Main", stage.getScene(), stage);
+        }
     }
 
     @FXML
@@ -62,18 +74,21 @@ public class LoginController {
 
         Object source = event.getSource();
 
-        if(source.equals(btnClose) || source.equals(btnCloseR)){
-            btnClose.setImage(new ImageView("/com/strixrs/icon/close-hover.png").getImage());
-            btnCloseR.setImage(new ImageView("/com/strixrs/icon/close-hover.png").getImage());
-        }
+        if(source.equals(btnClose))
+            btnClose.setImage(getIcon("black-close-hover.png"));
 
-        if(source.equals(btnMinimize) || source.equals(btnMinimizeR)){
-            btnMinimize.setImage(new Image("/com/strixrs/icon/maximize-hover.png"));
-            btnMinimizeR.setImage(new Image("/com/strixrs/icon/maximize-hover.png"));
-        }
+
+        if(source.equals(btnCloseR))
+            btnCloseR.setImage(getIcon("black-close-hover.png"));
+
+        if(source.equals(btnIconify))
+            btnIconify.setImage(getIcon("black-iconify-hover.png"));
+
+        if(source.equals(btnIconifyR))
+            btnIconifyR.setImage(getIcon("black-iconify-hover.png"));
 
         if(source.equals(btnBackR))
-            btnBackR.setImage(new Image("/com/strixrs/icon/back-pressed.png"));
+            btnBackR.setImage(getIcon("back-pressed.png"));
     }
 
     @FXML
@@ -81,18 +96,20 @@ public class LoginController {
 
         Object source = event.getSource();
 
-        if(source.equals(btnClose) || source.equals(btnCloseR)){
-            btnClose.setImage(new ImageView("/com/strixrs/icon/close.png").getImage());
-            btnCloseR.setImage(new ImageView("/com/strixrs/icon/close.png").getImage());
-        }
+        if(source.equals(btnClose))
+            btnClose.setImage(getIcon("black-close.png"));
 
-        if(source.equals(btnMinimize) || source.equals(btnMinimizeR)){
-            btnMinimize.setImage(new ImageView("/com/strixrs/icon/maximize.png").getImage());
-            btnMinimizeR.setImage(new ImageView("/com/strixrs/icon/maximize.png").getImage());
-        }
+        if(source.equals(btnCloseR))
+            btnCloseR.setImage(getIcon("black-close.png"));
+
+        if(source.equals(btnIconify))
+            btnIconify.setImage(getIcon("black-iconify.png"));
+
+        if(source.equals(btnIconifyR))
+            btnIconifyR.setImage(getIcon("black-iconify.png"));
 
         if(source.equals(btnBackR))
-            btnBackR.setImage(new Image("/com/strixrs/icon/back.png"));
+            btnBackR.setImage(getIcon("back.png"));
     }
 
     @FXML
@@ -101,7 +118,7 @@ public class LoginController {
         Object source = event.getSource();
 
         if(source.equals(iconStrixRS))
-            iconStrixRS.setImage(new Image("/com/strixrs/icon/strixrs-pressed.png"));
+            iconStrixRS.setImage(getIcon("strixrs-pressed.png"));
     }
 
     @FXML
@@ -110,7 +127,7 @@ public class LoginController {
         Object source = event.getSource();
 
         if(source.equals(iconStrixRS))
-            iconStrixRS.setImage(new Image("/com/strixrs/icon/strixrs.png"));
+            iconStrixRS.setImage(getIcon("strixrs.png"));
     }
 
 }

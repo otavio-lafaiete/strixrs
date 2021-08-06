@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.strixrs.controller.MainController">
+   <children>
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox maxHeight="1.7976931348623157E308" prefWidth="180.0" spacing="15.0" style="-fx-background-color: #2a52be;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@../css/MainStyle.css" text="Pesquisas">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/research.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@../css/MainStyle.css" text="Relatórios">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/report.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@../css/MainStyle.css" text="Responder">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/answer.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@../css/MainStyle.css" text="Importar">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/import.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@../css/MainStyle.css" text="Exportar">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/export.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </Button>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" VBox.vgrow="ALWAYS" />
+                  <Label text="versão: alpha" textFill="WHITE" />
+               </children></VBox>
+         </left>
+         <top>
+            <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="60.0" spacing="10.0" style="-fx-background-color: #2548a7;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" graphicTextGap="10.0" prefWidth="150.0" text="StrixRS" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/strixrs-mini.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Separator visible="false" HBox.hgrow="ALWAYS" />
+                  <ImageView fx:id="btnIconify" onMouseClicked="#handleMouseClickedEvent" onMouseEntered="#handleMouseEnteredEvent" onMouseExited="#handleMouseExitedEvent" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                     <image>
+                        <Image url="@../icon/white-iconify.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="btnMaximize" onMouseClicked="#handleMouseClickedEvent" onMouseEntered="#handleMouseEnteredEvent" onMouseExited="#handleMouseExitedEvent" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                     <image>
+                        <Image url="@../icon/white-maximize.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="btnClose" onMouseClicked="#handleMouseClickedEvent" onMouseEntered="#handleMouseEnteredEvent" onMouseExited="#handleMouseExitedEvent" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                     <image>
+                        <Image url="@../icon/white-close.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets right="15.0" />
+               </padding></HBox>
+         </top>
+         <center>
+            <VBox maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" prefHeight="0.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ScrollPane fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                    <content>
+                      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                           <children>
+                              <VBox maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

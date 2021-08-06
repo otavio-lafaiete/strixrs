@@ -23,7 +23,7 @@ public class App extends Application {
 
         Scene scene = new Scene(loadFXML("/com/strixrs/view/Login", stage));
 
-        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.initStyle(StageStyle.UNDECORATED);
 
         scene.setOnMousePressed((MouseEvent event) ->
         {
@@ -33,8 +33,11 @@ public class App extends Application {
 
         scene.setOnMouseDragged((MouseEvent event) ->
         {
-            stage.setX(event.getScreenX() - xOffSet);
-            stage.setY(event.getScreenY() - yOffSet);
+            if(!stage.isMaximized()){
+
+                stage.setX(event.getScreenX() - xOffSet);
+                stage.setY(event.getScreenY() - yOffSet);
+            }
         });
 
         stage.setScene(scene);

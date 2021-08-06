@@ -65,6 +65,7 @@ public class LoginController extends AbsctractController{
             pnlLogin.toFront();
 
         if(source.equals(btnOfflineLogin)){
+            stage.hide();
             App.setRoot("/com/strixrs/view/Main", stage.getScene(), stage);
         }
     }

@@ -29,6 +29,8 @@ public class MainController extends AbsctractController{
         stage.setHeight(resolution.getHeight() * 0.8);
 
         stage.centerOnScreen();
+
+        stage.show();
     }
 
     @FXML

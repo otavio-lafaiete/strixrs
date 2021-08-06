@@ -17,9 +17,9 @@
    <children>
       <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <VBox maxHeight="1.7976931348623157E308" prefWidth="180.0" spacing="15.0" style="-fx-background-color: #2a52be;" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" prefWidth="180.0" spacing="15.0" style="-fx-background-color: #2a52be;" BorderPane.alignment="CENTER">
                <children>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@../css/MainStyle.css" text="Pesquisas">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" minHeight="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@../css/MainStyle.css" text="Pesquisas">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -34,7 +34,7 @@
                         <Insets left="25.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@../css/MainStyle.css" text="Relatórios">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" minHeight="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@../css/MainStyle.css" text="Relatórios">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -49,7 +49,7 @@
                         <Insets left="25.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@../css/MainStyle.css" text="Responder">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="40.0" minHeight="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@../css/MainStyle.css" text="Responder">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -64,7 +64,7 @@
                         <Insets left="25.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@../css/MainStyle.css" text="Importar">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="70.0" minHeight="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@../css/MainStyle.css" text="Importar">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -79,7 +79,7 @@
                         <Insets left="25.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@../css/MainStyle.css" text="Exportar">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" minHeight="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@../css/MainStyle.css" text="Exportar">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -95,7 +95,45 @@
                      </padding>
                   </Button>
                   <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" VBox.vgrow="ALWAYS" />
-                  <Label text="versão: alpha" textFill="WHITE" />
+                  <HBox alignment="CENTER" maxWidth="1.7976931348623157E308">
+                     <children>
+                        <Button mnemonicParsing="false" styleClass="button2" stylesheets="@../css/MainStyle.css" textFill="WHITE">
+                           <graphic>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icon/user.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" styleClass="button2" stylesheets="@../css/MainStyle.css" textFill="WHITE">
+                           <graphic>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icon/settings.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button layoutX="100.0" layoutY="10.0" mnemonicParsing="false" styleClass="button2" stylesheets="@../css/MainStyle.css" textFill="WHITE">
+                           <graphic>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icon/about.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Label alignment="BOTTOM_LEFT" maxWidth="1.7976931348623157E308" opacity="0.75" text="versão: alpha" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets left="2.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
                </children></VBox>
          </left>
          <top>
@@ -113,31 +151,35 @@
                         </ImageView>
                      </graphic>
                      <HBox.margin>
-                        <Insets left="15.0" />
+                        <Insets />
                      </HBox.margin>
                   </Label>
                   <Separator visible="false" HBox.hgrow="ALWAYS" />
-                  <ImageView fx:id="btnIconify" onMouseClicked="#handleMouseClickedEvent" onMouseEntered="#handleMouseEnteredEvent" onMouseExited="#handleMouseExitedEvent" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
-                     <image>
-                        <Image url="@../icon/white-iconify.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="btnMaximize" onMouseClicked="#handleMouseClickedEvent" onMouseEntered="#handleMouseEnteredEvent" onMouseExited="#handleMouseExitedEvent" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
-                     <image>
-                        <Image url="@../icon/white-maximize.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </ImageView>
-                  <ImageView fx:id="btnClose" onMouseClicked="#handleMouseClickedEvent" onMouseEntered="#handleMouseEnteredEvent" onMouseExited="#handleMouseExitedEvent" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
-                     <image>
-                        <Image url="@../icon/white-close.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </ImageView>
+                  <HBox alignment="CENTER_RIGHT" prefWidth="150.0" spacing="10.0">
+                     <children>
+                        <ImageView fx:id="btnIconify" onMouseClicked="#handleMouseClickedEvent" onMouseEntered="#handleMouseEnteredEvent" onMouseExited="#handleMouseExitedEvent" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                           <image>
+                              <Image url="@../icon/white-iconify.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="btnMaximize" onMouseClicked="#handleMouseClickedEvent" onMouseEntered="#handleMouseEnteredEvent" onMouseExited="#handleMouseExitedEvent" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                           <image>
+                              <Image url="@../icon/white-maximize.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="btnClose" onMouseClicked="#handleMouseClickedEvent" onMouseEntered="#handleMouseEnteredEvent" onMouseExited="#handleMouseExitedEvent" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                           <image>
+                              <Image url="@../icon/white-close.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                  </HBox>
                </children>
                <padding>
                   <Insets right="15.0" />

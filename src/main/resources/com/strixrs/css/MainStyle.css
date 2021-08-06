@@ -14,3 +14,20 @@
     -fx-border-color: #d5def6;
     -fx-border-width: 0px 0px 0px 3px;
 }
+
+.button2{
+    -fx-background-color: #2a52be;
+    -fx-text-fill: #ffffff;
+}
+
+.button2:hover{
+    -fx-cursor: hand;
+    -fx-border-color: #d5def6;
+    -fx-border-width: 0px 0px 1px 0px;
+}
+
+.button2:focused{
+    -fx-background-color: #587bda;
+    -fx-border-color: #d5def6;
+    -fx-border-width: 0px 0px 2px 0px;
+}

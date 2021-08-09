@@ -45,10 +45,10 @@
                <children>
                   <Pane fx:id="pnlSignUp" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
                      <children>
-                        <TextField fx:id="tfEmailR" layoutX="72.0" layoutY="202.0" prefHeight="35.0" prefWidth="250.0" promptText="E-mail" />
-                        <PasswordField fx:id="tfPasswordR" layoutX="72.0" layoutY="254.0" prefHeight="35.0" prefWidth="250.0" promptText="Senha" />
+                        <TextField fx:id="tfEmailR" layoutX="72.0" layoutY="148.0" prefHeight="35.0" prefWidth="250.0" promptText="E-mail" />
+                        <PasswordField fx:id="tfPasswordR" layoutX="72.0" layoutY="200.0" prefHeight="35.0" prefWidth="250.0" promptText="Senha" />
                         <Button fx:id="btnSignUpR" layoutX="199.0" layoutY="307.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="125.0" styleClass="button1" stylesheets="@../css/LoginStyle.css" text="Registrar" />
-                        <Label layoutX="74.0" layoutY="139.0" text="Registrar-se">
+                        <Label layoutX="74.0" layoutY="85.0" text="Registrar-se">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -72,6 +72,7 @@
                               <Image url="@../icon/back.png" />
                            </image>
                         </ImageView>
+                        <PasswordField fx:id="tfConfirmPasswordR" layoutX="72.0" layoutY="252.0" prefHeight="35.0" prefWidth="250.0" promptText="Confirmar Senha" />
                      </children></Pane>
                   <Pane fx:id="pnlLogin" style="-fx-background-color: #fff;">
                      <children>

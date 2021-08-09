@@ -33,11 +33,12 @@ public class App extends Application {
 
         scene.setOnMouseDragged((MouseEvent event) ->
         {
-            if(!stage.isMaximized()){
+            if(!stage.isMaximized() || (stage.getX() != 0 || stage.getY() != 0)){
 
                 stage.setX(event.getScreenX() - xOffSet);
                 stage.setY(event.getScreenY() - yOffSet);
             }
+            System.out.println(stage.getX());
         });
 
         stage.setScene(scene);

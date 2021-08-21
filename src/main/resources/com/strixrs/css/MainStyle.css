@@ -1,33 +1,83 @@
-.button{
+.mainButton{
     -fx-background-color: #2a52be;
     -fx-text-fill: #ffffff;
 }
 
-.button:hover{
+.mainButton:hover{
     -fx-cursor: hand;
     -fx-border-color: #d5def6;
     -fx-border-width: 0px 0px 0px 1px;
 }
 
-.button:focused{
+.mainButton:focused{
     -fx-background-color: #587bda;
     -fx-border-color: #d5def6;
     -fx-border-width: 0px 0px 0px 3px;
 }
 
-.button2{
+.mainButton2{
     -fx-background-color: #2a52be;
     -fx-text-fill: #ffffff;
 }
 
-.button2:hover{
+.mainButton2:hover{
     -fx-cursor: hand;
     -fx-border-color: #d5def6;
     -fx-border-width: 0px 0px 1px 0px;
 }
 
-.button2:focused{
+.mainButton2:focused{
     -fx-background-color: #587bda;
     -fx-border-color: #d5def6;
     -fx-border-width: 0px 0px 2px 0px;
+}
+
+.bars{
+
+    -fx-border-color: #2a52be;
+    -fx-border-width: 0px 0px 0px 0px;
+}
+
+.researchButtons{
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-alignment: BASELINE_LEFT;
+    -fx-pref-height: 30px;
+}
+
+.researchButtons:hover{
+    -fx-border-color: #ccccff;
+    -fx-border-width: 0px 0px 1px 0px;
+}
+
+.paneButtons
+{
+-fx-background-color: #6666ff;
+-fx-text-fill: #ffffff;
+}
+
+.paneButtons:hover
+{
+	-fx-background-color: #4d4dff;
+	-fx-opacity: 1;
+	-fx-cursor: hand;
+}
+
+.paneButtons:pressed
+{
+	-fx-background-color: #4d4dff;
+	-fx-opacity: 1;
+	-fx-background-radius: 20;
+	-fx-cursor: hand;
+}
+
+.scrollpanels{
+    -fx-background-color: #ffffff;
+    -fx-border-width: 0px 0px 0px 0px;
+}
+
+.vboxes{
+    -fx-background-color: #ffffff;
+    -fx-border-width: 0px 0px 0px 0px;
 }

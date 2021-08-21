@@ -21,7 +21,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        Scene scene = new Scene(loadFXML("/com/strixrs/view/Login", stage));
+        Scene scene = new Scene(AbsctractController.loadFXML("/com/strixrs/view/Login", stage));
 
         stage.initStyle(StageStyle.UNDECORATED);
 
@@ -38,7 +38,7 @@ public class App extends Application {
                 stage.setX(event.getScreenX() - xOffSet);
                 stage.setY(event.getScreenY() - yOffSet);
             }
-            System.out.println(stage.getX());
+            //System.out.println(stage.getX());
         });
 
         stage.setScene(scene);
@@ -46,18 +46,7 @@ public class App extends Application {
     }
 
     public static void setRoot(String fxml, Scene scene, Stage stage) throws IOException {
-        scene.setRoot(loadFXML(fxml, stage));
-    }
-
-    private static Parent loadFXML(String fxml, Stage stage) throws IOException {
-
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        Parent parent = fxmlLoader.load();
-
-        AbsctractController controller = fxmlLoader.getController();
-        controller.setStage(stage);
-
-        return parent;
+        scene.setRoot(AbsctractController.loadFXML(fxml, stage));
     }
 
     public static void main(String[] args) {

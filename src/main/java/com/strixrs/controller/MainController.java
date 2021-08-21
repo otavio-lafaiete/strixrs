@@ -1,10 +1,17 @@
 package com.strixrs.controller;
 
+import com.strixrs.data.Researchs;
+import com.strixrs.service.ResearchPaneService;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -14,6 +21,25 @@ public class MainController extends AbsctractController{
     @FXML private ImageView btnMaximize;
     @FXML private ImageView btnIconify;
     @FXML private AnchorPane anchorPane;
+    @FXML private Button btnResearch;
+
+    @FXML private BorderPane bpResearchPane;
+    @FXML private TextField txtResearchSearch;
+    @FXML private Button btnResearchSearch;
+    @FXML private Button btnResearchAdd;
+    @FXML private Button btnResearchUpdate;
+    @FXML private VBox vbResearchs;
+
+    Researchs researchs;
+
+    ResearchPaneService researchPaneService;
+
+    public void initialize(){
+
+        researchs = new Researchs();
+        researchPaneService = new ResearchPaneService(researchs);
+        researchPaneService.updatePane(vbResearchs);
+    }
 
     @Override
     public void setStage(Stage stage){
@@ -33,8 +59,9 @@ public class MainController extends AbsctractController{
         stage.show();
     }
 
+    //Main Scene Event Handlers
     @FXML
-    private void handleMouseClickedEvent(MouseEvent event){
+    private void handleMouseClickedEventFromMainScene(MouseEvent event){
 
         Object source = event.getSource();
 
@@ -55,7 +82,7 @@ public class MainController extends AbsctractController{
     }
 
     @FXML
-    private void handleMouseEnteredEvent(MouseEvent event){
+    private void handleMouseEnteredEventFromMainScene(MouseEvent event){
 
         Object source = event.getSource();
 
@@ -77,7 +104,7 @@ public class MainController extends AbsctractController{
     }
 
     @FXML
-    private void handleMouseExitedEvent(MouseEvent event){
+    private void handleMouseExitedEventFromMainScene(MouseEvent event){
 
         Object source = event.getSource();
 
@@ -97,5 +124,15 @@ public class MainController extends AbsctractController{
             }
         }
     }
+
+    //ResearchPane Event Handlers
+    @FXML
+    private void handleActionEventFromResearchPane(ActionEvent actionEvent){
+
+        if(actionEvent.getSource() == btnResearchUpdate){
+            researchPaneService.updatePane(vbResearchs);
+        }
+    }
+
 
 }

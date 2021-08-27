@@ -1,30 +1,30 @@
-.linear-grad
+.iconPane
 {
     -fx-background-color: linear-gradient(to bottom left, #6666ff, #00004d);
 }
 
-.button1
+.btnLogin
 {
--fx-background-color: #6666ff;
+-fx-background-color: #4d4dff;
 -fx-text-fill: #ffffff;
 }
 
-.button1:hover
+.btnLogin
 {
-	-fx-background-color: #4d4dff;
+	-fx-background-color: #3333ff;
 	-fx-opacity: 1;
 	-fx-cursor: hand;
 }
 
-.button1:pressed
+.btnLogin
 {
-	-fx-background-color: #4d4dff;
+	-fx-background-color: #3333ff;
 	-fx-opacity: 1;
 	-fx-background-radius: 20;
 	-fx-cursor: hand;
 }
 
-.button2
+.btnSignUp
 {
     -fx-background-color: #b3b3ff;
     -fx-opacity: 0.8;
@@ -33,14 +33,14 @@
     -fx-border-radius: 5;
 }
 
-.button2:hover
+.btnSignUp
 {
 	-fx-background-color: #ccccff;
 	-fx-opacity: 1;
 	-fx-cursor: hand;
 }
 
-.button2:pressed
+.btnSignUp
 {
 	-fx-background-color: #ccccff;
 	-fx-opacity: 1;
@@ -49,18 +49,18 @@
 	-fx-cursor: hand;
 }
 
-.label1:hover
+.lblForgotPassword:hover
 {
     -fx-opacity: 1;
     -fx-cursor: hand;
 }
 
-.label2
+.lblOfflineLogin
 {
     -fx-text-fill: #6666ff;
 }
 
-.label2:hover
+.lblOfflineLogin:hover
 {
     -fx-text-fill: #4d4dff;
     -fx-cursor: hand;

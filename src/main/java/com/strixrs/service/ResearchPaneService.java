@@ -1,35 +1,70 @@
 package com.strixrs.service;
 
-import com.strixrs.data.Researchs;
+import com.strixrs.App;
+import com.strixrs.controller.AbsctractController;
+import com.strixrs.controller.AddResearchController;
+import com.strixrs.controller.MainController;
+import com.strixrs.data.DataResearchs;
+import com.strixrs.javafxmodfiedcontrol.ResearchButton;
 import com.strixrs.model.Research;
+import com.strixrs.staticutil.StaticUtil;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 
-public class ResearchPaneService {
+public class ResearchPaneService extends AbstractService{
 
-    private Researchs researchs;
-
-    public ResearchPaneService(Researchs researchs){
-        this.researchs = researchs;
+    public ResearchPaneService(AbsctractController controller){
+        super(controller);
     }
 
-    public void updatePane(VBox vBox){
+    public void updateResearchsVBox(){
 
-        vBox.getChildren().clear();
+        MainController mainController = (MainController) controller;
 
-        for(Research research: researchs.getResearchs()){
+        mainController.getVbResearchs().getChildren().clear();
+        for(Research research: DataResearchs.getResearchs()){
 
-            Button button = new Button(research.getName());
-            button.setMaxWidth(Double.MAX_VALUE);
-            button.getStylesheets().add("/com/strixrs/css/MainStyle.css");
-            button.getStyleClass().add("researchButtons");
-            vBox.getChildren().add(button);
+            Button button = new ResearchButton(research.getTitle());
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+
+                    mainController.getQuestionPaneService().setCurrentResearch(research);
+                    mainController.getBpQuestionPane().toFront();
+                    mainController.getQuestionPaneService().updateQuestionsVBox();
+                }
+            });
+            mainController.getVbResearchs().getChildren().add(button);
         }
     }
 
+    public void launchResearchAddScreen() throws IOException {
+
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        FXMLLoader fxmlLoader = StaticUtil.getFXML("AddResearch");
+
+        Parent parent = fxmlLoader.load();
+
+        Scene scene = new Scene(parent);
+
+        stage.setScene(scene);
+
+        AddResearchController controller = fxmlLoader.getController();
+        controller.setStage(stage);
+        controller.setResearchPaneService(this);
+
+        stage.showAndWait();
+    }
 }

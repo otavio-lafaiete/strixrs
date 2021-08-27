@@ -190,7 +190,46 @@
          <center>
             <StackPane style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane fx:id="bpResearchPane" prefHeight="200.0" prefWidth="200.0">
+                  <BorderPane fx:id="bpQuestionPane" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
+                     <top>
+                        <VBox spacing="5.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label text="Questionários">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox spacing="5.0">
+                                 <children>
+                                    <TextField maxWidth="1.7976931348623157E308" prefHeight="30.0" promptText="Insira o nome de um questionário para buscar" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets top="5.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Button mnemonicParsing="false" text="Button" />
+                                 </children>
+                              </HBox>
+                              <HBox spacing="5.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Adicionar Questionário" />
+                                    <Button mnemonicParsing="false" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Atualizar" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </top>
+                     <center>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" styleClass="scrollpanels" stylesheets="@../css/MainStyle.css" BorderPane.alignment="CENTER">
+                           <content>
+                              <VBox fx:id="vbQuestions" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" styleClass="vboxes" stylesheets="@../css/MainStyle.css" />
+                           </content>
+                           <BorderPane.margin>
+                              <Insets top="10.0" />
+                           </BorderPane.margin>
+                        </ScrollPane>
+                     </center>
+                  </BorderPane>
+                  <BorderPane fx:id="bpResearchPane" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
                      <center>
                         <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" styleClass="scrollpanels" stylesheets="@../css/MainStyle.css" BorderPane.alignment="CENTER">
                            <content>
@@ -204,7 +243,7 @@
                      <top>
                         <VBox spacing="5.0" BorderPane.alignment="CENTER">
                            <children>
-                              <HBox spacing="5.0" style="-fx-border-radius: 5;">
+                              <HBox spacing="5.0">
                                  <children>
                                     <TextField fx:id="txtResearchSearch" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleActionEventFromResearchPane" prefHeight="30.0" promptText="Digite o nome de uma pesquisa para procurar" style="-fx-border-radius: 5;" HBox.hgrow="ALWAYS" />
                                     <Button fx:id="btnResearchSearch" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleActionEventFromResearchPane" text="Button" />

@@ -32,6 +32,10 @@
     -fx-border-width: 0px 0px 2px 0px;
 }
 
+.mainPane{
+    -fx-background-color: #ffffff;
+}
+
 .bars{
 
     -fx-border-color: #2a52be;
@@ -43,7 +47,8 @@
     -fx-background-radius: 5;
     -fx-cursor: hand;
     -fx-alignment: BASELINE_LEFT;
-    -fx-pref-height: 30px;
+    -fx-pref-height: 35px;
+    -fx-font-size: 14px;
 }
 
 .researchButtons:hover{
@@ -53,20 +58,20 @@
 
 .paneButtons
 {
--fx-background-color: #6666ff;
+-fx-background-color: #4d4dff;
 -fx-text-fill: #ffffff;
 }
 
 .paneButtons:hover
 {
-	-fx-background-color: #4d4dff;
+	-fx-background-color: #3333ff;
 	-fx-opacity: 1;
 	-fx-cursor: hand;
 }
 
 .paneButtons:pressed
 {
-	-fx-background-color: #4d4dff;
+	-fx-background-color: #3333ff;
 	-fx-opacity: 1;
 	-fx-background-radius: 20;
 	-fx-cursor: hand;

@@ -1,25 +1,28 @@
 package com.strixrs.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Research {
+public class Research implements Serializable {
 
-    private String name;
+    private String title;
     private String description;
     private List<Question> questions;
 
-    public Research(String name, String description){
+    public Research(String title, String description){
 
-        this.name = name;
+        this.title = title;
         this.description = description;
+        questions = new ArrayList<>();
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -38,5 +41,9 @@ public class Research {
         this.questions = questions;
     }
 
+    public void addQuestion(Question question){
+
+        questions.add(question);
+    }
 
 }

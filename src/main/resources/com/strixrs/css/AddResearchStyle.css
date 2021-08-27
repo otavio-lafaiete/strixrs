@@ -1,0 +1,20 @@
+.button1
+{
+-fx-background-color: #4d4dff;
+-fx-text-fill: #ffffff;
+}
+
+.button1:hover
+{
+	-fx-background-color: #3333ff;
+	-fx-opacity: 1;
+	-fx-cursor: hand;
+}
+
+.button1:pressed
+{
+	-fx-background-color: #3333ff;
+	-fx-opacity: 1;
+	-fx-background-radius: 20;
+	-fx-cursor: hand;
+}

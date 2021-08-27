@@ -1,17 +1,17 @@
 package com.strixrs.controller;
 
-import com.strixrs.App;
+import com.strixrs.staticutil.StaticUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -36,9 +36,36 @@ public class LoginController extends AbsctractController{
     @FXML private Pane pnlLogin;
     @FXML private Pane pnlSignUp;
 
+    private double xOffSet;
+    private double yOffSet;
+
     @Override
     public void setStage(Stage stage){
+
         this.stage = stage;
+        stageConfig();
+    }
+
+    private void stageConfig(){
+
+        stage.initStyle(StageStyle.UNDECORATED);
+
+        stage.getScene().setOnMousePressed((MouseEvent event) ->
+        {
+            xOffSet = event.getSceneX();
+            yOffSet = event.getSceneY();
+        });
+
+        stage.getScene().setOnMouseDragged((MouseEvent event) ->
+        {
+            if(!stage.isMaximized() || (stage.getX() != 0 || stage.getY() != 0)){
+
+                stage.setX(event.getScreenX() - xOffSet);
+                stage.setY(event.getScreenY() - yOffSet);
+            }
+        });
+
+        stage.centerOnScreen();
     }
 
     @FXML
@@ -65,8 +92,8 @@ public class LoginController extends AbsctractController{
             pnlLogin.toFront();
 
         if(source.equals(btnOfflineLogin)){
-            stage.hide();
-            App.setRoot("/com/strixrs/view/Main", stage.getScene(), stage);
+            stage.close();
+            StaticUtil.setRoot(StaticUtil.getFXML("Main"), stage.getScene(), stage);
         }
     }
 
@@ -76,20 +103,20 @@ public class LoginController extends AbsctractController{
         Object source = event.getSource();
 
         if(source.equals(btnClose))
-            btnClose.setImage(getIcon("black-close-hover.png"));
+            btnClose.setImage(StaticUtil.getIcon("black-close-hover.png"));
 
 
         if(source.equals(btnCloseR))
-            btnCloseR.setImage(getIcon("black-close-hover.png"));
+            btnCloseR.setImage(StaticUtil.getIcon("black-close-hover.png"));
 
         if(source.equals(btnIconify))
-            btnIconify.setImage(getIcon("black-iconify-hover.png"));
+            btnIconify.setImage(StaticUtil.getIcon("black-iconify-hover.png"));
 
         if(source.equals(btnIconifyR))
-            btnIconifyR.setImage(getIcon("black-iconify-hover.png"));
+            btnIconifyR.setImage(StaticUtil.getIcon("black-iconify-hover.png"));
 
         if(source.equals(btnBackR))
-            btnBackR.setImage(getIcon("back-pressed.png"));
+            btnBackR.setImage(StaticUtil.getIcon("back-pressed.png"));
     }
 
     @FXML
@@ -98,19 +125,19 @@ public class LoginController extends AbsctractController{
         Object source = event.getSource();
 
         if(source.equals(btnClose))
-            btnClose.setImage(getIcon("black-close.png"));
+            btnClose.setImage(StaticUtil.getIcon("black-close.png"));
 
         if(source.equals(btnCloseR))
-            btnCloseR.setImage(getIcon("black-close.png"));
+            btnCloseR.setImage(StaticUtil.getIcon("black-close.png"));
 
         if(source.equals(btnIconify))
-            btnIconify.setImage(getIcon("black-iconify.png"));
+            btnIconify.setImage(StaticUtil.getIcon("black-iconify.png"));
 
         if(source.equals(btnIconifyR))
-            btnIconifyR.setImage(getIcon("black-iconify.png"));
+            btnIconifyR.setImage(StaticUtil.getIcon("black-iconify.png"));
 
         if(source.equals(btnBackR))
-            btnBackR.setImage(getIcon("back.png"));
+            btnBackR.setImage(StaticUtil.getIcon("back.png"));
     }
 
     @FXML
@@ -119,7 +146,7 @@ public class LoginController extends AbsctractController{
         Object source = event.getSource();
 
         if(source.equals(iconStrixRS))
-            iconStrixRS.setImage(getIcon("strixrs-pressed.png"));
+            iconStrixRS.setImage(StaticUtil.getIcon("strixrs-pressed.png"));
     }
 
     @FXML
@@ -128,7 +155,7 @@ public class LoginController extends AbsctractController{
         Object source = event.getSource();
 
         if(source.equals(iconStrixRS))
-            iconStrixRS.setImage(getIcon("strixrs.png"));
+            iconStrixRS.setImage(StaticUtil.getIcon("strixrs.png"));
     }
 
 }

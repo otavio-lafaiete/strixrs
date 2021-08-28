@@ -31,6 +31,9 @@ public class MainController extends AbsctractController{
     @FXML private Button btnResearchSearch;
     @FXML private Button btnResearchAdd;
     @FXML private Button btnResearchUpdate;
+    @FXML private Button btnQuestionAdd;
+    @FXML private Button btnQuestionUpdate;
+    @FXML private Button btnBackToResearchs;
     @FXML private VBox vbResearchs;
     @FXML private VBox vbQuestions;
 
@@ -122,6 +125,25 @@ public class MainController extends AbsctractController{
         if(actionEvent.getSource() == btnResearchAdd){
             researchPaneService.launchResearchAddScreen();
         }
+
+
+    }
+
+    //QuestionPane Event Handlers
+    @FXML
+    private void handleActionEventFromQuestionPane(ActionEvent actionEvent) throws IOException {
+
+        if(actionEvent.getSource() == btnQuestionUpdate){
+            questionPaneService.updateQuestionsVBox();
+        }
+
+        if(actionEvent.getSource() == btnQuestionAdd){
+            questionPaneService.launchQuestionAddScreen();
+        }
+
+        if(actionEvent.getSource() == btnBackToResearchs){
+            bpResearchPane.toFront();
+        }
     }
 
     @Override
@@ -133,9 +155,8 @@ public class MainController extends AbsctractController{
 
     private void stageConfig(){
 
-        Rectangle2D resolution = Screen.getPrimary().getBounds();
-        stage.setWidth(resolution.getWidth() * 0.8);
-        stage.setHeight(resolution.getHeight() * 0.8);
+        stage.setWidth(StaticUtil.screenWidth * 0.8);
+        stage.setHeight(StaticUtil.screenHeight * 0.8);
 
         stage.centerOnScreen();
 

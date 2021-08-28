@@ -1,14 +1,24 @@
 package com.strixrs.service;
 
 import com.strixrs.controller.AbsctractController;
+import com.strixrs.controller.AddQuestionController;
+import com.strixrs.controller.AddResearchController;
 import com.strixrs.controller.MainController;
 import com.strixrs.data.DataResearchs;
 import com.strixrs.javafxmodfiedcontrol.ResearchButton;
 import com.strixrs.model.Question;
 import com.strixrs.model.Research;
+import com.strixrs.staticutil.StaticUtil;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class QuestionPaneService extends  AbstractService{
 
@@ -22,6 +32,10 @@ public class QuestionPaneService extends  AbstractService{
         this.currentResearch = currentResearch;
     }
 
+    public Research getCurrentResearch() {
+        return currentResearch;
+    }
+
     public void updateQuestionsVBox() {
 
         MainController mainController = (MainController) controller;
@@ -32,5 +46,25 @@ public class QuestionPaneService extends  AbstractService{
             Button button = new ResearchButton(question.getTitle());
             mainController.getVbQuestions().getChildren().add(button);
         }
+    }
+
+    public void launchQuestionAddScreen() throws IOException {
+
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        FXMLLoader fxmlLoader = StaticUtil.getFXML("AddQuestion");
+
+        Parent parent = fxmlLoader.load();
+
+        Scene scene = new Scene(parent);
+
+        stage.setScene(scene);
+
+        AddQuestionController controller = fxmlLoader.getController();
+        controller.setStage(stage);
+        controller.setQuestionPaneService(this);
+
+        stage.showAndWait();
     }
 }

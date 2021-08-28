@@ -41,9 +41,5 @@ public class Research implements Serializable {
         this.questions = questions;
     }
 
-    public void addQuestion(Question question){
-
-        questions.add(question);
-    }
 
 }

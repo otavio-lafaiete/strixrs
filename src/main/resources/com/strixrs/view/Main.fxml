@@ -211,8 +211,9 @@
                               </HBox>
                               <HBox spacing="5.0">
                                  <children>
-                                    <Button mnemonicParsing="false" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Adicionar Questionário" />
-                                    <Button mnemonicParsing="false" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Atualizar" />
+                                    <Button fx:id="btnQuestionAdd" mnemonicParsing="false" onAction="#handleActionEventFromQuestionPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Adicionar Questionário" />
+                                    <Button fx:id="btnQuestionUpdate" mnemonicParsing="false" onAction="#handleActionEventFromQuestionPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Atualizar" />
+                                    <Button fx:id="btnBackToResearchs" layoutX="153.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleActionEventFromQuestionPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Voltar" />
                                  </children>
                               </HBox>
                            </children>

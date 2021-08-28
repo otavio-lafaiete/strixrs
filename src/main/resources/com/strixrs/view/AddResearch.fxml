@@ -23,7 +23,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtTitle" promptText="Insira o título da pesquisa" />
+            <TextField fx:id="txtTitle" prefHeight="30.0" promptText="Insira o título da pesquisa" />
             <Label opacity="0.5" text="Descrição">
                <font>
                   <Font size="14.0" />
@@ -31,7 +31,7 @@
             </Label>
             <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                <content>
-                  <TextArea fx:id="taDescription" promptText="Insira uma descrição para a pesquisa" />
+                  <TextArea fx:id="taDescription" maxHeight="1.7976931348623157E308" promptText="Insira uma descrição para a pesquisa" />
                </content>
             </ScrollPane>
             <HBox alignment="BASELINE_RIGHT">

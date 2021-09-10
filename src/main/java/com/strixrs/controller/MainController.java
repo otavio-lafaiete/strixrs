@@ -1,19 +1,19 @@
 package com.strixrs.controller;
 
+import com.strixrs.model.Answer;
+import com.strixrs.service.AnswerPaneService;
 import com.strixrs.service.QuestionPaneService;
 import com.strixrs.service.ResearchPaneService;
 import com.strixrs.staticutil.StaticUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -27,6 +27,7 @@ public class MainController extends AbsctractController{
     @FXML private Button btnResearch;
     @FXML private BorderPane bpResearchPane;
     @FXML private BorderPane bpQuestionPane;
+    @FXML private BorderPane bpAnswerPane;
     @FXML private TextField txtResearchSearch;
     @FXML private Button btnResearchSearch;
     @FXML private Button btnResearchAdd;
@@ -34,11 +35,20 @@ public class MainController extends AbsctractController{
     @FXML private Button btnQuestionAdd;
     @FXML private Button btnQuestionUpdate;
     @FXML private Button btnBackToResearchs;
+    @FXML private Button btnAnswerAdd;
     @FXML private VBox vbResearchs;
     @FXML private VBox vbQuestions;
+    @FXML private Label lblResearchTitle;
+    @FXML private TextArea taResearchDescription;
+    @FXML private Label lblQuestionTitle;
+    @FXML private Button btnBackToQuestions;
+    @FXML private TableView<Answer> tvAnswers;
+    @FXML private TableColumn<Answer, String> tcAnswer;
+    @FXML private TableColumn<Answer, String> tcID;
 
     ResearchPaneService researchPaneService;
     QuestionPaneService questionPaneService;
+    AnswerPaneService answerPaneService;
 
     public void initialize(){
 
@@ -46,6 +56,13 @@ public class MainController extends AbsctractController{
         researchPaneService.updateResearchsVBox();
 
         questionPaneService = new QuestionPaneService(this);
+
+        answerPaneService = new AnswerPaneService(this);
+
+        tcAnswer.setCellValueFactory(new PropertyValueFactory<>("answer"));
+        tcID.setCellValueFactory(new PropertyValueFactory<>("id"));
+
+        tvAnswers.setItems(answerPaneService.getAnswersData());
     }
 
     //Main Scene Event Handlers
@@ -146,6 +163,19 @@ public class MainController extends AbsctractController{
         }
     }
 
+    //AnswerPane Event Handlers
+    @FXML
+    private void handleActionEventFromAnswerPane(ActionEvent actionEvent) throws IOException {
+
+        if(actionEvent.getSource() == btnBackToQuestions){
+            bpQuestionPane.toFront();
+        }
+
+        if(actionEvent.getSource() == btnAnswerAdd){
+            answerPaneService.launchAnswerAddScreen();
+        }
+    }
+
     @Override
     public void setStage(Stage stage){
 
@@ -174,5 +204,29 @@ public class MainController extends AbsctractController{
 
     public BorderPane getBpQuestionPane(){
         return bpQuestionPane;
+    }
+
+    public Label getLblResearchTitle() {
+        return lblResearchTitle;
+    }
+
+    public TextArea getTaResearchDescription() {
+        return taResearchDescription;
+    }
+
+    public AnswerPaneService getAnswerPaneService() {
+        return answerPaneService;
+    }
+
+    public BorderPane getBpAnswerPane(){
+        return  bpAnswerPane;
+    }
+
+    public Label getLblQuestionTitle(){
+        return lblQuestionTitle;
+    }
+
+    public TableView<Answer> getTvAnswers() {
+        return tvAnswers;
     }
 }

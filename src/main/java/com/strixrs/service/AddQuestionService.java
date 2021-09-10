@@ -19,7 +19,7 @@ public class AddQuestionService extends AbstractService{
 
         Research research = addQuestionController.getQuestionPaneService().getCurrentResearch();
 
-        Question question = new Question(title, userData);
+        Question question = new Question(title, userData, research);
         research.getQuestions().add(question);
 
         DataResearchs.addResearch(research);

@@ -31,7 +31,7 @@
             </Label>
             <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                <content>
-                  <TextArea fx:id="taDescription" maxHeight="1.7976931348623157E308" promptText="Insira uma descrição para a pesquisa" />
+                  <TextArea fx:id="taDescription" maxHeight="1.7976931348623157E308" promptText="Insira uma descrição para a pesquisa" wrapText="true" />
                </content>
             </ScrollPane>
             <HBox alignment="BASELINE_RIGHT">

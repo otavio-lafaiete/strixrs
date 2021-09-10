@@ -41,12 +41,26 @@ public class QuestionPaneService extends  AbstractService{
         MainController mainController = (MainController) controller;
 
         mainController.getVbQuestions().getChildren().clear();
+
         for(Question question: currentResearch.getQuestions()){
 
             Button button = new ResearchButton(question.getTitle());
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+
+                    mainController.getAnswerPaneService().setCurrentQuestion(question);
+                    mainController.getBpAnswerPane().toFront();
+                    mainController.getAnswerPaneService().updateAnswers();
+                }
+            });
             mainController.getVbQuestions().getChildren().add(button);
         }
+
+        mainController.getLblResearchTitle().setText(currentResearch.getTitle());
+        mainController.getTaResearchDescription().setText(currentResearch.getDescription());
     }
+
 
     public void launchQuestionAddScreen() throws IOException {
 

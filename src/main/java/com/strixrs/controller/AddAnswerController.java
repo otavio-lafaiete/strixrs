@@ -1,37 +1,37 @@
 package com.strixrs.controller;
 
-import com.strixrs.service.AddResearchService;
-import com.strixrs.service.ResearchPaneService;
+import com.strixrs.service.AddAnswerService;
+import com.strixrs.service.AddQuestionService;
+import com.strixrs.service.AnswerPaneService;
+import com.strixrs.service.QuestionPaneService;
 import com.strixrs.staticutil.StaticUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class AddResearchController extends AbsctractController {
+public class AddAnswerController extends AbsctractController{
 
     @FXML private ImageView btnClose;
     @FXML private ImageView btnIconify;
-    @FXML private TextField txtTitle;
-    @FXML private TextArea taDescription;
+    @FXML private TextField txtAnswer;
+    @FXML private TextField txtID;
     @FXML private Button btnAdd;
     @FXML private Label lblWarning;
 
-    private AddResearchService addResearchService;
-    private ResearchPaneService researchPaneService;
+
+    private AddAnswerService addAnswerService;
+    private AnswerPaneService answerPaneService;
 
     private double xOffSet;
     private double yOffSet;
 
     public void initialize(){
 
-        addResearchService = new AddResearchService(this);
+        addAnswerService = new AddAnswerService(this);
     }
 
     @FXML
@@ -80,25 +80,24 @@ public class AddResearchController extends AbsctractController {
 
         if(actionEvent.getSource() == btnAdd){
 
-            String title = txtTitle.getText();
+            String answer = txtAnswer.getText();
+            String id = txtID.getText();
 
-            if(title.isEmpty()){
-                lblWarning.setText("O título não pode ser vazio");
-                txtTitle.requestFocus();
-
-                return;
-            }
-
-            String description = taDescription.getText();
-
-            if(description.isEmpty()){
-                lblWarning.setText("A descrição não pode ser vazia");
-                taDescription.requestFocus();
+            if(answer.isEmpty()){
+                lblWarning.setText("A resposta não pode ser vazia");
+                txtAnswer.requestFocus();
 
                 return;
             }
 
-            addResearchService.addResearch(title, description);
+            if(id.isEmpty()){
+                lblWarning.setText("O ID não pode ser vazio");
+                txtID.requestFocus();
+
+                return;
+            }
+
+            addAnswerService.addAnswer(answer, id);
         }
     }
 
@@ -111,9 +110,6 @@ public class AddResearchController extends AbsctractController {
     private void stageConfig(){
 
         stage.initStyle(StageStyle.UNDECORATED);
-
-        stage.setWidth(StaticUtil.screenWidth * 0.5);
-        stage.setHeight(StaticUtil.screenHeight * 0.5);
 
         stage.getScene().setOnMousePressed((MouseEvent event) ->
         {
@@ -133,11 +129,11 @@ public class AddResearchController extends AbsctractController {
         stage.centerOnScreen();
     }
 
-    public void setResearchPaneService(ResearchPaneService researchPaneService) {
-        this.researchPaneService = researchPaneService;
+    public AnswerPaneService getAnswerPaneService() {
+        return answerPaneService;
     }
 
-    public ResearchPaneService getResearchPaneService(){
-        return researchPaneService;
+    public void setAnswerPaneService(AnswerPaneService answerPaneService) {
+        this.answerPaneService = answerPaneService;
     }
 }

@@ -4,10 +4,8 @@ import com.strixrs.model.Answer;
 import com.strixrs.model.Question;
 import com.strixrs.model.Research;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.Charset;
 
 public class ImportCSV {
 
@@ -15,9 +13,17 @@ public class ImportCSV {
 
         Research research = null;
 
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(file, Charset.forName("UTF-8")))) {
 
-            research = new Research(file.getName(), "");
+
+            char[] arrayFileNameWithExtension = file.getName().toCharArray();
+            char[] fileName = new char[arrayFileNameWithExtension.length - 4];
+
+            for(int i = 0; i < arrayFileNameWithExtension.length - 4; i++){
+                fileName[i] = arrayFileNameWithExtension[i];
+            }
+
+            research = new Research(String.valueOf(fileName), "");
 
             String line = br.readLine();
 
@@ -52,10 +58,6 @@ public class ImportCSV {
         }
         catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
-        }
-
-        for(Question question: research.getQuestions()){
-            System.out.println(question.getTitle());
         }
 
         return research;

@@ -12,6 +12,7 @@ import java.io.File;
 public class ImportPaneService extends AbstractService{
 
     MainController mainController;
+    File file;
 
     public ImportPaneService(AbsctractController controller) {
 
@@ -23,16 +24,25 @@ public class ImportPaneService extends AbstractService{
 
         FileChooser fc = new FileChooser();
 
-        File file = fc.showOpenDialog(controller.getStage());
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV File", "*csv"));
 
-        mainController.getTxtFilePath().setText(file.toString());
+         file = fc.showOpenDialog(controller.getStage());
+
+         if(file == null){
+             System.out.println("Erro ao abrir o arquivo");
+             return;
+         }
+
+
+         mainController.getTxtFilePath().setText(file.toString());
     }
 
     public void doImport() {
 
-        System.out.println("CHEGOU AQUI -------------------------------------------------------------");
-        File file = new File(mainController.getTxtFilePath().getText());
-        System.out.println(file);
+        if(file == null){
+            System.out.println("erro, o arquivo é nulo");
+            return;
+        }
         Research research = ImportCSV.importCSV(file);
         DataResearchs.addResearch(research);
     }

@@ -18,13 +18,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.strixrs.controller.MainController">
+<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.strixrs.controller.MainController">
    <children>
       <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
             <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" prefWidth="180.0" spacing="15.0" style="-fx-background-color: #2a52be;" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnResearch" alignment="BASELINE_LEFT" graphicTextGap="10.0" minHeight="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" styleClass="mainButton" stylesheets="@../css/MainStyle.css" text="Pesquisas">
+                  <Button fx:id="btnResearch" alignment="BASELINE_LEFT" graphicTextGap="10.0" minHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#handleMouseClickedEventFromMainScene" prefHeight="40.0" prefWidth="200.0" styleClass="mainButton" stylesheets="@../css/MainStyle.css" text="Pesquisas">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -39,7 +39,7 @@
                         <Insets left="25.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" minHeight="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" styleClass="mainButton" stylesheets="@../css/MainStyle.css" text="Relatórios">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" minHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#handleMouseClickedEventFromMainScene" prefHeight="40.0" prefWidth="200.0" styleClass="mainButton" stylesheets="@../css/MainStyle.css" text="Relatórios">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -54,7 +54,7 @@
                         <Insets left="25.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="40.0" minHeight="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" styleClass="mainButton" stylesheets="@../css/MainStyle.css" text="Responder">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="40.0" minHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#handleMouseClickedEventFromMainScene" prefHeight="40.0" prefWidth="200.0" styleClass="mainButton" stylesheets="@../css/MainStyle.css" text="Responder">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -69,7 +69,7 @@
                         <Insets left="25.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="70.0" minHeight="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" styleClass="mainButton" stylesheets="@../css/MainStyle.css" text="Importar">
+                  <Button fx:id="btnImport" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="70.0" minHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#handleMouseClickedEventFromMainScene" prefHeight="40.0" prefWidth="200.0" styleClass="mainButton" stylesheets="@../css/MainStyle.css" text="Importar">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -84,7 +84,7 @@
                         <Insets left="25.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" minHeight="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" styleClass="mainButton" stylesheets="@../css/MainStyle.css" text="Exportar">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" minHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#handleMouseClickedEventFromMainScene" prefHeight="40.0" prefWidth="200.0" styleClass="mainButton" stylesheets="@../css/MainStyle.css" text="Exportar">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -340,6 +340,40 @@
                                  <children>
                                     <Button fx:id="btnResearchAdd" mnemonicParsing="false" onAction="#handleActionEventFromResearchPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Adicionar" />
                                     <Button fx:id="btnResearchUpdate" mnemonicParsing="false" onAction="#handleActionEventFromResearchPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Atualizar" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </top>
+                  </BorderPane>
+                  <BorderPane fx:id="bpImportPane" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleMouseClickedEventFromMainScene" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
+                     <center>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" styleClass="scrollpanels" stylesheets="@../css/MainStyle.css" BorderPane.alignment="CENTER">
+                           <content>
+                              <VBox fx:id="vbResearchs1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" styleClass="vboxes" stylesheets="@../css/MainStyle.css" />
+                           </content>
+                           <BorderPane.margin>
+                              <Insets top="10.0" />
+                           </BorderPane.margin>
+                        </ScrollPane>
+                     </center>
+                     <top>
+                        <VBox spacing="5.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label text="Importar">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox spacing="5.0">
+                                 <children>
+                                    <TextField fx:id="txtFilePath" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleActionEventFromResearchPane" prefHeight="30.0" promptText="Selecione o caminho de uma pesquisa no formato .csv para importar" style="-fx-border-radius: 5;" HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="btnImportSelect" mnemonicParsing="false" onAction="#handleActionEventFromImportPane" text="Selecionar" />
+                                 </children>
+                              </HBox>
+                              <HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" spacing="5.0">
+                                 <children>
+                                    <Button fx:id="btnDoImport" mnemonicParsing="false" onAction="#handleActionEventFromImportPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Importar" />
                                  </children>
                               </HBox>
                            </children>

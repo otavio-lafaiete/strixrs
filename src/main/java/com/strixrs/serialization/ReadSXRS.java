@@ -50,7 +50,7 @@ public class ReadSXRS {
 
     public static Research readResearch(Path path){
 
-        Research research = null;
+        Research research;
 
         openFile(path);
         research = readFile();

@@ -2,6 +2,7 @@ package com.strixrs.controller;
 
 import com.strixrs.model.Answer;
 import com.strixrs.service.AnswerPaneService;
+import com.strixrs.service.ImportPaneService;
 import com.strixrs.service.QuestionPaneService;
 import com.strixrs.service.ResearchPaneService;
 import com.strixrs.staticutil.StaticUtil;
@@ -25,9 +26,11 @@ public class MainController extends AbsctractController{
     @FXML private ImageView btnIconify;
     @FXML private AnchorPane anchorPane;
     @FXML private Button btnResearch;
+    @FXML private Button btnImport;
     @FXML private BorderPane bpResearchPane;
     @FXML private BorderPane bpQuestionPane;
     @FXML private BorderPane bpAnswerPane;
+    @FXML private BorderPane bpImportPane;
     @FXML private TextField txtResearchSearch;
     @FXML private Button btnResearchSearch;
     @FXML private Button btnResearchAdd;
@@ -45,10 +48,14 @@ public class MainController extends AbsctractController{
     @FXML private TableView<Answer> tvAnswers;
     @FXML private TableColumn<Answer, String> tcAnswer;
     @FXML private TableColumn<Answer, String> tcID;
+    @FXML private Button btnImportSelect;
+    @FXML private TextField txtFilePath;
+    @FXML private Button btnDoImport;
 
     ResearchPaneService researchPaneService;
     QuestionPaneService questionPaneService;
     AnswerPaneService answerPaneService;
+    ImportPaneService importPaneService;
 
     public void initialize(){
 
@@ -58,6 +65,8 @@ public class MainController extends AbsctractController{
         questionPaneService = new QuestionPaneService(this);
 
         answerPaneService = new AnswerPaneService(this);
+
+        importPaneService = new ImportPaneService(this);
 
         tcAnswer.setCellValueFactory(new PropertyValueFactory<>("answer"));
         tcID.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -84,6 +93,12 @@ public class MainController extends AbsctractController{
             }else{
                 btnMaximize.setImage(StaticUtil.getIcon("white-maximize-hover.png"));
             }
+        }
+
+        if(source.equals(btnResearch)){
+            bpResearchPane.toFront();
+        }if(source.equals(btnImport)){
+            bpImportPane.toFront();
         }
     }
 
@@ -142,8 +157,6 @@ public class MainController extends AbsctractController{
         if(actionEvent.getSource() == btnResearchAdd){
             researchPaneService.launchResearchAddScreen();
         }
-
-
     }
 
     //QuestionPane Event Handlers
@@ -174,6 +187,20 @@ public class MainController extends AbsctractController{
         if(actionEvent.getSource() == btnAnswerAdd){
             answerPaneService.launchAnswerAddScreen();
         }
+    }
+
+    //ImportPane Event Handlers
+    @FXML
+    private void handleActionEventFromImportPane(ActionEvent actionEvent){
+
+        if(actionEvent.getSource() == btnImportSelect){
+            importPaneService.launchSelectScreen();
+        }
+
+        if(actionEvent.getSource() == btnDoImport){
+            importPaneService.doImport();
+        }
+
     }
 
     @Override
@@ -228,5 +255,9 @@ public class MainController extends AbsctractController{
 
     public TableView<Answer> getTvAnswers() {
         return tvAnswers;
+    }
+
+    public TextField getTxtFilePath() {
+        return txtFilePath;
     }
 }

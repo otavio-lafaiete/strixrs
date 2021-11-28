@@ -13,13 +13,13 @@ public class AddQuestionService extends AbstractService{
         super(controller);
     }
 
-    public void addQuestion(String title, String userData) {
+    public void addQuestion(String title) {
 
         AddQuestionController addQuestionController = (AddQuestionController) controller;
 
         Research research = addQuestionController.getQuestionPaneService().getCurrentResearch();
 
-        Question question = new Question(title, userData, research);
+        Question question = new Question(title, research);
         research.getQuestions().add(question);
 
         DataResearchs.addResearch(research);

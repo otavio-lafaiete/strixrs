@@ -30,7 +30,7 @@ public class ImportCSV {
 
             for (String s: arrayQuestions){
 
-                Question question = new Question(s, "", research);
+                Question question = new Question(s, research);
 
                 research.getQuestions().add(question);
             }

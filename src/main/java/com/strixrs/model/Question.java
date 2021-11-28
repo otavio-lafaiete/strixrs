@@ -8,22 +8,16 @@ public class Question implements Serializable {
 
     private String title;
     private List<Answer> answers;
-    private String answerType;
     private Research research;
 
-    public Question(String title, String answerType, Research research){
+    public Question(String title, Research research){
         answers = new ArrayList<>();
         this.title = title;
-        this.answerType = answerType;
         this.research = research;
     }
 
     public String getTitle() {
         return title;
-    }
-
-    public String getAnswerType(){
-        return answerType;
     }
 
     public void setTitle(String title) {
@@ -36,10 +30,6 @@ public class Question implements Serializable {
 
     public void setAnswers(List<Answer> answers) {
         this.answers = answers;
-    }
-
-    public void setAnswerType(String answerType) {
-        this.answerType = answerType;
     }
 
     public Research getResearch() {

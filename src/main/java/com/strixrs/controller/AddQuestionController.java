@@ -20,11 +20,6 @@ public class AddQuestionController extends AbsctractController{
     @FXML private TextField txtTitle;
     @FXML private Button btnAdd;
     @FXML private Label lblWarning;
-    @FXML private ToggleGroup tgType;
-    @FXML private ToggleButton tbtnString;
-    @FXML private ToggleButton tbtnInteger;
-    @FXML private ToggleButton tbtnFloat;
-    @FXML private ToggleButton tbtnBoolean;
 
     private AddQuestionService addQuestionService;
     private QuestionPaneService questionPaneService;
@@ -35,11 +30,6 @@ public class AddQuestionController extends AbsctractController{
     public void initialize(){
 
        addQuestionService = new AddQuestionService(this);
-
-       tbtnString.setUserData("String");
-       tbtnInteger.setUserData("Integer");
-       tbtnFloat.setUserData("Float");
-       tbtnBoolean.setUserData("Boolean");
     }
 
     @FXML
@@ -97,7 +87,7 @@ public class AddQuestionController extends AbsctractController{
                 return;
             }
 
-            addQuestionService.addQuestion(title, tgType.getSelectedToggle().getUserData().toString());
+            addQuestionService.addQuestion(title);
         }
     }
 

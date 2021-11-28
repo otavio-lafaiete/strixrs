@@ -55,7 +55,6 @@ public class MainController extends AbsctractController{
     @FXML private Button btnDoExport;
     @FXML private ListView<String> lvExportResearchs;
 
-
     ResearchPaneService researchPaneService;
     QuestionPaneService questionPaneService;
     AnswerPaneService answerPaneService;

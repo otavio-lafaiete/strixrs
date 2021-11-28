@@ -15,7 +15,6 @@ public class ImportCSV {
 
         try (BufferedReader br = new BufferedReader(new FileReader(file, Charset.forName("UTF-8")))) {
 
-
             char[] arrayFileNameWithExtension = file.getName().toCharArray();
             char[] fileName = new char[arrayFileNameWithExtension.length - 4];
 
@@ -35,6 +34,8 @@ public class ImportCSV {
 
                 research.getQuestions().add(question);
             }
+
+            line = br.readLine();
 
             while (line != null) {
 

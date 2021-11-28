@@ -1,10 +1,7 @@
 package com.strixrs.controller;
 
 import com.strixrs.model.Answer;
-import com.strixrs.service.AnswerPaneService;
-import com.strixrs.service.ImportPaneService;
-import com.strixrs.service.QuestionPaneService;
-import com.strixrs.service.ResearchPaneService;
+import com.strixrs.service.*;
 import com.strixrs.staticutil.StaticUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,10 +24,12 @@ public class MainController extends AbsctractController{
     @FXML private AnchorPane anchorPane;
     @FXML private Button btnResearch;
     @FXML private Button btnImport;
+    @FXML private Button btnExport;
     @FXML private BorderPane bpResearchPane;
     @FXML private BorderPane bpQuestionPane;
     @FXML private BorderPane bpAnswerPane;
     @FXML private BorderPane bpImportPane;
+    @FXML private BorderPane bpExportPane;
     @FXML private TextField txtResearchSearch;
     @FXML private Button btnResearchSearch;
     @FXML private Button btnResearchAdd;
@@ -51,11 +50,17 @@ public class MainController extends AbsctractController{
     @FXML private Button btnImportSelect;
     @FXML private TextField txtFilePath;
     @FXML private Button btnDoImport;
+    @FXML private TextField txtExportPath;
+    @FXML private Button btnExportSelect;
+    @FXML private Button btnDoExport;
+    @FXML private ListView<String> lvExportResearchs;
+
 
     ResearchPaneService researchPaneService;
     QuestionPaneService questionPaneService;
     AnswerPaneService answerPaneService;
     ImportPaneService importPaneService;
+    ExportPaneService exportPaneService;
 
     public void initialize(){
 
@@ -67,6 +72,9 @@ public class MainController extends AbsctractController{
         answerPaneService = new AnswerPaneService(this);
 
         importPaneService = new ImportPaneService(this);
+
+        exportPaneService = new ExportPaneService(this);
+        exportPaneService.updateLVResearchs();
 
         tcAnswer.setCellValueFactory(new PropertyValueFactory<>("answer"));
         tcID.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -99,6 +107,8 @@ public class MainController extends AbsctractController{
             bpResearchPane.toFront();
         }if(source.equals(btnImport)){
             bpImportPane.toFront();
+        }if(source.equals(btnExport)){
+            bpExportPane.toFront();
         }
     }
 
@@ -203,6 +213,20 @@ public class MainController extends AbsctractController{
 
     }
 
+    //ExportPane Event Handlers
+    @FXML
+    private void handleActionEventFromExportPane(ActionEvent actionEvent){
+
+        if(actionEvent.getSource() == btnExportSelect){
+            exportPaneService.launchSelectScreen();
+        }
+
+        if(actionEvent.getSource() == btnDoExport){
+            exportPaneService.doExport();
+        }
+
+    }
+
     @Override
     public void setStage(Stage stage){
 
@@ -259,5 +283,13 @@ public class MainController extends AbsctractController{
 
     public TextField getTxtFilePath() {
         return txtFilePath;
+    }
+
+    public ListView getLvExportResearchs() {
+        return lvExportResearchs;
+    }
+
+    public TextField getTxtExportPath() {
+        return txtExportPath;
     }
 }

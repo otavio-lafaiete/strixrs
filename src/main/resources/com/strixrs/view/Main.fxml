@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -84,7 +85,7 @@
                         <Insets left="25.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" minHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#handleMouseClickedEventFromMainScene" prefHeight="40.0" prefWidth="200.0" styleClass="mainButton" stylesheets="@../css/MainStyle.css" text="Exportar">
+                  <Button fx:id="btnExport" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" minHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#handleMouseClickedEventFromMainScene" prefHeight="40.0" prefWidth="200.0" styleClass="mainButton" stylesheets="@../css/MainStyle.css" text="Exportar">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -311,6 +312,40 @@
                         </TableView>
                      </center>
                   </BorderPane>
+                  <BorderPane fx:id="bpImportPane" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleMouseClickedEventFromMainScene" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
+                     <center>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" styleClass="scrollpanels" stylesheets="@../css/MainStyle.css" BorderPane.alignment="CENTER">
+                           <content>
+                              <VBox fx:id="vbResearchs1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" styleClass="vboxes" stylesheets="@../css/MainStyle.css" />
+                           </content>
+                           <BorderPane.margin>
+                              <Insets top="10.0" />
+                           </BorderPane.margin>
+                        </ScrollPane>
+                     </center>
+                     <top>
+                        <VBox spacing="5.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label text="Importar">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox spacing="5.0">
+                                 <children>
+                                    <TextField fx:id="txtFilePath" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleActionEventFromResearchPane" prefHeight="30.0" promptText="Selecione o caminho de uma pesquisa no formato .csv para importar" style="-fx-border-radius: 5;" HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="btnImportSelect" mnemonicParsing="false" onAction="#handleActionEventFromImportPane" text="Selecionar" />
+                                 </children>
+                              </HBox>
+                              <HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" spacing="5.0">
+                                 <children>
+                                    <Button fx:id="btnDoImport" mnemonicParsing="false" onAction="#handleActionEventFromImportPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Importar" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </top>
+                  </BorderPane>
                   <BorderPane fx:id="bpResearchPane" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
                      <center>
                         <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" styleClass="scrollpanels" stylesheets="@../css/MainStyle.css" BorderPane.alignment="CENTER">
@@ -346,11 +381,11 @@
                         </VBox>
                      </top>
                   </BorderPane>
-                  <BorderPane fx:id="bpImportPane" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleMouseClickedEventFromMainScene" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
+                  <BorderPane fx:id="bpExportPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
                      <center>
                         <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" styleClass="scrollpanels" stylesheets="@../css/MainStyle.css" BorderPane.alignment="CENTER">
                            <content>
-                              <VBox fx:id="vbResearchs1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" styleClass="vboxes" stylesheets="@../css/MainStyle.css" />
+                              <VBox fx:id="vbResearchs11" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" styleClass="vboxes" stylesheets="@../css/MainStyle.css" />
                            </content>
                            <BorderPane.margin>
                               <Insets top="10.0" />
@@ -360,20 +395,25 @@
                      <top>
                         <VBox spacing="5.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Label text="Importar">
+                              <Label text="Exportar">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
                               <HBox spacing="5.0">
                                  <children>
-                                    <TextField fx:id="txtFilePath" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleActionEventFromResearchPane" prefHeight="30.0" promptText="Selecione o caminho de uma pesquisa no formato .csv para importar" style="-fx-border-radius: 5;" HBox.hgrow="ALWAYS" />
-                                    <Button fx:id="btnImportSelect" mnemonicParsing="false" onAction="#handleActionEventFromImportPane" text="Selecionar" />
+                                    <TextField fx:id="txtExportPath" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleActionEventFromExportPane" prefHeight="30.0" promptText="Selecione o caminho de uma pesquisa no formato .csv para importar" style="-fx-border-radius: 5;" HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="btnExportSelect" mnemonicParsing="false" onAction="#handleActionEventFromExportPane" text="Selecionar" />
                                  </children>
                               </HBox>
+                              <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                                 <content>
+                                    <ListView fx:id="lvExportResearchs" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+                                 </content>
+                              </ScrollPane>
                               <HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" spacing="5.0">
                                  <children>
-                                    <Button fx:id="btnDoImport" mnemonicParsing="false" onAction="#handleActionEventFromImportPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Importar" />
+                                    <Button fx:id="btnDoExport" mnemonicParsing="false" onAction="#handleActionEventFromExportPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Exportar" />
                                  </children>
                               </HBox>
                            </children>

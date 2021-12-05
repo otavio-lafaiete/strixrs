@@ -71,7 +71,6 @@ public class MainController extends AbsctractController{
         mainControllerService = new MainControllerService(this);
 
         researchPaneService = new ResearchPaneService(this);
-        researchPaneService.updateResearchsVBox();
 
         questionPaneService = new QuestionPaneService(this);
 
@@ -80,7 +79,8 @@ public class MainController extends AbsctractController{
         importPaneService = new ImportPaneService(this);
 
         exportPaneService = new ExportPaneService(this);
-        exportPaneService.updateLVResearchs();
+
+        mainControllerService.update();
 
         tcAnswer.setCellValueFactory(new PropertyValueFactory<>("answer"));
         tcID.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -111,9 +111,11 @@ public class MainController extends AbsctractController{
 
         if(source.equals(btnResearch)){
             bpResearchPane.toFront();
+            mainControllerService.update();
         }if(source.equals(btnImport)){
             bpImportPane.toFront();
         }if(source.equals(btnExport)){
+            mainControllerService.update();
             bpExportPane.toFront();
         }
     }

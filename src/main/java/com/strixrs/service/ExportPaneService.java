@@ -6,11 +6,15 @@ import com.strixrs.csv.ExportCSV;
 import com.strixrs.model.Question;
 import com.strixrs.model.Research;
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import com.strixrs.data.DataResearchs;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +32,10 @@ public class ExportPaneService extends AbstractService{
 
         DirectoryChooser dc = new DirectoryChooser();
 
-        mainController.getTxtExportPath().setText(dc.showDialog(controller.getStage()).toString());
+        File pathFile = dc.showDialog(controller.getStage());
+
+        if(pathFile != null)
+            mainController.getTxtExportPath().setText(pathFile.toString());
     }
 
     public void doExport(){
@@ -36,6 +43,19 @@ public class ExportPaneService extends AbstractService{
         ListView<String> listResearchs =  mainController.getLvExportResearchs();
 
         String actualResearchName = listResearchs.getSelectionModel().getSelectedItem();
+
+        if(actualResearchName == null){
+
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setContentText("Nenhuma pesquisa selecionada");
+
+            alert.showAndWait();
+
+            return;
+
+        }
 
         Research selectedResearch = null;
 
@@ -74,7 +94,21 @@ public class ExportPaneService extends AbstractService{
             sb.deleteCharAt(sb.length() - 1);
         }
 
-        ExportCSV.exportCSV(mainController.getTxtExportPath().getText(), actualResearchName, sb);
+        Path path = Paths.get(mainController.getTxtExportPath().getText());
+
+        if(!path.toFile().exists()){
+
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setContentText("Não foi possível salvar um arquivo no caminho especificado");
+
+            alert.showAndWait();
+
+            return;
+        }
+
+        ExportCSV.exportCSV(path.toString(), actualResearchName, sb);
     }
 
     public void updateLVResearchs(){

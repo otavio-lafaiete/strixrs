@@ -33,10 +33,14 @@ public class MainController extends AbsctractController{
     @FXML private TextField txtResearchSearch;
     @FXML private Button btnResearchSearch;
     @FXML private Button btnResearchAdd;
+
+
     @FXML private Button btnResearchUpdate;
     @FXML private Button btnQuestionAdd;
     @FXML private Button btnQuestionUpdate;
+    @FXML private Button btnQuestionDelete;
     @FXML private Button btnBackToResearchs;
+    @FXML private Button btnResearchEdit;
     @FXML private Button btnAnswerAdd;
     @FXML private VBox vbResearchs;
     @FXML private VBox vbQuestions;
@@ -55,6 +59,7 @@ public class MainController extends AbsctractController{
     @FXML private Button btnDoExport;
     @FXML private ListView<String> lvExportResearchs;
 
+    MainControllerService mainControllerService;
     ResearchPaneService researchPaneService;
     QuestionPaneService questionPaneService;
     AnswerPaneService answerPaneService;
@@ -62,6 +67,8 @@ public class MainController extends AbsctractController{
     ExportPaneService exportPaneService;
 
     public void initialize(){
+
+        mainControllerService = new MainControllerService(this);
 
         researchPaneService = new ResearchPaneService(this);
         researchPaneService.updateResearchsVBox();
@@ -183,6 +190,14 @@ public class MainController extends AbsctractController{
         if(actionEvent.getSource() == btnBackToResearchs){
             bpResearchPane.toFront();
         }
+
+        if(actionEvent.getSource() == btnQuestionDelete){
+            questionPaneService.deleteCurrentResearch();
+        }
+
+        if(actionEvent.getSource() == btnResearchEdit){
+            questionPaneService.launchResearchEditScreen();
+        }
     }
 
     //AnswerPane Event Handlers
@@ -290,5 +305,30 @@ public class MainController extends AbsctractController{
 
     public TextField getTxtExportPath() {
         return txtExportPath;
+    }
+
+    public BorderPane getBpResearchPane() {
+        return bpResearchPane;
+    }
+
+    public ResearchPaneService getResearchPaneService(){
+        return researchPaneService;
+    }
+
+    public BorderPane getBpImportPane() {
+        return bpImportPane;
+    }
+
+    public BorderPane getBpExportPane() {
+        return bpExportPane;
+    }
+
+    public MainControllerService getMainControllerService() {
+
+        return mainControllerService;
+    }
+
+    public ExportPaneService getExportPaneService() {
+        return exportPaneService;
     }
 }

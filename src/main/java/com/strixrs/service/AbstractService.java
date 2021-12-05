@@ -13,4 +13,6 @@ public abstract class AbstractService {
     public AbsctractController getController() {
         return controller;
     }
+
+    public void update(){}
 }

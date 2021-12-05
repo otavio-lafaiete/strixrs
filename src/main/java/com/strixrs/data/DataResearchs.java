@@ -5,7 +5,9 @@ import com.strixrs.model.Research;
 import com.strixrs.serialization.ReadSXRS;
 import com.strixrs.serialization.SaveSXRS;
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+import javafx.scene.control.Alert;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -50,5 +52,19 @@ public class DataResearchs {
                 researchs.add(ReadSXRS.readResearch(path));
             }
         }
+    }
+
+    public static void deleteResearch(String researchTitle){
+
+        File researchToBeDeleted = new File(researchsPath + "\\" + researchTitle + ".sxrs");
+        if(!researchToBeDeleted.delete()){
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setContentText("Ooops, ocorreu um erro ao tentar deletar a pesquisa");
+
+            alert.showAndWait();
+        }
+
     }
 }

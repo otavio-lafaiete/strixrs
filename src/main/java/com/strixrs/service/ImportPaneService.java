@@ -45,5 +45,7 @@ public class ImportPaneService extends AbstractService{
         }
         Research research = ImportCSV.importCSV(file);
         DataResearchs.addResearch(research);
+
+        mainController.getMainControllerService().update();
     }
 }

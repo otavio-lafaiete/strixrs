@@ -194,68 +194,6 @@
          <center>
             <StackPane style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane fx:id="bpQuestionPane" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
-                     <top>
-                        <VBox spacing="5.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <Label text="Título">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="lblResearchTitle" opacity="0.8" text="Título da Pesquisa" />
-                              <Label text="Descrição">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" maxHeight="100.0" minHeight="80.0" prefHeight="80.0" styleClass="scrollpanels" stylesheets="@../css/MainStyle.css">
-                                 <content>
-                                    <TextArea fx:id="taResearchDescription" editable="false" focusTraversable="false" opacity="0.8" stylesheets="@../css/MainStyle.css" wrapText="true" />
-                                 </content>
-                              </ScrollPane>
-                              <HBox layoutX="10.0" layoutY="284.0" spacing="5.0">
-                                 <children>
-                                    <Button fx:id="btnQuestionAdd2" mnemonicParsing="false" onAction="#handleActionEventFromQuestionPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Editar" />
-                                    <Button fx:id="btnQuestionUpdate1" mnemonicParsing="false" onAction="#handleActionEventFromQuestionPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Excluir" />
-                                    <Button fx:id="btnBackToResearchs" layoutX="153.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleActionEventFromQuestionPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Voltar" />
-                                 </children>
-                              </HBox>
-                              <Label layoutX="10.0" layoutY="57.0" text="Questionários">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <HBox spacing="5.0">
-                                 <children>
-                                    <TextField maxWidth="1.7976931348623157E308" prefHeight="30.0" promptText="Insira o nome de um questionário para buscar" HBox.hgrow="ALWAYS">
-                                       <HBox.margin>
-                                          <Insets top="5.0" />
-                                       </HBox.margin>
-                                    </TextField>
-                                    <Button mnemonicParsing="false" text="Button" />
-                                 </children>
-                              </HBox>
-                              <HBox spacing="5.0">
-                                 <children>
-                                    <Button fx:id="btnQuestionAdd" mnemonicParsing="false" onAction="#handleActionEventFromQuestionPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Adicionar" />
-                                    <Button fx:id="btnQuestionUpdate" mnemonicParsing="false" onAction="#handleActionEventFromQuestionPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Atualizar" />
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                     </top>
-                     <center>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" styleClass="scrollpanels" stylesheets="@../css/MainStyle.css" BorderPane.alignment="CENTER">
-                           <content>
-                              <VBox fx:id="vbQuestions" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" styleClass="vboxes" stylesheets="@../css/MainStyle.css" />
-                           </content>
-                           <BorderPane.margin>
-                              <Insets top="10.0" />
-                           </BorderPane.margin>
-                        </ScrollPane>
-                     </center>
-                  </BorderPane>
                   <BorderPane fx:id="bpAnswerPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
                      <top>
                         <VBox spacing="5.0" BorderPane.alignment="CENTER">
@@ -419,6 +357,68 @@
                            </children>
                         </VBox>
                      </top>
+                  </BorderPane>
+                  <BorderPane fx:id="bpQuestionPane" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
+                     <top>
+                        <VBox spacing="5.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label text="Título">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblResearchTitle" opacity="0.8" text="Título da Pesquisa" />
+                              <Label text="Descrição">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" maxHeight="100.0" minHeight="80.0" prefHeight="80.0" styleClass="scrollpanels" stylesheets="@../css/MainStyle.css">
+                                 <content>
+                                    <TextArea fx:id="taResearchDescription" editable="false" focusTraversable="false" opacity="0.8" stylesheets="@../css/MainStyle.css" wrapText="true" />
+                                 </content>
+                              </ScrollPane>
+                              <HBox layoutX="10.0" layoutY="284.0" spacing="5.0">
+                                 <children>
+                                    <Button fx:id="btnResearchEdit" mnemonicParsing="false" onAction="#handleActionEventFromQuestionPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Editar" />
+                                    <Button fx:id="btnQuestionDelete" mnemonicParsing="false" onAction="#handleActionEventFromQuestionPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Excluir" />
+                                    <Button fx:id="btnBackToResearchs" layoutX="153.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleActionEventFromQuestionPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Voltar" />
+                                 </children>
+                              </HBox>
+                              <Label layoutX="10.0" layoutY="57.0" text="Questionários">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox spacing="5.0">
+                                 <children>
+                                    <TextField maxWidth="1.7976931348623157E308" prefHeight="30.0" promptText="Insira o nome de um questionário para buscar" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets top="5.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Button mnemonicParsing="false" text="Button" />
+                                 </children>
+                              </HBox>
+                              <HBox spacing="5.0">
+                                 <children>
+                                    <Button fx:id="btnQuestionAdd" mnemonicParsing="false" onAction="#handleActionEventFromQuestionPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Adicionar" />
+                                    <Button fx:id="btnQuestionUpdate" mnemonicParsing="false" onAction="#handleActionEventFromQuestionPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Atualizar" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </top>
+                     <center>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" styleClass="scrollpanels" stylesheets="@../css/MainStyle.css" BorderPane.alignment="CENTER">
+                           <content>
+                              <VBox fx:id="vbQuestions" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" styleClass="vboxes" stylesheets="@../css/MainStyle.css" />
+                           </content>
+                           <BorderPane.margin>
+                              <Insets top="10.0" />
+                           </BorderPane.margin>
+                        </ScrollPane>
+                     </center>
                   </BorderPane>
                </children>
                <BorderPane.margin>

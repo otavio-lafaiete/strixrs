@@ -77,14 +77,20 @@ public class ExportPaneService extends AbstractService{
         ExportCSV.exportCSV(mainController.getTxtExportPath().getText(), actualResearchName, sb);
     }
 
-    public  void updateLVResearchs(){
+    public void updateLVResearchs(){
 
         ListView<String> listResearchs =  mainController.getLvExportResearchs();
 
+        listResearchs.getItems().clear();
         List<Research> researchs = DataResearchs.getResearchs();
 
         for(Research research: researchs){
             listResearchs.getItems().add(research.getTitle());
         }
+    }
+
+    @Override
+    public void update(){
+        updateLVResearchs();
     }
 }

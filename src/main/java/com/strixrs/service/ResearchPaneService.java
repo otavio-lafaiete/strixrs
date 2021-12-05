@@ -3,6 +3,7 @@ package com.strixrs.service;
 import com.strixrs.App;
 import com.strixrs.controller.AbsctractController;
 import com.strixrs.controller.AddResearchController;
+import com.strixrs.controller.EditResearchController;
 import com.strixrs.controller.MainController;
 import com.strixrs.data.DataResearchs;
 import com.strixrs.javafxmodfiedcontrol.ResearchButton;
@@ -66,5 +67,12 @@ public class ResearchPaneService extends AbstractService{
         controller.setResearchPaneService(this);
 
         stage.showAndWait();
+    }
+
+
+
+    @Override
+    public void update(){
+        updateResearchsVBox();
     }
 }

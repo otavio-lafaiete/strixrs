@@ -25,7 +25,7 @@ public class AddQuestionService extends AbstractService{
         DataResearchs.addResearch(research);
 
         addQuestionController.getStage().close();
-        addQuestionController.getQuestionPaneService().updateQuestionsVBox();
+        addQuestionController.getQuestionPaneService().update();
     }
 
 }

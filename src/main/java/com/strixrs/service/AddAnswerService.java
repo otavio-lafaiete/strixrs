@@ -14,13 +14,13 @@ public class AddAnswerService extends AbstractService{
         super(controller);
     }
 
-    public void addAnswer(String answer, String id) {
+    public void addAnswer(String answer) {
 
         AddAnswerController addAnswerController = (AddAnswerController) controller;
 
         Question question = addAnswerController.getAnswerPaneService().getCurrentQuestion();
 
-        Answer answerToBeAdd = new Answer(answer, id, question);
+        Answer answerToBeAdd = new Answer(answer, question);
         question.getAnswers().add(answerToBeAdd);
 
         DataResearchs.addResearch(question.getResearch());

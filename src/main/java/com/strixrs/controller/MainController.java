@@ -25,32 +25,35 @@ public class MainController extends AbsctractController{
     @FXML private Button btnResearch;
     @FXML private Button btnImport;
     @FXML private Button btnExport;
+    @FXML private Button btnReport;
     @FXML private BorderPane bpResearchPane;
     @FXML private BorderPane bpQuestionPane;
     @FXML private BorderPane bpAnswerPane;
     @FXML private BorderPane bpImportPane;
     @FXML private BorderPane bpExportPane;
+    @FXML private BorderPane bpReportPane;
+    @FXML private BorderPane bpSpecificReportPane;
     @FXML private TextField txtResearchSearch;
     @FXML private Button btnResearchSearch;
     @FXML private Button btnResearchAdd;
-
-
     @FXML private Button btnResearchUpdate;
     @FXML private Button btnQuestionAdd;
     @FXML private Button btnQuestionUpdate;
     @FXML private Button btnQuestionDelete;
     @FXML private Button btnBackToResearchs;
     @FXML private Button btnResearchEdit;
-    @FXML private Button btnAnswerAdd;
+    @FXML private Button btnReportAdd;
+    @FXML private Button btnReportUpdate;
     @FXML private VBox vbResearchs;
+    @FXML private VBox vbReports;
     @FXML private VBox vbQuestions;
+    @FXML private VBox vbReportComponent;
     @FXML private Label lblResearchTitle;
     @FXML private TextArea taResearchDescription;
     @FXML private Label lblQuestionTitle;
     @FXML private Button btnBackToQuestions;
     @FXML private TableView<Answer> tvAnswers;
     @FXML private TableColumn<Answer, String> tcAnswer;
-    @FXML private TableColumn<Answer, String> tcID;
     @FXML private Button btnImportSelect;
     @FXML private TextField txtFilePath;
     @FXML private Button btnDoImport;
@@ -58,6 +61,7 @@ public class MainController extends AbsctractController{
     @FXML private Button btnExportSelect;
     @FXML private Button btnDoExport;
     @FXML private ListView<String> lvExportResearchs;
+    @FXML private Button btnComponentAdd;
 
     MainControllerService mainControllerService;
     ResearchPaneService researchPaneService;
@@ -65,6 +69,8 @@ public class MainController extends AbsctractController{
     AnswerPaneService answerPaneService;
     ImportPaneService importPaneService;
     ExportPaneService exportPaneService;
+    ReportPaneService reportPaneService;
+    SpecificReportPaneService specificReportPaneService;
 
     public void initialize(){
 
@@ -80,10 +86,13 @@ public class MainController extends AbsctractController{
 
         exportPaneService = new ExportPaneService(this);
 
+        reportPaneService = new ReportPaneService(this);
+
+        specificReportPaneService = new SpecificReportPaneService(this);
+
         mainControllerService.update();
 
         tcAnswer.setCellValueFactory(new PropertyValueFactory<>("answer"));
-        tcID.setCellValueFactory(new PropertyValueFactory<>("id"));
 
         tvAnswers.setItems(answerPaneService.getAnswersData());
     }
@@ -117,6 +126,9 @@ public class MainController extends AbsctractController{
         }if(source.equals(btnExport)){
             mainControllerService.update();
             bpExportPane.toFront();
+        }if(source.equals(btnReport)){
+            bpReportPane.toFront();
+            mainControllerService.update();
         }
     }
 
@@ -209,9 +221,14 @@ public class MainController extends AbsctractController{
         if(actionEvent.getSource() == btnBackToQuestions){
             bpQuestionPane.toFront();
         }
+    }
 
-        if(actionEvent.getSource() == btnAnswerAdd){
-            answerPaneService.launchAnswerAddScreen();
+    //SpecificReportPane Event Handlers
+    @FXML
+    private void handleActionEventFromSpecificReportPane(ActionEvent actionEvent) throws IOException {
+
+        if(actionEvent.getSource() == btnComponentAdd){
+            specificReportPaneService.launchSpecificReportAddScreen();
         }
     }
 
@@ -241,6 +258,19 @@ public class MainController extends AbsctractController{
             exportPaneService.doExport();
         }
 
+    }
+
+    //ReportPane Event Handlers
+    @FXML
+    private void handleActionEventFromReportPane(ActionEvent actionEvent) throws IOException {
+
+        if(actionEvent.getSource() == btnReportUpdate){
+            reportPaneService.updateReportsVBox();
+        }
+
+        if(actionEvent.getSource() == btnReportAdd){
+            reportPaneService.launchReportAddScreen();
+        }
     }
 
     @Override
@@ -301,7 +331,7 @@ public class MainController extends AbsctractController{
         return txtFilePath;
     }
 
-    public ListView getLvExportResearchs() {
+    public ListView<String> getLvExportResearchs() {
         return lvExportResearchs;
     }
 
@@ -332,5 +362,26 @@ public class MainController extends AbsctractController{
 
     public ExportPaneService getExportPaneService() {
         return exportPaneService;
+    }
+
+    public VBox getVbReports() {
+        return vbReports;
+    }
+
+    public BorderPane getBpSpecificReportPane() {
+        return bpSpecificReportPane;
+    }
+
+    public SpecificReportPaneService getSpecificReportPaneService() {
+        return specificReportPaneService;
+    }
+
+
+    public ReportPaneService getReportPaneService() {
+        return reportPaneService;
+    }
+
+    public VBox getVbReportComponent() {
+        return vbReportComponent;
     }
 }

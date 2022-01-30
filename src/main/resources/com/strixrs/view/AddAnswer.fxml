@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.strixrs.controller.AddAnswerController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.strixrs.controller.AddAnswerController">
     <center>
         <VBox spacing="20.0" style="-fx-border-color: #2548a7;" BorderPane.alignment="CENTER">
             <children>
@@ -22,12 +22,6 @@
                     </font>
                 </Label>
                 <TextField fx:id="txtAnswer" prefWidth="400.0" promptText="Insira a Resposta" />
-                <Label layoutX="31.0" layoutY="31.0" opacity="0.5" text="ID da Resposta">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Label>
-            <TextField fx:id="txtID" layoutX="31.0" layoutY="71.0" prefWidth="400.0" promptText="Insira o ID da Resposta" />
                 <HBox alignment="BASELINE_RIGHT">
                     <children>
                         <Label fx:id="lblWarning" textFill="RED" />

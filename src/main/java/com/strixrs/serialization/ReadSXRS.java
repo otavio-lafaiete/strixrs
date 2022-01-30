@@ -1,12 +1,13 @@
 package com.strixrs.serialization;
 
+import com.strixrs.model.Report;
+import com.strixrs.model.ReportComponent;
 import com.strixrs.model.Research;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class ReadSXRS {
 
@@ -22,7 +23,7 @@ public class ReadSXRS {
         }
     }
 
-    private static Research readFile(){
+    private static Research readResearch(){
 
         Research research = null;
 
@@ -36,6 +37,22 @@ public class ReadSXRS {
         }
 
         return research;
+    }
+
+    private static Report readReport(){
+
+        Report report = null;
+
+        try{
+            report = (Report) inputStream.readObject();
+        }catch(IOException ioException){
+            System.err.println("Error reading the file");
+        }catch(ClassNotFoundException classNotFoundException){
+            System.err.println("Invalid objetc type");
+            System.exit(1);
+        }
+
+        return report;
     }
 
     private static void closeFile(){
@@ -53,10 +70,20 @@ public class ReadSXRS {
         Research research;
 
         openFile(path);
-        research = readFile();
+        research = readResearch();
         closeFile();
 
         return research;
+    }
+
+    public static Report readReport(Path path) {
+
+        Report report;
+        openFile(path);
+        report = readReport();
+        closeFile();
+
+        return report;
     }
 
 }

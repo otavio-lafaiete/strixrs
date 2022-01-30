@@ -15,5 +15,6 @@ public class MainControllerService extends AbstractService{
 
         mainController.getResearchPaneService().update();
         mainController.getExportPaneService().update();
+        mainController.getReportPaneService().update();
     }
 }

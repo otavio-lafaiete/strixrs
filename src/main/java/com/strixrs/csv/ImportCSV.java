@@ -47,7 +47,7 @@ public class ImportCSV {
 
                         if(question.getTitle().equals(arrayQuestions[i])){
 
-                            Answer answer = new Answer(arrayAnswers[i], "1", question);
+                            Answer answer = new Answer(arrayAnswers[i], question);
 
                             question.getAnswers().add(answer);
                         }

@@ -5,17 +5,14 @@ import com.strixrs.controller.MainController;
 import com.strixrs.csv.ExportCSV;
 import com.strixrs.model.Question;
 import com.strixrs.model.Research;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 import com.strixrs.data.DataResearchs;
 
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ExportPaneService extends AbstractService{

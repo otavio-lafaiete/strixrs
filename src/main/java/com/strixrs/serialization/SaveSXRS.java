@@ -1,5 +1,7 @@
 package com.strixrs.serialization;
 
+import com.strixrs.model.Report;
+import com.strixrs.model.ReportComponent;
 import com.strixrs.model.Research;
 
 import java.io.IOException;
@@ -32,6 +34,16 @@ public class SaveSXRS {
         }
     }
 
+    private static void saveFile(Report report){
+
+        try{
+            outputStream.writeObject(report);
+        }catch (IOException ioException){
+            System.err.println("Error writing to the file");
+            System.exit(1);
+        }
+    }
+
     private static void closeFile(){
         try{
             if(outputStream != null)
@@ -46,6 +58,13 @@ public class SaveSXRS {
 
         openFile(path);
         saveFile(research);
+        closeFile();
+    }
+
+    public static void saveReport(Path path, Report report) {
+
+        openFile(path);
+        saveFile(report);
         closeFile();
     }
 }

@@ -1,36 +1,40 @@
 package com.strixrs.controller;
 
-import com.strixrs.service.AddAnswerService;
-import com.strixrs.service.AddQuestionService;
-import com.strixrs.service.AnswerPaneService;
-import com.strixrs.service.QuestionPaneService;
+import com.strixrs.service.AddSpecificReportService;
+import com.strixrs.service.SpecificReportPaneService;
 import com.strixrs.staticutil.StaticUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class AddAnswerController extends AbsctractController{
+
+public class AddSpecificReportController extends AbsctractController{
 
     @FXML private ImageView btnClose;
     @FXML private ImageView btnIconify;
-    @FXML private TextField txtAnswer;
+    @FXML private TextField txtName;
     @FXML private Button btnAdd;
     @FXML private Label lblWarning;
-
-
-    private AddAnswerService addAnswerService;
-    private AnswerPaneService answerPaneService;
+    @FXML private VBox vbAddReportResearchs;
+    @FXML private ToggleGroup tgComponent;
+    @FXML private RadioButton rbFourHouses;
 
     private double xOffSet;
     private double yOffSet;
 
+    private AddSpecificReportService addSpecificReportService;
+    private SpecificReportPaneService specificReportPaneService;
+
     public void initialize(){
 
-        addAnswerService = new AddAnswerService(this);
+        addSpecificReportService = new AddSpecificReportService(this);
+
+        rbFourHouses.setUserData("FourHouses");
     }
 
     @FXML
@@ -79,16 +83,16 @@ public class AddAnswerController extends AbsctractController{
 
         if(actionEvent.getSource() == btnAdd){
 
-            String answer = txtAnswer.getText();
+            String name = txtName.getText();
+            String type = tgComponent.getSelectedToggle().getUserData().toString();
 
-            if(answer.isEmpty()){
-                lblWarning.setText("A resposta não pode ser vazia");
-                txtAnswer.requestFocus();
-
+            if(name.isEmpty()){
+                lblWarning.setText("O Nome não pode ser vazio");
+                txtName.requestFocus();
                 return;
             }
 
-            addAnswerService.addAnswer(answer);
+            addSpecificReportService.addComponent(name, type);
         }
     }
 
@@ -98,7 +102,7 @@ public class AddAnswerController extends AbsctractController{
         stageConfig();
     }
 
-    private void stageConfig(){
+    private void stageConfig() {
 
         stage.initStyle(StageStyle.UNDECORATED);
 
@@ -110,7 +114,7 @@ public class AddAnswerController extends AbsctractController{
 
         stage.getScene().setOnMouseDragged((MouseEvent event) ->
         {
-            if(!stage.isMaximized() || (stage.getX() != 0 || stage.getY() != 0)){
+            if (!stage.isMaximized() || (stage.getX() != 0 || stage.getY() != 0)) {
 
                 stage.setX(event.getScreenX() - xOffSet);
                 stage.setY(event.getScreenY() - yOffSet);
@@ -120,11 +124,11 @@ public class AddAnswerController extends AbsctractController{
         stage.centerOnScreen();
     }
 
-    public AnswerPaneService getAnswerPaneService() {
-        return answerPaneService;
+    public SpecificReportPaneService getSpecificReportPaneService() {
+        return specificReportPaneService;
     }
 
-    public void setAnswerPaneService(AnswerPaneService answerPaneService) {
-        this.answerPaneService = answerPaneService;
+    public void setSpecificReportPaneService(SpecificReportPaneService specificReportPaneService) {
+        this.specificReportPaneService = specificReportPaneService;
     }
 }

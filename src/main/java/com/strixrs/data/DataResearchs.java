@@ -1,16 +1,12 @@
 package com.strixrs.data;
 
-import com.strixrs.App;
 import com.strixrs.model.Research;
 import com.strixrs.serialization.ReadSXRS;
 import com.strixrs.serialization.SaveSXRS;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.scene.control.Alert;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;

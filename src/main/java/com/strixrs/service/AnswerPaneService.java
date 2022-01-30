@@ -1,9 +1,6 @@
 package com.strixrs.service;
 
-import com.strixrs.controller.AbsctractController;
-import com.strixrs.controller.AddAnswerController;
-import com.strixrs.controller.AddQuestionController;
-import com.strixrs.controller.MainController;
+import com.strixrs.controller.*;
 import com.strixrs.javafxmodfiedcontrol.ResearchButton;
 import com.strixrs.model.Answer;
 import com.strixrs.model.Question;
@@ -44,6 +41,32 @@ public class AnswerPaneService extends  AbstractService{
         mainController.getTvAnswers().setItems(answersData);
     }
 
+    private void launchQuestionEditScreen() throws IOException {
+
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        FXMLLoader fxmlLoader = StaticUtil.getFXML("EditResearch");
+
+        Parent parent = fxmlLoader.load();
+
+        Scene scene = new Scene(parent);
+
+        stage.setScene(scene);
+
+        EditQuestionController controller = fxmlLoader.getController();
+        controller.setStage(stage);
+        controller.setAnswerPaneService(this);
+
+        MainController mainController = (MainController) this.controller;
+
+        controller.getTxtTitle().setText(currentQuestion.getTitle());
+
+        stage.showAndWait();
+
+        mainController.getMainControllerService().update();
+    };
+
     public Question getCurrentQuestion() {
         return currentQuestion;
     }
@@ -56,23 +79,4 @@ public class AnswerPaneService extends  AbstractService{
         return answersData;
     }
 
-    public void launchAnswerAddScreen() throws IOException {
-
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-
-        FXMLLoader fxmlLoader = StaticUtil.getFXML("AddAnswer");
-
-        Parent parent = fxmlLoader.load();
-
-        Scene scene = new Scene(parent);
-
-        stage.setScene(scene);
-
-        AddAnswerController controller = fxmlLoader.getController();
-        controller.setStage(stage);
-        controller.setAnswerPaneService(this);
-
-        stage.showAndWait();
-    }
 }

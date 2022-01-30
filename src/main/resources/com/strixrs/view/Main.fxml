@@ -446,8 +446,8 @@
                               <Label fx:id="lblQuestionTitle" opacity="0.8" text="Título do Questionário" />
                               <HBox layoutX="10.0" layoutY="284.0" spacing="5.0">
                                  <children>
-                                    <Button fx:id="btnQuestionAdd21" mnemonicParsing="false" onAction="#handleActionEventFromQuestionPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Editar" />
-                                    <Button fx:id="btnQuestionUpdate11" mnemonicParsing="false" onAction="#handleActionEventFromQuestionPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Excluir" />
+                                    <Button fx:id="btnQuestionEdit" mnemonicParsing="false" onAction="#handleActionEventFromAnswerPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Editar" />
+                                    <Button fx:id="btnAnswerDelete" mnemonicParsing="false" onAction="#handleActionEventFromAnswerPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Excluir" />
                                     <Button fx:id="btnBackToQuestions" layoutX="153.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleActionEventFromAnswerPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Voltar" />
                                  </children>
                               </HBox>

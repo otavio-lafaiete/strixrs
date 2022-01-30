@@ -62,6 +62,8 @@ public class MainController extends AbsctractController{
     @FXML private Button btnDoExport;
     @FXML private ListView<String> lvExportResearchs;
     @FXML private Button btnComponentAdd;
+    @FXML private Button btnQuestionEdit;
+    @FXML private Button btnAnswerDelete;
 
     MainControllerService mainControllerService;
     ResearchPaneService researchPaneService;
@@ -220,6 +222,12 @@ public class MainController extends AbsctractController{
 
         if(actionEvent.getSource() == btnBackToQuestions){
             bpQuestionPane.toFront();
+        }
+        if(actionEvent.getSource() == btnQuestionEdit){
+            answerPaneService.launchQuestionEditScreen();
+        }
+        if(actionEvent.getSource() == btnAnswerDelete){
+            answerPaneService.deleteCurrentQuestion();
         }
     }
 

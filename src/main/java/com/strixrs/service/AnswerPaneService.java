@@ -1,6 +1,7 @@
 package com.strixrs.service;
 
 import com.strixrs.controller.*;
+import com.strixrs.data.DataResearchs;
 import com.strixrs.javafxmodfiedcontrol.ResearchButton;
 import com.strixrs.model.Answer;
 import com.strixrs.model.Question;
@@ -15,11 +16,15 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
+import java.util.Optional;
 
 public class AnswerPaneService extends  AbstractService{
 
@@ -41,12 +46,12 @@ public class AnswerPaneService extends  AbstractService{
         mainController.getTvAnswers().setItems(answersData);
     }
 
-    private void launchQuestionEditScreen() throws IOException {
+    public void launchQuestionEditScreen() throws IOException {
 
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
 
-        FXMLLoader fxmlLoader = StaticUtil.getFXML("EditResearch");
+        FXMLLoader fxmlLoader = StaticUtil.getFXML("EditQuestion");
 
         Parent parent = fxmlLoader.load();
 
@@ -65,7 +70,24 @@ public class AnswerPaneService extends  AbstractService{
         stage.showAndWait();
 
         mainController.getMainControllerService().update();
-    };
+    }
+
+    public void deleteCurrentQuestion() {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exclusão da evocação " + currentQuestion.getTitle());
+        alert.setContentText("Têm certeza que deseja excluir a evocação atual? ");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            currentQuestion.getResearch().getQuestions().remove(currentQuestion);
+            DataResearchs.addResearch(currentQuestion.getResearch());
+            MainController mainController = (MainController) controller;
+            mainController.getMainControllerService().update();
+            mainController.getBpQuestionPane().toFront();
+        }
+
+    }
 
     public Question getCurrentQuestion() {
         return currentQuestion;

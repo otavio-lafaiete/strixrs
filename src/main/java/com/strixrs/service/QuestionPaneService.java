@@ -126,6 +126,31 @@ public class QuestionPaneService extends  AbstractService{
         mainController.getMainControllerService().update();
     }
 
+    public void launchAddAnswerScreen() throws IOException {
+
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        FXMLLoader fxmlLoader = StaticUtil.getFXML("AddAnswer");
+
+        Parent parent = fxmlLoader.load();
+
+        Scene scene = new Scene(parent);
+
+        stage.setScene(scene);
+
+        AddAnswerController controller = fxmlLoader.getController();
+        controller.setStage(stage);
+        controller.setQuestionPaneService(this);
+
+        MainController mainController = (MainController) this.controller;
+        controller.setAnswerPaneService(mainController.getAnswerPaneService());
+
+        controller.initializeScreenComponents();
+
+        stage.showAndWait();
+    }
+
     @Override
     public void update(){
 

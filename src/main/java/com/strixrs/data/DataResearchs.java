@@ -52,7 +52,6 @@ public class DataResearchs {
 
     public static void deleteResearch(String researchTitle){
 
-        System.out.println(researchTitle);
         File researchToBeDeleted = new File(researchsPath + "\\" + researchTitle + ".sxrs");
         if(!researchToBeDeleted.delete()){
 

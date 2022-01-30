@@ -64,6 +64,8 @@ public class MainController extends AbsctractController{
     @FXML private Button btnComponentAdd;
     @FXML private Button btnQuestionEdit;
     @FXML private Button btnAnswerDelete;
+    @FXML private Button btnQuestionAnswers;
+    @FXML private Label lblSpecificReport;
 
     MainControllerService mainControllerService;
     ResearchPaneService researchPaneService;
@@ -213,6 +215,10 @@ public class MainController extends AbsctractController{
 
         if(actionEvent.getSource() == btnResearchEdit){
             questionPaneService.launchResearchEditScreen();
+        }
+
+        if(actionEvent.getSource() == btnQuestionAnswers){
+            questionPaneService.launchAddAnswerScreen();
         }
     }
 
@@ -391,5 +397,9 @@ public class MainController extends AbsctractController{
 
     public VBox getVbReportComponent() {
         return vbReportComponent;
+    }
+
+    public Label getLblSpecificReport() {
+        return lblSpecificReport;
     }
 }

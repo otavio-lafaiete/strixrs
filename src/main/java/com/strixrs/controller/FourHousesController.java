@@ -3,6 +3,7 @@ package com.strixrs.controller;
 import com.strixrs.data.DataReports;
 import com.strixrs.data.DataResearchs;
 import com.strixrs.model.*;
+import com.strixrs.service.SpecificReportPaneService;
 import com.strixrs.staticutil.StaticUtil;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -53,6 +54,8 @@ public class FourHousesController extends AbsctractController{
 
     private FourHouses reportComponent;
 
+    private SpecificReportPaneService specificReportPaneService;
+
     public void initializeVBEvocations(){
 
         List<Question> questions = reportComponent.getReport().getResearch().getQuestions();
@@ -88,9 +91,6 @@ public class FourHousesController extends AbsctractController{
 
         generateFourHouses();
         updateFourHousesLabels();
-        txtFrequence.setText(String.valueOf(reportComponent.getFrequence()));
-        txtMinimumFrequence.setText(String.valueOf(reportComponent.getMinimumFrequence()));
-        txtOrder.setText(String.valueOf(reportComponent.getEvocationOrder()));
     }
 
     private void updateFourHousesLabels() {
@@ -196,6 +196,10 @@ public class FourHousesController extends AbsctractController{
             if(answersOrders.size() > 0)
                 reportComponent.setEvocationOrder(totalOrders/answersOrders.size());
         }
+
+        txtFrequence.setText(String.valueOf(reportComponent.getFrequence()));
+        txtMinimumFrequence.setText(String.valueOf(reportComponent.getMinimumFrequence()));
+        txtOrder.setText(String.valueOf(reportComponent.getEvocationOrder()));
 
         List<Answer> diffAnswersFirstSquare = new ArrayList<>();
         List<Float> answersFrequencesFirstSquare = new ArrayList<>();
@@ -558,5 +562,11 @@ public class FourHousesController extends AbsctractController{
             saveReport();
             stage.close();
         }
+
+        specificReportPaneService.updateComponentsVBox();
+    }
+
+    public void setSpecificReportPaneService(SpecificReportPaneService specificReportPaneService) {
+        this.specificReportPaneService = specificReportPaneService;
     }
 }

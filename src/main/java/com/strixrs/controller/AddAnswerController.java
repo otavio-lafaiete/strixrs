@@ -1,5 +1,6 @@
 package com.strixrs.controller;
 
+import com.strixrs.model.Question;
 import com.strixrs.service.AddAnswerService;
 import com.strixrs.service.AddQuestionService;
 import com.strixrs.service.AnswerPaneService;
@@ -7,30 +8,51 @@ import com.strixrs.service.QuestionPaneService;
 import com.strixrs.staticutil.StaticUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddAnswerController extends AbsctractController{
 
     @FXML private ImageView btnClose;
     @FXML private ImageView btnIconify;
-    @FXML private TextField txtAnswer;
+    @FXML private VBox vbAnswers;
     @FXML private Button btnAdd;
     @FXML private Label lblWarning;
+    ArrayList<Label> labels;
+    ArrayList<TextField> textFields;
 
 
-    private AddAnswerService addAnswerService;
-    private AnswerPaneService answerPaneService;
+    QuestionPaneService questionPaneService;
+    AddAnswerService addAnswerService;
+    AnswerPaneService answerPaneService;
 
     private double xOffSet;
     private double yOffSet;
 
-    public void initialize(){
+    public void initializeScreenComponents(){
 
         addAnswerService = new AddAnswerService(this);
+
+        labels = new ArrayList<>();
+        textFields = new ArrayList<>();
+
+        for(Question question: questionPaneService.getCurrentResearch().getQuestions()){
+            Label label = new Label(question.getTitle());
+            vbAnswers.getChildren().add(label);
+            labels.add(label);
+            TextField textField = new TextField();
+            vbAnswers.getChildren().add(textField);
+            textFields.add(textField);
+            vbAnswers.getChildren().add(new Separator());
+        }
     }
 
     @FXML
@@ -79,16 +101,27 @@ public class AddAnswerController extends AbsctractController{
 
         if(actionEvent.getSource() == btnAdd){
 
-            String answer = txtAnswer.getText();
+            List<String> answers = new ArrayList<>();
+            List<String> questions = new ArrayList<>();
 
-            if(answer.isEmpty()){
-                lblWarning.setText("A resposta não pode ser vazia");
-                txtAnswer.requestFocus();
+            for(int i = 0; i < textFields.size(); i++){
 
-                return;
+                String answer = textFields.get(i).getText();
+                if(answer.isBlank()){
+                    lblWarning.setText("A resposta não pode ser nula");
+                    return;
+                }
+
+                String question = labels.get(i).getText();
+
+                answers.add(answer);
+                questions.add(question);
             }
 
-            addAnswerService.addAnswer(answer);
+            for(int i = 0; i < textFields.size(); i++){
+               addAnswerService.addAnswer(answers.get(i), questions.get(i));
+            }
+
         }
     }
 
@@ -118,6 +151,14 @@ public class AddAnswerController extends AbsctractController{
         });
 
         stage.centerOnScreen();
+    }
+
+    public void setQuestionPaneService(QuestionPaneService questionPaneService) {
+        this.questionPaneService = questionPaneService;
+    }
+
+    public QuestionPaneService getQuestionPaneService() {
+        return questionPaneService;
     }
 
     public AnswerPaneService getAnswerPaneService() {

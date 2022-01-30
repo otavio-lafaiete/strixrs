@@ -69,6 +69,7 @@ public class SpecificReportPaneService extends AbstractService{
         fourHousesController.setStage(stage);
         fourHousesController.setComponent((FourHouses) reportComponent);
         fourHousesController.initializeVBEvocations();
+        fourHousesController.setSpecificReportPaneService(this);
         stage.show();
     }
 

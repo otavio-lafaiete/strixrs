@@ -86,7 +86,11 @@ public class AnswerPaneService extends  AbstractService{
             mainController.getMainControllerService().update();
             mainController.getBpQuestionPane().toFront();
         }
+    }
 
+    @Override
+    public void update(){
+        updateAnswers();
     }
 
     public Question getCurrentQuestion() {

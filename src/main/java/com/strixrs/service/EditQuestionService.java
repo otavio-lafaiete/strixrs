@@ -2,6 +2,7 @@ package com.strixrs.service;
 
 import com.strixrs.controller.AbsctractController;
 import com.strixrs.controller.EditQuestionController;
+import com.strixrs.controller.MainController;
 import com.strixrs.data.DataResearchs;
 import com.strixrs.model.Question;
 
@@ -22,5 +23,7 @@ public class EditQuestionService extends AbstractService{
 
         controller.getStage().close();
         controller.getAnswerPaneService().update();
+        MainController mainController = (MainController) controller.getAnswerPaneService().getController();
+        mainController.getQuestionPaneService().updateQuestionsVBox();
     }
 }

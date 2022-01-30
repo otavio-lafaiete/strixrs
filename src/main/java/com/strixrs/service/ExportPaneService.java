@@ -5,6 +5,7 @@ import com.strixrs.controller.MainController;
 import com.strixrs.csv.ExportCSV;
 import com.strixrs.model.Question;
 import com.strixrs.model.Research;
+import javafx.beans.binding.Bindings;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.stage.DirectoryChooser;
@@ -43,7 +44,6 @@ public class ExportPaneService extends AbstractService{
 
         if(actualResearchName == null){
 
-
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setContentText("Nenhuma pesquisa selecionada");
@@ -51,7 +51,6 @@ public class ExportPaneService extends AbstractService{
             alert.showAndWait();
 
             return;
-
         }
 
         Research selectedResearch = null;
@@ -62,50 +61,67 @@ public class ExportPaneService extends AbstractService{
             }
         }
 
-        StringBuilder sb = new StringBuilder();
-
-        for(Question question: selectedResearch.getQuestions()){
-
-            sb.append(question.getTitle() + ",");
-        }
-
-        if(sb.length() > 0 && sb.charAt(sb.length() - 1) == ','){
-            sb.setCharAt(sb.length() - 1, '\n');
-        }
-
-        int listAnswersSize = selectedResearch.getQuestions().get(0).getAnswers().size();
-
-        for(int i = 0; i < listAnswersSize; i++){
+        if(!selectedResearch.getQuestions().isEmpty()){
+            StringBuilder sb = new StringBuilder();
 
             for(Question question: selectedResearch.getQuestions()){
 
-                sb.append(question.getAnswers().get(i).getAnswer() + ",");
+                sb.append(question.getTitle() + ",");
             }
 
             if(sb.length() > 0 && sb.charAt(sb.length() - 1) == ','){
                 sb.setCharAt(sb.length() - 1, '\n');
             }
-        }
 
-        if(sb.length() > 0){
-            sb.deleteCharAt(sb.length() - 1);
-        }
+            int listAnswersSize = selectedResearch.getQuestions().get(0).getAnswers().size();
 
-        Path path = Paths.get(mainController.getTxtExportPath().getText());
+            for(int i = 0; i < listAnswersSize; i++){
 
-        if(!path.toFile().exists()){
+                for(Question question: selectedResearch.getQuestions()){
 
+                    sb.append(question.getAnswers().get(i).getAnswer() + ",");
+                }
+
+                if(sb.length() > 0 && sb.charAt(sb.length() - 1) == ','){
+                    sb.setCharAt(sb.length() - 1, '\n');
+                }
+            }
+
+            if(sb.length() > 0){
+                sb.deleteCharAt(sb.length() - 1);
+            }
+
+            Path path = Paths.get(mainController.getTxtExportPath().getText());
+
+            if(!path.toFile().exists()){
+
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setContentText("Não foi possível salvar um arquivo no caminho especificado");
+
+                alert.showAndWait();
+
+                return;
+            }
+
+            ExportCSV.exportCSV(path.toString(), actualResearchName, sb);
+        }else{
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
-            alert.setContentText("Não foi possível salvar um arquivo no caminho especificado");
+            alert.setContentText("Pesquisa está vazia, não possui evocações.");
 
             alert.showAndWait();
 
             return;
         }
 
-        ExportCSV.exportCSV(path.toString(), actualResearchName, sb);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Transação concluída");
+        alert.setContentText("A pesquisa foi exportada com sucesso!");
+
+        alert.showAndWait();
     }
 
     public void updateLVResearchs(){
@@ -118,6 +134,8 @@ public class ExportPaneService extends AbstractService{
         for(Research research: researchs){
             listResearchs.getItems().add(research.getTitle());
         }
+
+        listResearchs.setPrefHeight(researchs.size() * 24 + 2 > 650? 650 : researchs.size() * 24 + 2);
     }
 
     @Override

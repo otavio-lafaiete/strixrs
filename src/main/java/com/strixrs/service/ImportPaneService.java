@@ -55,5 +55,11 @@ public class ImportPaneService extends AbstractService{
         DataResearchs.addResearch(research);
 
         mainController.getMainControllerService().update();
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Transação concluída");
+        alert.setContentText("A pesquisa foi importada com sucesso!");
+
+        alert.showAndWait();
     }
 }

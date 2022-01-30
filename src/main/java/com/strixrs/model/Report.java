@@ -32,4 +32,8 @@ public class Report implements Serializable {
     public Research getResearch() {
         return research;
     }
+
+    public void setResearch(Research research) {
+        this.research = research;
+    }
 }

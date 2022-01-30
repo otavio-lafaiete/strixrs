@@ -2,8 +2,10 @@ package com.strixrs.service;
 
 import com.strixrs.controller.*;
 import com.strixrs.data.DataReports;
+import com.strixrs.data.DataResearchs;
 import com.strixrs.javafxmodfiedcontrol.ResearchButton;
 import com.strixrs.model.Report;
+import com.strixrs.model.Research;
 import com.strixrs.staticutil.StaticUtil;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,6 +27,15 @@ public class ReportPaneService extends AbstractService{
     public void updateReportsVBox() {
 
         MainController mainController = (MainController) controller;
+        for(Report report: DataReports.getReports()){
+            for(Research research: DataResearchs.getResearchs()){
+                if(report.getResearch().getTitle().equals(research.getTitle())){
+                    report.setResearch(research);
+                    DataReports.addReport(report);
+                    break;
+                }
+            }
+        }
 
         mainController.getVbReports().getChildren().clear();
         for(Report report: DataReports.getReports()){
@@ -37,6 +48,7 @@ public class ReportPaneService extends AbstractService{
                     mainController.getSpecificReportPaneService().setCurrentReport(report);
                     mainController.getBpSpecificReportPane().toFront();
                     mainController.getSpecificReportPaneService().updateComponentsVBox();
+                    mainController.getLblSpecificReport().setText(report.getTitle());
                 }
             });
             mainController.getVbReports().getChildren().add(button);

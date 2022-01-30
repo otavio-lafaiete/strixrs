@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -55,7 +57,7 @@
                         <Insets left="25.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="40.0" minHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#handleMouseClickedEventFromMainScene" prefHeight="40.0" prefWidth="200.0" styleClass="mainButton" stylesheets="@../css/MainStyle.css" text="Responder">
+                  <Button fx:id="btnOnline" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="40.0" minHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#handleMouseClickedEventFromMainScene" prefHeight="40.0" prefWidth="200.0" styleClass="mainButton" stylesheets="@../css/MainStyle.css" text="Online">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -194,41 +196,7 @@
          <center>
             <StackPane style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane fx:id="bpImportPane" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleMouseClickedEventFromMainScene" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
-                     <center>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" styleClass="scrollpanels" stylesheets="@../css/MainStyle.css" BorderPane.alignment="CENTER">
-                           <content>
-                              <VBox fx:id="vbResearchs1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" styleClass="vboxes" stylesheets="@../css/MainStyle.css" />
-                           </content>
-                           <BorderPane.margin>
-                              <Insets top="10.0" />
-                           </BorderPane.margin>
-                        </ScrollPane>
-                     </center>
-                     <top>
-                        <VBox spacing="5.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <Label text="Importar">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <HBox spacing="5.0">
-                                 <children>
-                                    <TextField fx:id="txtFilePath" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleActionEventFromResearchPane" prefHeight="30.0" promptText="Selecione o caminho de uma pesquisa no formato .csv para importar" style="-fx-border-radius: 5;" HBox.hgrow="ALWAYS" />
-                                    <Button fx:id="btnImportSelect" mnemonicParsing="false" onAction="#handleActionEventFromImportPane" text="Selecionar" />
-                                 </children>
-                              </HBox>
-                              <HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" spacing="5.0">
-                                 <children>
-                                    <Button fx:id="btnDoImport" mnemonicParsing="false" onAction="#handleActionEventFromImportPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Importar" />
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                     </top>
-                  </BorderPane>
-                  <BorderPane fx:id="bpReportPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
+                  <BorderPane fx:id="bpReportPane" layoutX="10.0" layoutY="10.0" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
                      <center>
                         <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" styleClass="scrollpanels" stylesheets="@../css/MainStyle.css" BorderPane.alignment="CENTER">
                            <content>
@@ -250,7 +218,14 @@
                               <HBox spacing="5.0">
                                  <children>
                                     <TextField fx:id="txtResearchSearch1" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleActionEventFromResearchPane" prefHeight="30.0" promptText="Digite o nome de um relatório para procurar" style="-fx-border-radius: 5;" HBox.hgrow="ALWAYS" />
-                                    <Button fx:id="btnResearchSearch1" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleActionEventFromResearchPane" text="Button" />
+                                    <Button fx:id="btnResearchSearch1" mnemonicParsing="false" onAction="#handleActionEventFromResearchPane" style="-fx-background-color: white;">
+                                       <graphic>
+                                          <ImageView pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../icon/search.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
                                  </children>
                               </HBox>
                               <HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" spacing="5.0">
@@ -263,7 +238,7 @@
                         </VBox>
                      </top>
                   </BorderPane>
-                  <BorderPane fx:id="bpSpecificReportPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
+                  <BorderPane fx:id="bpSpecificReportPane" layoutX="10.0" layoutY="10.0" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
                      <center>
                         <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" styleClass="scrollpanels" stylesheets="@../css/MainStyle.css" BorderPane.alignment="CENTER">
                            <content>
@@ -285,7 +260,14 @@
                               <HBox spacing="5.0">
                                  <children>
                                     <TextField fx:id="txtResearchSearch11" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleActionEventFromResearchPane" prefHeight="30.0" promptText="Digite o nome de um relatório para procurar" style="-fx-border-radius: 5;" HBox.hgrow="ALWAYS" />
-                                    <Button fx:id="btnResearchSearch11" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleActionEventFromResearchPane" text="Button" />
+                                    <Button fx:id="btnResearchSearch11" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleActionEventFromResearchPane" style="-fx-background-color: white;">
+                                       <graphic>
+                                          <ImageView pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../icon/search.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
                                  </children>
                               </HBox>
                               <HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" spacing="5.0">
@@ -298,7 +280,7 @@
                         </VBox>
                      </top>
                   </BorderPane>
-                  <BorderPane fx:id="bpAnswerPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
+                  <BorderPane fx:id="bpAnswerPane" layoutX="10.0" layoutY="10.0" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
                      <top>
                         <VBox spacing="5.0" BorderPane.alignment="CENTER">
                            <children>
@@ -324,10 +306,17 @@
                                  <children>
                                     <TextField maxWidth="1.7976931348623157E308" prefHeight="30.0" promptText="Insira alguma palavra para buscar uma resposta" HBox.hgrow="ALWAYS">
                                        <HBox.margin>
-                                          <Insets top="5.0" />
+                                          <Insets />
                                        </HBox.margin>
                                     </TextField>
-                                    <Button mnemonicParsing="false" text="Button" />
+                                    <Button mnemonicParsing="false" style="-fx-background-color: white;">
+                                       <graphic>
+                                          <ImageView pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../icon/search.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
                                  </children>
                               </HBox>
                               <HBox spacing="5.0">
@@ -352,7 +341,7 @@
                         </TableView>
                      </center>
                   </BorderPane>
-                  <BorderPane fx:id="bpResearchPane" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
+                  <BorderPane fx:id="bpResearchPane" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
                      <center>
                         <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" styleClass="scrollpanels" stylesheets="@../css/MainStyle.css" BorderPane.alignment="CENTER">
                            <content>
@@ -374,7 +363,14 @@
                               <HBox spacing="5.0">
                                  <children>
                                     <TextField fx:id="txtResearchSearch" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleActionEventFromResearchPane" prefHeight="30.0" promptText="Digite o nome de uma pesquisa para procurar" style="-fx-border-radius: 5;" HBox.hgrow="ALWAYS" />
-                                    <Button fx:id="btnResearchSearch" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleActionEventFromResearchPane" text="Button" />
+                                    <Button fx:id="btnResearchSearch" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleActionEventFromResearchPane" style="-fx-background-color: white;">
+                                       <graphic>
+                                          <ImageView pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../icon/search.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
                                  </children>
                               </HBox>
                               <HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" spacing="5.0">
@@ -387,7 +383,7 @@
                         </VBox>
                      </top>
                   </BorderPane>
-                  <BorderPane fx:id="bpQuestionPane" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
+                  <BorderPane fx:id="bpQuestionPane" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
                      <top>
                         <VBox spacing="5.0" BorderPane.alignment="CENTER">
                            <children>
@@ -423,10 +419,17 @@
                                  <children>
                                     <TextField maxWidth="1.7976931348623157E308" prefHeight="30.0" promptText="Insira o nome de um questionário para buscar" HBox.hgrow="ALWAYS">
                                        <HBox.margin>
-                                          <Insets top="5.0" />
+                                          <Insets />
                                        </HBox.margin>
                                     </TextField>
-                                    <Button mnemonicParsing="false" text="Button" />
+                                    <Button mnemonicParsing="false" style="-fx-background-color: white;">
+                                       <graphic>
+                                          <ImageView pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../icon/search.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
                                  </children>
                               </HBox>
                               <HBox spacing="5.0">
@@ -462,7 +465,7 @@
                         </ScrollPane>
                      </center>
                      <top>
-                        <VBox maxHeight="1.7976931348623157E308" spacing="5.0" BorderPane.alignment="CENTER">
+                        <VBox spacing="5.0" BorderPane.alignment="CENTER">
                            <children>
                               <Label text="Exportar">
                                  <font>
@@ -472,7 +475,20 @@
                               <HBox spacing="5.0">
                                  <children>
                                     <TextField fx:id="txtExportPath" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleActionEventFromExportPane" prefHeight="30.0" promptText="Selecione o caminho de uma pasta para exportar" style="-fx-border-radius: 5;" HBox.hgrow="ALWAYS" />
-                                    <Button fx:id="btnExportSelect" mnemonicParsing="false" onAction="#handleActionEventFromExportPane" text="Selecionar" />
+                                    <Button fx:id="btnExportSelect" mnemonicParsing="false" onAction="#handleActionEventFromExportPane" style="-fx-background-color: white;">
+                                       <graphic>
+                                          <ImageView pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                                             <image>
+                                                <Image url="@../icon/search.png" />
+                                             </image>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ImageView>
+                                       </graphic>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor></Button>
                                  </children>
                               </HBox>
                               <ScrollPane fitToHeight="true" fitToWidth="true">
@@ -488,6 +504,80 @@
                            </children>
                         </VBox>
                      </top>
+                  </BorderPane>
+                  <BorderPane fx:id="bpImportPane" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleMouseClickedEventFromMainScene" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
+                     <center>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" styleClass="scrollpanels" stylesheets="@../css/MainStyle.css" BorderPane.alignment="CENTER">
+                           <content>
+                              <VBox fx:id="vbResearchs1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" styleClass="vboxes" stylesheets="@../css/MainStyle.css" />
+                           </content>
+                           <BorderPane.margin>
+                              <Insets top="10.0" />
+                           </BorderPane.margin>
+                        </ScrollPane>
+                     </center>
+                     <top>
+                        <VBox spacing="5.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label text="Importar">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox spacing="5.0">
+                                 <children>
+                                    <TextField fx:id="txtFilePath" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleActionEventFromResearchPane" prefHeight="30.0" promptText="Selecione o caminho de uma pesquisa no formato .csv para importar" style="-fx-border-radius: 5;" HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="btnImportSelect" mnemonicParsing="false" onAction="#handleActionEventFromImportPane" style="-fx-background-color: white;">
+                                       <graphic>
+                                          <ImageView pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                                             <image>
+                                                <Image url="@../icon/search.png" />
+                                             </image>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ImageView>
+                                       </graphic>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor></Button>
+                                 </children>
+                              </HBox>
+                              <HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" spacing="5.0">
+                                 <children>
+                                    <Button fx:id="btnDoImport" mnemonicParsing="false" onAction="#handleActionEventFromImportPane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Importar" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </top>
+                  </BorderPane>
+                  <BorderPane fx:id="bpOnlinePane" prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <ScrollPane BorderPane.alignment="CENTER">
+                           <content>
+                              <VBox prefWidth="500.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Responder" />
+                                    <Separator orientation="VERTICAL" visible="false" />
+                                    <Label text="URL" />
+                                    <TextField fx:id="txtDBUrl" />
+                                    <Label text="Usuário" />
+                                    <TextField fx:id="txtDBUser" />
+                                    <Label text="Senha" />
+                                    <PasswordField fx:id="txtDBPassword" />
+                                    <Separator orientation="VERTICAL" visible="false" />
+                                    <HBox spacing="10.0">
+                                       <children>
+                                          <Button fx:id="btnDBAnswer" mnemonicParsing="false" onAction="#handleActionEventFromOnlinePane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Responder" />
+                                          <Button fx:id="btnDBCollect" mnemonicParsing="false" onAction="#handleActionEventFromOnlinePane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Coletar" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                     </center>
                   </BorderPane>
                </children>
                <BorderPane.margin>

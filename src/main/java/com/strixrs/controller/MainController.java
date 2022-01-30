@@ -66,6 +66,13 @@ public class MainController extends AbsctractController{
     @FXML private Button btnAnswerDelete;
     @FXML private Button btnQuestionAnswers;
     @FXML private Label lblSpecificReport;
+    @FXML private TextField txtDBUrl;
+    @FXML private TextField txtDBUser;
+    @FXML private TextField txtDBPassword;
+    @FXML private Button btnDBAnswer;
+    @FXML private Button btnDBCollect;
+    @FXML private BorderPane bpOnlinePane;
+    @FXML private Button btnOnline;
 
     MainControllerService mainControllerService;
     ResearchPaneService researchPaneService;
@@ -75,6 +82,7 @@ public class MainController extends AbsctractController{
     ExportPaneService exportPaneService;
     ReportPaneService reportPaneService;
     SpecificReportPaneService specificReportPaneService;
+    OnlinePaneService onlinePaneService;
 
     public void initialize(){
 
@@ -93,6 +101,8 @@ public class MainController extends AbsctractController{
         reportPaneService = new ReportPaneService(this);
 
         specificReportPaneService = new SpecificReportPaneService(this);
+
+        onlinePaneService = new OnlinePaneService(this);
 
         mainControllerService.update();
 
@@ -133,6 +143,9 @@ public class MainController extends AbsctractController{
         }if(source.equals(btnReport)){
             bpReportPane.toFront();
             mainControllerService.update();
+        }
+        if (source.equals(btnOnline)) {
+            bpOnlinePane.toFront();
         }
     }
 
@@ -287,6 +300,19 @@ public class MainController extends AbsctractController{
         }
     }
 
+    //OnlinePane Event Handlers
+    @FXML
+    private void handleActionEventFromOnlinePane(ActionEvent actionEvent) throws IOException {
+
+        if(actionEvent.getSource() == btnDBAnswer){
+            onlinePaneService.launchAnswerOnlineScreen();
+        }
+
+        if(actionEvent.getSource() == btnDBCollect){
+            onlinePaneService.launchCollectOnlineScreen();
+        }
+    }
+
     @Override
     public void setStage(Stage stage){
 
@@ -401,5 +427,29 @@ public class MainController extends AbsctractController{
 
     public Label getLblSpecificReport() {
         return lblSpecificReport;
+    }
+
+    public ImageView getBtnClose() {
+        return btnClose;
+    }
+
+    public TextField getTxtDBUrl() {
+        return txtDBUrl;
+    }
+
+    public TextField getTxtDBUser() {
+        return txtDBUser;
+    }
+
+    public TextField getTxtDBPassword() {
+        return txtDBPassword;
+    }
+
+    public Button getBtnDBAnswer() {
+        return btnDBAnswer;
+    }
+
+    public Button getBtnDBCollect() {
+        return btnDBCollect;
     }
 }

@@ -15,7 +15,7 @@ public class AddAnswerOnlineService extends AbstractService{
         super(controller);
     }
 
-    public void addAnswer(List<Question> questions) {
+    public void addAnswer(List<Question> questions) throws SQLException {
 
         AddAnswerOnlineController addAnswerOnlineController = (AddAnswerOnlineController) controller;
         MainController mainController = (MainController) addAnswerOnlineController.getOnlinePaneService().getController();
@@ -40,7 +40,7 @@ public class AddAnswerOnlineService extends AbstractService{
                 stringParams = stringParams.concat(String.valueOf(charArray[i]));
             }
 
-            System.out.println("INSERT INTO Evocacoes (" + stringParams + ") VALUES ("  + stringParams + ")");
+            System.out.println("INSERT INTO \"Evocacoes\" (" + stringParams + ") VALUES ("  + stringParams + ")");
 
             int paramIndex = 1;
             String columnNames = "";
@@ -59,6 +59,8 @@ public class AddAnswerOnlineService extends AbstractService{
                 paramIndex++;
             }
 
+            preparedStatement.execute();
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Transação concluída");
             alert.setContentText("Suas respostas foram incluídas com sucesso!");
@@ -69,7 +71,7 @@ public class AddAnswerOnlineService extends AbstractService{
         }
         catch (SQLException sqlException)
         {
-            sqlException.printStackTrace();
+            throw sqlException;
         }
 
     }

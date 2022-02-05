@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 //All controller references their stage
 public abstract class AbsctractController {
 
-    Stage stage;
+    protected Stage stage;
 
     public abstract void setStage(Stage stage);
 

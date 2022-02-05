@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -127,7 +128,11 @@ public class AddAnswerOnlineController extends AbsctractController{
                 }
             }
 
-            addAnswerOnlineService.addAnswer(this.questions);
+            try {
+                addAnswerOnlineService.addAnswer(this.questions);
+            } catch (SQLException e) {
+                lblWarning.setText("Erro ao se conectar com o banco de dados");
+            }
         }
     }
 

@@ -9,6 +9,8 @@ import java.nio.charset.Charset;
 
 public class ImportCSV {
 
+    private static String delimiter = ";";
+
     public static Research importCSV(File file){
 
         Research research = null;
@@ -26,7 +28,7 @@ public class ImportCSV {
 
             String line = br.readLine();
 
-            String[] arrayQuestions = line.split(",");
+            String[] arrayQuestions = line.split(delimiter);
 
             for (String s: arrayQuestions){
 
@@ -39,7 +41,7 @@ public class ImportCSV {
 
             while (line != null) {
 
-                String[] arrayAnswers = line.split(",");
+                String[] arrayAnswers = line.split(delimiter);
 
                 for(int i = 0; i < arrayQuestions.length; i++){
 

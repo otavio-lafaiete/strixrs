@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class MainController extends AbsctractController{
 
@@ -73,6 +74,7 @@ public class MainController extends AbsctractController{
     @FXML private Button btnReportDelete;
     @FXML private Button btnSpecificReportBack;
     @FXML private Button btnSpecificReportUpdate;
+    @FXML private Label lblOnlineWarning;
 
     MainControllerService mainControllerService;
     ResearchPaneService researchPaneService;
@@ -314,7 +316,11 @@ public class MainController extends AbsctractController{
     private void handleActionEventFromOnlinePane(ActionEvent actionEvent) throws IOException {
 
         if(actionEvent.getSource() == btnDBAnswer){
-            onlinePaneService.launchAnswerOnlineScreen();
+            try {
+                onlinePaneService.launchAnswerOnlineScreen();
+            } catch (SQLException e) {
+                lblOnlineWarning.setText("Erro ao se conectar com o banco de dados.");
+            }
         }
 
         if(actionEvent.getSource() == btnDBCollect){

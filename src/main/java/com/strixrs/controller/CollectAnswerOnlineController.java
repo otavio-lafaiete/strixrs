@@ -15,16 +15,16 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 
 public class CollectAnswerOnlineController extends AbsctractController{
 
-    @FXML
-    private ImageView btnClose;
+    @FXML private ImageView btnClose;
     @FXML private ImageView btnIconify;
     @FXML private VBox vbResearchs;
     @FXML private Button btnAdd;
+    @FXML private Label lblWarning;
 
     CollectAnswerOnlineService collectAnswerOnlineService;
     OnlinePaneService onlinePaneService;
@@ -117,7 +117,11 @@ public class CollectAnswerOnlineController extends AbsctractController{
 
             Research research = (Research) toggleGroup.getSelectedToggle().getUserData();
 
-            collectAnswerOnlineService.collect(research);
+            try {
+                collectAnswerOnlineService.collect(research);
+            } catch (SQLException e) {
+                lblWarning.setText("Erro ao se conectar com o banco de dados.");
+            }
         }
     }
 

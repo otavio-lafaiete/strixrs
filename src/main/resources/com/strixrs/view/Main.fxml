@@ -337,41 +337,6 @@
                         </VBox>
                      </top>
                   </BorderPane>
-                  <BorderPane fx:id="bpOnlinePane" prefHeight="200.0" prefWidth="200.0">
-                     <center>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
-                           <children>
-                              <ScrollPane style="-fx-background-color: white;">
-                                 <content>
-                                    <VBox prefWidth="500.0" spacing="5.0" style="-fx-background-color: white;">
-                                       <children>
-                                          <Label text="Responder">
-                                             <font>
-                                                <Font name="System Bold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <Separator orientation="VERTICAL" visible="false" />
-                                          <Label text="URL" />
-                                          <TextField fx:id="txtDBUrl" />
-                                          <Label text="Usuário" />
-                                          <TextField fx:id="txtDBUser" />
-                                          <Label text="Senha" />
-                                          <PasswordField fx:id="txtDBPassword" />
-                                          <Separator orientation="VERTICAL" visible="false" />
-                                          <HBox spacing="10.0">
-                                             <children>
-                                                <Button fx:id="btnDBAnswer" mnemonicParsing="false" onAction="#handleActionEventFromOnlinePane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Responder" />
-                                                <Button fx:id="btnDBCollect" mnemonicParsing="false" onAction="#handleActionEventFromOnlinePane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Coletar" />
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
-                                 </content>
-                              </ScrollPane>
-                           </children>
-                        </AnchorPane>
-                     </center>
-                  </BorderPane>
                   <BorderPane fx:id="bpSpecificReportPane" layoutX="10.0" layoutY="10.0" styleClass="mainPane" stylesheets="@../css/MainStyle.css">
                      <center>
                         <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" styleClass="scrollpanels" stylesheets="@../css/MainStyle.css" BorderPane.alignment="CENTER">
@@ -475,6 +440,43 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
+                     </center>
+                  </BorderPane>
+                  <BorderPane fx:id="bpOnlinePane" prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+                           <children>
+                              <ScrollPane style="-fx-background-color: white;">
+                                 <content>
+                                    <VBox prefWidth="500.0" spacing="5.0" style="-fx-background-color: white;">
+                                       <children>
+                                          <Label text="Responder">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Separator orientation="VERTICAL" visible="false" />
+                                          <Label text="URL" />
+                                          <TextField fx:id="txtDBUrl" />
+                                          <Label text="Usuário" />
+                                          <TextField fx:id="txtDBUser" />
+                                          <Label text="Senha" />
+                                          <PasswordField fx:id="txtDBPassword" />
+                                          <Separator orientation="VERTICAL" visible="false" />
+                                          <HBox spacing="10.0">
+                                             <children>
+                                                <Button fx:id="btnDBAnswer" mnemonicParsing="false" onAction="#handleActionEventFromOnlinePane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Responder" />
+                                                <Button fx:id="btnDBCollect" mnemonicParsing="false" onAction="#handleActionEventFromOnlinePane" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Coletar" />
+                                                <Separator visible="false" HBox.hgrow="ALWAYS" />
+                                                <Label fx:id="lblOnlineWarning" textFill="RED" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </AnchorPane>
                      </center>
                   </BorderPane>
                   <BorderPane fx:id="bpQuestionPane" styleClass="mainPane" stylesheets="@../css/MainStyle.css">

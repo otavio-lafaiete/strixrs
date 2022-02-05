@@ -65,7 +65,7 @@
          <content>
             <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="20.0" style="-fx-background-color: white;">
                <children>
-                  <Label text="Gráfico de Barras das Frequências">
+                  <Label text="Gráfico de Dispersão">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

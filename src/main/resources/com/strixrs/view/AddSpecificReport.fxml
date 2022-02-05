@@ -34,14 +34,13 @@
                <content>
                   <VBox fx:id="vbAddReportResearchs" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" style="-fx-background-color: ffffff;">
                      <children>
-                        <RadioButton fx:id="rbFourHouses" mnemonicParsing="false" selected="true" text="Quadro das Quatro Casas">
+                        <RadioButton fx:id="rbBarChartFrequence" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Gráfico de Barras Para Frequência">
                            <toggleGroup>
                               <ToggleGroup fx:id="tgComponent" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <RadioButton fx:id="rbWordCloud" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Nuvem de Palavras" toggleGroup="$tgComponent" />
-                        <RadioButton fx:id="rbBarChartFrequence" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Gráfico de Barras Para Frequência" toggleGroup="$tgComponent" />
+                           </toggleGroup></RadioButton>
                         <RadioButton fx:id="rbScatterChart" layoutX="10.0" layoutY="64.0" mnemonicParsing="false" text="Gráfico de Dispersão" toggleGroup="$tgComponent" />
+                        <RadioButton fx:id="rbFourHouses" mnemonicParsing="false" selected="true" text="Quadro das Quatro Casas" toggleGroup="$tgComponent" />
+                        <RadioButton fx:id="rbWordCloud" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Nuvem de Palavras" toggleGroup="$tgComponent" />
                      </children></VBox>
                </content>
                <VBox.margin>

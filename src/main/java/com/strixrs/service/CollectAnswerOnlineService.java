@@ -18,7 +18,7 @@ public class CollectAnswerOnlineService extends AbstractService{
         super(controller);
     }
 
-    public void collect(Research research) {
+    public void collect(Research research) throws SQLException {
 
         CollectAnswerOnlineController collectAnswerOnlineController = (CollectAnswerOnlineController) controller;
         MainController mainController = (MainController) collectAnswerOnlineController.getOnlinePaneService().getController();
@@ -53,8 +53,8 @@ public class CollectAnswerOnlineService extends AbstractService{
                     if(q.getTitle().equals(questionResearch.getTitle())){
                         for(Answer a: q.getAnswers()){
                             a.setQuestion(questionResearch);
+                            questionResearch.getAnswers().add(a);
                         }
-                        questionResearch.getAnswers().addAll(q.getAnswers());
                     }
                 }
             }
@@ -64,7 +64,7 @@ public class CollectAnswerOnlineService extends AbstractService{
         }
         catch (SQLException sqlException)
         {
-            sqlException.printStackTrace();
+            throw sqlException;
         }
     }
 }

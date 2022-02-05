@@ -50,7 +50,7 @@ public class SpecificReportPaneService extends AbstractService{
         }
     }
 
-    public void launchComponentScreen(ReportComponent reportComponent) throws IOException {
+    private void launchComponentScreen(ReportComponent reportComponent) throws IOException {
 
         Stage stage = new Stage();
 

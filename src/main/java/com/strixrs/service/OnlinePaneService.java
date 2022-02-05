@@ -21,7 +21,7 @@ public class OnlinePaneService extends AbstractService{
         super(controller);
     }
 
-    public void launchAnswerOnlineScreen() throws IOException {
+    public void launchAnswerOnlineScreen() throws IOException, SQLException {
 
         MainController mainController = (MainController) controller;
 
@@ -66,7 +66,7 @@ public class OnlinePaneService extends AbstractService{
         }
         catch (SQLException sqlException)
         {
-            sqlException.printStackTrace();
+            throw sqlException;
         }
     }
 

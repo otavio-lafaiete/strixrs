@@ -43,8 +43,8 @@
                <children>
                   <Pane fx:id="pnlLogin" style="-fx-background-color: #fff;">
                      <children>
-                        <Button fx:id="btnOfflineLogin" layoutX="135.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleButtonEvent" prefHeight="35.0" prefWidth="125.0" styleClass="btnLogin" stylesheets="@../css/LoginStyle.css" text="Entrar" />
-                        <Label layoutX="84.0" layoutY="175.0" text="Seja bem vindo!">
+                        <Button fx:id="btnOfflineLogin" layoutX="135.0" layoutY="255.0" mnemonicParsing="false" onAction="#handleButtonEvent" prefHeight="35.0" prefWidth="125.0" styleClass="btnLogin" stylesheets="@../css/LoginStyle.css" text="Entrar" />
+                        <Label layoutX="84.0" layoutY="190.0" text="Seja bem vindo!">
                            <font>
                               <Font name="System Bold" size="30.0" />
                            </font>

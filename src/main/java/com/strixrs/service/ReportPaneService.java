@@ -12,11 +12,15 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 
 public class ReportPaneService extends AbstractService{
 
@@ -27,11 +31,15 @@ public class ReportPaneService extends AbstractService{
     public void updateReportsVBox() {
 
         MainController mainController = (MainController) controller;
-        for(Report report: DataReports.getReports()){
-            for(Research research: DataResearchs.getResearchs()){
-                if(report.getResearch().getTitle().equals(research.getTitle())){
-                    report.setResearch(research);
-                    DataReports.addReport(report);
+
+        List<Report> listReports = DataReports.getReports();
+        List<Research> listResearch = DataResearchs.getResearchs();
+
+        for(int i = 0; i < listReports.size(); i++){
+            for(int y = 0; y < listResearch.size(); y++){
+                if(listReports.get(i).getResearch().getTitle().equals(listResearch.get(y).getTitle())){
+                    listReports.get(i).setResearch(listResearch.get(y));
+                    DataReports.addReport(listReports.get(i));
                     break;
                 }
             }
@@ -74,7 +82,6 @@ public class ReportPaneService extends AbstractService{
 
         stage.showAndWait();
     }
-
 
     @Override
     public void update(){

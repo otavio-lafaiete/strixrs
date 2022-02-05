@@ -1,14 +1,12 @@
 package com.strixrs.serialization;
 
 import com.strixrs.model.Report;
-import com.strixrs.model.ReportComponent;
 import com.strixrs.model.Research;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class SaveSXRS {
 

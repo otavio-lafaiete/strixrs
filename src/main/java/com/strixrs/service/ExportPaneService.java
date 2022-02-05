@@ -5,7 +5,6 @@ import com.strixrs.controller.MainController;
 import com.strixrs.csv.ExportCSV;
 import com.strixrs.model.Question;
 import com.strixrs.model.Research;
-import javafx.beans.binding.Bindings;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.stage.DirectoryChooser;

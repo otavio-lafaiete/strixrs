@@ -2,27 +2,19 @@ package com.strixrs.service;
 
 import com.strixrs.controller.*;
 import com.strixrs.data.DataResearchs;
-import com.strixrs.javafxmodfiedcontrol.ResearchButton;
 import com.strixrs.model.Answer;
 import com.strixrs.model.Question;
-import com.strixrs.model.Research;
 import com.strixrs.staticutil.StaticUtil;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.util.Optional;
 

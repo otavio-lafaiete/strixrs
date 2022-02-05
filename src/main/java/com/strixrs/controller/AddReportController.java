@@ -1,11 +1,11 @@
 package com.strixrs.controller;
 
+import com.strixrs.data.DataReports;
 import com.strixrs.data.DataResearchs;
+import com.strixrs.model.Report;
 import com.strixrs.model.Research;
 import com.strixrs.service.AddReportService;
-import com.strixrs.service.AddResearchService;
 import com.strixrs.service.ReportPaneService;
-import com.strixrs.service.ResearchPaneService;
 import com.strixrs.staticutil.StaticUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -126,6 +126,15 @@ public class AddReportController extends AbsctractController {
                 txtTitle.requestFocus();
 
                 return;
+            }
+
+            for(Report report: DataReports.getReports()){
+                if(report.getTitle().equals(title)){
+
+                    lblWarning.setText("Já existe um relatório com esse título");
+                    txtTitle.requestFocus();
+                    return;
+                }
             }
 
             addReportService.addReport(title, research);

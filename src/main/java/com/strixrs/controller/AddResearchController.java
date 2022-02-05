@@ -1,5 +1,7 @@
 package com.strixrs.controller;
 
+import com.strixrs.data.DataResearchs;
+import com.strixrs.model.Research;
 import com.strixrs.service.AddResearchService;
 import com.strixrs.service.ResearchPaneService;
 import com.strixrs.staticutil.StaticUtil;
@@ -96,6 +98,15 @@ public class AddResearchController extends AbsctractController {
                 taDescription.requestFocus();
 
                 return;
+            }
+
+            for(Research research: DataResearchs.getResearchs()){
+                if(research.getTitle().equals(title)){
+
+                    lblWarning.setText("Já existe uma pesquisa com esse título");
+                    txtTitle.requestFocus();
+                    return;
+                }
             }
 
             addResearchService.addResearch(title, description);

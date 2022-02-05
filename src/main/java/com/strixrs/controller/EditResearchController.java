@@ -1,9 +1,7 @@
 package com.strixrs.controller;
 
-import com.strixrs.service.AddResearchService;
 import com.strixrs.service.EditResearchService;
 import com.strixrs.service.QuestionPaneService;
-import com.strixrs.service.ResearchPaneService;
 import com.strixrs.staticutil.StaticUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

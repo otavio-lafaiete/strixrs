@@ -1,19 +1,13 @@
 package com.strixrs.service;
 
 import com.strixrs.controller.AbsctractController;
-import com.strixrs.controller.AddAnswerController;
 import com.strixrs.controller.AddAnswerOnlineController;
 import com.strixrs.controller.MainController;
-import com.strixrs.data.DataResearchs;
-import com.strixrs.model.Answer;
 import com.strixrs.model.Question;
-import com.strixrs.model.Research;
 import javafx.scene.control.Alert;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class AddAnswerOnlineService extends AbstractService{
 
@@ -64,8 +58,6 @@ public class AddAnswerOnlineService extends AbstractService{
                 preparedStatement.setString(paramIndex, questionAux.getAnswers().get(0).getAnswer());
                 paramIndex++;
             }
-
-            int result = preparedStatement.executeUpdate();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Transação concluída");

@@ -2,13 +2,11 @@ package com.strixrs.controller;
 
 import com.strixrs.model.Question;
 import com.strixrs.service.AddAnswerService;
-import com.strixrs.service.AddQuestionService;
 import com.strixrs.service.AnswerPaneService;
 import com.strixrs.service.QuestionPaneService;
 import com.strixrs.staticutil.StaticUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -26,13 +24,12 @@ public class AddAnswerController extends AbsctractController{
     @FXML private VBox vbAnswers;
     @FXML private Button btnAdd;
     @FXML private Label lblWarning;
+
     ArrayList<Label> labels;
     ArrayList<TextField> textFields;
 
-
     QuestionPaneService questionPaneService;
     AddAnswerService addAnswerService;
-    AnswerPaneService answerPaneService;
 
     private double xOffSet;
     private double yOffSet;
@@ -159,13 +156,5 @@ public class AddAnswerController extends AbsctractController{
 
     public QuestionPaneService getQuestionPaneService() {
         return questionPaneService;
-    }
-
-    public AnswerPaneService getAnswerPaneService() {
-        return answerPaneService;
-    }
-
-    public void setAnswerPaneService(AnswerPaneService answerPaneService) {
-        this.answerPaneService = answerPaneService;
     }
 }

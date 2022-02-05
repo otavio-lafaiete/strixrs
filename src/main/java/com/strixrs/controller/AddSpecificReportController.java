@@ -1,5 +1,6 @@
 package com.strixrs.controller;
 
+import com.strixrs.model.ReportComponent;
 import com.strixrs.service.AddSpecificReportService;
 import com.strixrs.service.SpecificReportPaneService;
 import com.strixrs.staticutil.StaticUtil;
@@ -8,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -20,9 +20,11 @@ public class AddSpecificReportController extends AbsctractController{
     @FXML private TextField txtName;
     @FXML private Button btnAdd;
     @FXML private Label lblWarning;
-    @FXML private VBox vbAddReportResearchs;
     @FXML private ToggleGroup tgComponent;
     @FXML private RadioButton rbFourHouses;
+    @FXML private RadioButton rbWordCloud;
+    @FXML private RadioButton rbBarChartFrequence;
+    @FXML private RadioButton rbScatterChart;
 
     private double xOffSet;
     private double yOffSet;
@@ -35,6 +37,9 @@ public class AddSpecificReportController extends AbsctractController{
         addSpecificReportService = new AddSpecificReportService(this);
 
         rbFourHouses.setUserData("FourHouses");
+        rbWordCloud.setUserData("WordCloud");
+        rbBarChartFrequence.setUserData("BarChart");
+        rbScatterChart.setUserData("ScatterChart");
     }
 
     @FXML
@@ -90,6 +95,15 @@ public class AddSpecificReportController extends AbsctractController{
                 lblWarning.setText("O Nome não pode ser vazio");
                 txtName.requestFocus();
                 return;
+            }
+
+            for(ReportComponent reportComponent: getSpecificReportPaneService().getCurrentReport().getComponents()){
+                if(reportComponent.getName().equals(name)){
+
+                    lblWarning.setText("Já existe um componente com esse título");
+                    txtName.requestFocus();
+                    return;
+                }
             }
 
             addSpecificReportService.addComponent(name, type);

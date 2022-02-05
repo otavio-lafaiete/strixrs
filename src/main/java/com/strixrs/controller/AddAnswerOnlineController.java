@@ -26,6 +26,7 @@ public class AddAnswerOnlineController extends AbsctractController{
     @FXML private VBox vbAnswers;
     @FXML private Button btnAdd;
     @FXML private Label lblWarning;
+
     ArrayList<Label> labels;
     ArrayList<TextField> textFields;
 

@@ -39,8 +39,9 @@
                               <ToggleGroup fx:id="tgComponent" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Gráfico 1" toggleGroup="$tgComponent" />
-                        <RadioButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Gráfico 2" toggleGroup="$tgComponent" />
+                        <RadioButton fx:id="rbWordCloud" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Nuvem de Palavras" toggleGroup="$tgComponent" />
+                        <RadioButton fx:id="rbBarChartFrequence" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Gráfico de Barras Para Frequência" toggleGroup="$tgComponent" />
+                        <RadioButton fx:id="rbScatterChart" layoutX="10.0" layoutY="64.0" mnemonicParsing="false" text="Gráfico de Dispersão" toggleGroup="$tgComponent" />
                      </children></VBox>
                </content>
                <VBox.margin>

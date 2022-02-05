@@ -1,7 +1,5 @@
 package com.strixrs.model;
 
-import javafx.beans.property.SimpleStringProperty;
-
 import java.io.Serializable;
 
 public class Answer implements Serializable {

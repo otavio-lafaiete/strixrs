@@ -1,9 +1,8 @@
 package com.strixrs.controller;
 
+import com.strixrs.model.Question;
 import com.strixrs.service.AddQuestionService;
-import com.strixrs.service.AddResearchService;
 import com.strixrs.service.QuestionPaneService;
-import com.strixrs.service.ResearchPaneService;
 import com.strixrs.staticutil.StaticUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -85,6 +84,15 @@ public class AddQuestionController extends AbsctractController{
                 txtTitle.requestFocus();
 
                 return;
+            }
+
+            for(Question question: questionPaneService.getCurrentResearch().getQuestions()){
+                if(question.getTitle().equals(title)){
+
+                    lblWarning.setText("Já existe uma evocação com esse título");
+                    txtTitle.requestFocus();
+                    return;
+                }
             }
 
             addQuestionService.addQuestion(title);

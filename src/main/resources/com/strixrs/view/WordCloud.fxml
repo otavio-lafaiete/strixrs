@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: white; -fx-border-color: #2548a7;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.strixrs.controller.WordCloudController">
+   <top>
+      <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="60.0" spacing="10.0" style="-fx-background-color: #2548a7;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" graphicTextGap="10.0" prefWidth="150.0" text="StrixRS" textAlignment="CENTER" textFill="WHITE">
+               <graphic>
+                  <ImageView pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icon/strixrs-mini.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Separator maxWidth="1.7976931348623157E308" visible="false" HBox.hgrow="ALWAYS" />
+            <HBox alignment="CENTER_RIGHT" prefWidth="150.0" spacing="10.0">
+               <children>
+                  <ImageView fx:id="btnIconify" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleMouseClickedEvent" onMouseEntered="#handleMouseEnteredEvent" onMouseExited="#handleMouseExitedEvent" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                     <image>
+                        <Image url="@../icon/white-iconify.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="btnMaximize" onMouseClicked="#handleMouseClickedEvent" onMouseEntered="#handleMouseEnteredEvent" onMouseExited="#handleMouseExitedEvent" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                     <image>
+                        <Image url="@../icon/white-maximize.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="btnClose" layoutX="220.0" layoutY="10.0" onMouseClicked="#handleMouseClickedEvent" onMouseEntered="#handleMouseEnteredEvent" onMouseExited="#handleMouseExitedEvent" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                     <image>
+                        <Image url="@../icon/white-close.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets right="15.0" />
+         </padding>
+      </HBox>
+   </top>
+   <center>
+      <BorderPane BorderPane.alignment="CENTER">
+         <top>
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="20.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Nuvem de Palavras">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <VBox spacing="10.0" style="-fx-background-color: white;">
+                     <children>
+                        <Label text="Evocações a serem processadas:" />
+                        <VBox fx:id="vbEvocations" />
+                        <HBox spacing="10.0">
+                           <children>
+                              <Button fx:id="btnGenerateWordCloud" mnemonicParsing="false" onAction="#handleActionEvent" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Gerar" />
+                              <Button fx:id="btnSaveReport" mnemonicParsing="false" onAction="#handleActionEvent" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Salvar" />
+                              <Button fx:id="btnRemove" mnemonicParsing="false" onAction="#handleActionEvent" styleClass="paneButtons" stylesheets="@../css/MainStyle.css" text="Remover" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+               <BorderPane.margin>
+                  <Insets left="10.0" />
+               </BorderPane.margin>
+            </VBox>
+         </top>
+         <center>
+            <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets left="10.0" top="10.0" />
+               </BorderPane.margin>
+               <content>
+                  <VBox alignment="CENTER" style="-fx-background-color: white;">
+                     <children>
+                        <AnchorPane fx:id="paneCloudWord" />
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </ScrollPane>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>

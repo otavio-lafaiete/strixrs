@@ -1,9 +1,7 @@
 package com.strixrs.service;
 
-import com.strixrs.App;
 import com.strixrs.controller.AbsctractController;
 import com.strixrs.controller.AddResearchController;
-import com.strixrs.controller.EditResearchController;
 import com.strixrs.controller.MainController;
 import com.strixrs.data.DataResearchs;
 import com.strixrs.javafxmodfiedcontrol.ResearchButton;
@@ -15,10 +13,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 

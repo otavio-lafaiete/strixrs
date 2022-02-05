@@ -21,7 +21,6 @@ public class MainController extends AbsctractController{
     @FXML private ImageView btnClose;
     @FXML private ImageView btnMaximize;
     @FXML private ImageView btnIconify;
-    @FXML private AnchorPane anchorPane;
     @FXML private Button btnResearch;
     @FXML private Button btnImport;
     @FXML private Button btnExport;
@@ -33,8 +32,6 @@ public class MainController extends AbsctractController{
     @FXML private BorderPane bpExportPane;
     @FXML private BorderPane bpReportPane;
     @FXML private BorderPane bpSpecificReportPane;
-    @FXML private TextField txtResearchSearch;
-    @FXML private Button btnResearchSearch;
     @FXML private Button btnResearchAdd;
     @FXML private Button btnResearchUpdate;
     @FXML private Button btnQuestionAdd;
@@ -73,6 +70,9 @@ public class MainController extends AbsctractController{
     @FXML private Button btnDBCollect;
     @FXML private BorderPane bpOnlinePane;
     @FXML private Button btnOnline;
+    @FXML private Button btnReportDelete;
+    @FXML private Button btnSpecificReportBack;
+    @FXML private Button btnSpecificReportUpdate;
 
     MainControllerService mainControllerService;
     ResearchPaneService researchPaneService;
@@ -257,6 +257,15 @@ public class MainController extends AbsctractController{
         if(actionEvent.getSource() == btnComponentAdd){
             specificReportPaneService.launchSpecificReportAddScreen();
         }
+        if(actionEvent.getSource() == btnReportDelete){
+            specificReportPaneService.deleteCurrentReport();
+        }
+        if(actionEvent.getSource() == btnSpecificReportBack){
+            bpReportPane.toFront();
+        }
+        if(actionEvent.getSource() == btnSpecificReportUpdate){
+            specificReportPaneService.update();
+        }
     }
 
     //ImportPane Event Handlers
@@ -387,14 +396,6 @@ public class MainController extends AbsctractController{
         return researchPaneService;
     }
 
-    public BorderPane getBpImportPane() {
-        return bpImportPane;
-    }
-
-    public BorderPane getBpExportPane() {
-        return bpExportPane;
-    }
-
     public MainControllerService getMainControllerService() {
 
         return mainControllerService;
@@ -445,11 +446,7 @@ public class MainController extends AbsctractController{
         return txtDBPassword;
     }
 
-    public Button getBtnDBAnswer() {
-        return btnDBAnswer;
-    }
-
-    public Button getBtnDBCollect() {
-        return btnDBCollect;
+    public BorderPane getBpReportPane() {
+        return bpReportPane;
     }
 }

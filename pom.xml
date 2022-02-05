@@ -25,6 +25,11 @@
             <artifactId>postgresql</artifactId>
             <version>42.2.24</version>
         </dependency>
+        <dependency>
+            <groupId>com.kennycason</groupId>
+            <artifactId>kumo-core</artifactId>
+            <version>1.28</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

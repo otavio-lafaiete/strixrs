@@ -1,11 +1,7 @@
 package com.strixrs.controller;
 
 import com.strixrs.data.DataResearchs;
-import com.strixrs.model.Answer;
-import com.strixrs.model.Question;
 import com.strixrs.model.Research;
-import com.strixrs.service.AddAnswerOnlineService;
-import com.strixrs.service.AddReportService;
 import com.strixrs.service.CollectAnswerOnlineService;
 import com.strixrs.service.OnlinePaneService;
 import com.strixrs.staticutil.StaticUtil;
@@ -29,9 +25,6 @@ public class CollectAnswerOnlineController extends AbsctractController{
     @FXML private ImageView btnIconify;
     @FXML private VBox vbResearchs;
     @FXML private Button btnAdd;
-    @FXML private Label lblWarning;
-    ArrayList<Label> labels;
-    ArrayList<TextField> textFields;
 
     CollectAnswerOnlineService collectAnswerOnlineService;
     OnlinePaneService onlinePaneService;

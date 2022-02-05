@@ -1,7 +1,6 @@
 package com.strixrs.data;
 
 import com.strixrs.model.Report;
-import com.strixrs.model.Research;
 import com.strixrs.serialization.ReadSXRS;
 import com.strixrs.serialization.SaveSXRS;
 import javafx.scene.control.Alert;
@@ -52,7 +51,7 @@ public class DataReports {
         }
     }
 
-    public static void deleteResearch(String reportName){
+    public static void deleteReport(String reportName){
 
         File reportToBeDeleted = new File(reportsPath + "\\" + reportName + ".srep");
         if(!reportToBeDeleted.delete()){

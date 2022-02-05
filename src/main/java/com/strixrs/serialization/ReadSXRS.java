@@ -1,7 +1,6 @@
 package com.strixrs.serialization;
 
 import com.strixrs.model.Report;
-import com.strixrs.model.ReportComponent;
 import com.strixrs.model.Research;
 
 import java.io.IOException;

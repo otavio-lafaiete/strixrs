@@ -143,9 +143,6 @@ public class QuestionPaneService extends  AbstractService{
         controller.setStage(stage);
         controller.setQuestionPaneService(this);
 
-        MainController mainController = (MainController) this.controller;
-        controller.setAnswerPaneService(mainController.getAnswerPaneService());
-
         controller.initializeScreenComponents();
 
         stage.showAndWait();
@@ -154,13 +151,16 @@ public class QuestionPaneService extends  AbstractService{
     @Override
     public void update(){
 
-        MainController mainController = (MainController) this.controller;
+        if(currentResearch != null){
+            MainController mainController = (MainController) this.controller;
 
-        mainController.getLblResearchTitle().setText(currentResearch.getTitle());
-        mainController.getTaResearchDescription().setText(currentResearch.getDescription());
+            mainController.getLblResearchTitle().setText(currentResearch.getTitle());
+            mainController.getTaResearchDescription().setText(currentResearch.getDescription());
 
-        updateQuestionsVBox();
+            updateQuestionsVBox();
 
-        mainController.getResearchPaneService().update();
+            mainController.getResearchPaneService().update();
+        }
+
     }
 }

@@ -1,7 +1,6 @@
 package com.strixrs.controller;
 
 import com.strixrs.data.DataReports;
-import com.strixrs.data.DataResearchs;
 import com.strixrs.model.*;
 import com.strixrs.service.SpecificReportPaneService;
 import com.strixrs.staticutil.StaticUtil;
@@ -358,7 +357,7 @@ public class FourHousesController extends AbsctractController{
 
         for(int x = 0; x < frequences.size() - 1; x++){
 
-            for(int y = 1; y < frequences.size(); y++){
+            for(int y = x + 1; y < frequences.size(); y++){
 
                 if(frequences.get(x) < frequences.get(y)){
 

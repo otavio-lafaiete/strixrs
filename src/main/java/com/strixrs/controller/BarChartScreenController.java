@@ -95,7 +95,7 @@ public class BarChartScreenController extends AbsctractController {
         }
     }
 
-    public void generateBarChart() throws IOException {
+    private void generateBarChart() throws IOException {
 
         if (selectedRadioButtons.isEmpty())
             return;
@@ -246,7 +246,7 @@ public class BarChartScreenController extends AbsctractController {
         }
     }
 
-    public int calculateFrequence(String evocation) {
+    private int calculateFrequence(String evocation) {
 
         int frequence = 0;
 

@@ -8,7 +8,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.chart.BarChart;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
@@ -21,7 +20,6 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -97,7 +95,7 @@ public class ScatterChartScreenController extends AbsctractController {
         }
     }
 
-    public void generateScatterChart() throws IOException {
+    private void generateScatterChart() throws IOException {
 
         if (selectedRadioButtons.isEmpty())
             return;
@@ -143,7 +141,7 @@ public class ScatterChartScreenController extends AbsctractController {
 
     }
 
-    public float calculateOrder(String evocation){
+    private float calculateOrder(String evocation){
 
         ArrayList<Question> questions = reportComponent.getEvocations();
 
@@ -207,8 +205,6 @@ public class ScatterChartScreenController extends AbsctractController {
             System.out.println(f);
         }
 
-        System.out.println("------------------troca-----------------------------");
-        System.out.println(x + " por " + y);
         Float v = list.get(x);
         list.set(x, list.get(y));
         list.set(y, v);
@@ -217,8 +213,6 @@ public class ScatterChartScreenController extends AbsctractController {
         for(Float f: list){
             System.out.println(f);
         }
-
-        System.out.println("-----------------------------------------------");
     }
 
     private void switchAnswer(List<Answer> list, int x, int y){
@@ -327,7 +321,7 @@ public class ScatterChartScreenController extends AbsctractController {
         }
     }
 
-    public float calculateFrequence(String evocation) {
+    private float calculateFrequence(String evocation) {
 
         int frequence = 0;
         int totalAnwers = 0;

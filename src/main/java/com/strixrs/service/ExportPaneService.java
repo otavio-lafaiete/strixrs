@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ExportPaneService extends AbstractService{
 
-    MainController mainController;
+    private MainController mainController;
 
     public ExportPaneService(AbsctractController absctractController) {
 

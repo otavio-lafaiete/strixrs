@@ -104,7 +104,7 @@ public class WordCloudController extends AbsctractController {
         }
     }
 
-    public void generateWordCloud() throws IOException {
+    private void generateWordCloud() throws IOException {
 
         if (selectedRadioButtons.isEmpty())
             return;

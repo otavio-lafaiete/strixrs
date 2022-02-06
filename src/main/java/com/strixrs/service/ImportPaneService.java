@@ -12,8 +12,8 @@ import java.io.File;
 
 public class ImportPaneService extends AbstractService{
 
-    MainController mainController;
-    File file;
+    private MainController mainController;
+    private File file;
 
     public ImportPaneService(AbsctractController controller) {
 

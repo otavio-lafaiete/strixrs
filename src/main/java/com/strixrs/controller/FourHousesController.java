@@ -131,7 +131,7 @@ public class FourHousesController extends AbsctractController{
         }
     }
 
-    public void generateFourHouses(){
+    private void generateFourHouses(){
         gpFirstSquare.getChildren().clear();
         gpSecondSquare.getChildren().clear();
         gpThirdSquare.getChildren().clear();
@@ -482,7 +482,7 @@ public class FourHousesController extends AbsctractController{
         }
     }
 
-    public float calculateOrder(String evocation){
+    private float calculateOrder(String evocation){
 
         ArrayList<Question> questions = reportComponent.getEvocations();
 
@@ -515,7 +515,7 @@ public class FourHousesController extends AbsctractController{
         return sum/total;
     }
 
-    public float calculateFrequence(String evocation){
+    private float calculateFrequence(String evocation){
 
         int frequence = 0;
         int totalAnwers = 0;

@@ -12,47 +12,47 @@ public class SaveSXRS {
 
     private static ObjectOutputStream outputStream;
 
-    private static void openFile(Path path){
+    private static void openFile(Path path) {
 
-        try{
+        try {
             outputStream = new ObjectOutputStream(Files.newOutputStream(path));
-        }catch(IOException ioException){
+        } catch (IOException ioException) {
             System.err.println("Error opening the file");
             System.exit(1);
         }
     }
 
-    private static void saveFile(Research research){
+    private static void saveFile(Research research) {
 
-        try{
+        try {
             outputStream.writeObject(research);
-        }catch (IOException ioException){
+        } catch (IOException ioException) {
             System.err.println("Error writing to the file");
             System.exit(1);
         }
     }
 
-    private static void saveFile(Report report){
+    private static void saveFile(Report report) {
 
-        try{
+        try {
             outputStream.writeObject(report);
-        }catch (IOException ioException){
+        } catch (IOException ioException) {
             System.err.println("Error writing to the file");
             System.exit(1);
         }
     }
 
-    private static void closeFile(){
-        try{
-            if(outputStream != null)
+    private static void closeFile() {
+        try {
+            if (outputStream != null)
                 outputStream.close();
-        }catch (IOException ioException){
+        } catch (IOException ioException) {
             System.err.println("Error closing the file");
             System.exit(1);
         }
     }
 
-    public static void saveResearch(Path path, Research research){
+    public static void saveResearch(Path path, Research research) {
 
         openFile(path);
         saveFile(research);

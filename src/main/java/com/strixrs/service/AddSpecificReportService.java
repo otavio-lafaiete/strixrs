@@ -5,7 +5,7 @@ import com.strixrs.controller.AddSpecificReportController;
 import com.strixrs.data.DataReports;
 import com.strixrs.model.*;
 
-public class AddSpecificReportService extends AbstractService{
+public class AddSpecificReportService extends AbstractService {
 
     public AddSpecificReportService(AbsctractController controller) {
         super(controller);
@@ -17,7 +17,7 @@ public class AddSpecificReportService extends AbstractService{
 
         Report currentReport = addSpecificReportController.getSpecificReportPaneService().getCurrentReport();
 
-        switch (tipo){
+        switch (tipo) {
             case "FourHouses":
                 FourHouses fourHouses = new FourHouses(name);
                 fourHouses.setReport(currentReport);

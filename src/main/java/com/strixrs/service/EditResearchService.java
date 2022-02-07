@@ -5,7 +5,7 @@ import com.strixrs.controller.EditResearchController;
 import com.strixrs.data.DataResearchs;
 import com.strixrs.model.Research;
 
-public class EditResearchService extends AbstractService{
+public class EditResearchService extends AbstractService {
 
     public EditResearchService(AbsctractController controller) {
         super(controller);
@@ -24,7 +24,7 @@ public class EditResearchService extends AbstractService{
 
         if (title.equals(oldTitle))
             DataResearchs.addResearch(research);
-        else{
+        else {
             DataResearchs.addResearch(research);
             DataResearchs.deleteResearch(oldTitle);
         }

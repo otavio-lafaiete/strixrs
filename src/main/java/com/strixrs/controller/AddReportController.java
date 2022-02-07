@@ -21,12 +21,18 @@ import java.util.List;
 
 public class AddReportController extends AbsctractController {
 
-    @FXML private ImageView btnClose;
-    @FXML private ImageView btnIconify;
-    @FXML private TextField txtTitle;
-    @FXML private Button btnAdd;
-    @FXML private Label lblWarning;
-    @FXML private VBox vbAddReportResearchs;
+    @FXML
+    private ImageView btnClose;
+    @FXML
+    private ImageView btnIconify;
+    @FXML
+    private TextField txtTitle;
+    @FXML
+    private Button btnAdd;
+    @FXML
+    private Label lblWarning;
+    @FXML
+    private VBox vbAddReportResearchs;
 
     private ToggleGroup toggleGroup = new ToggleGroup();
 
@@ -37,15 +43,15 @@ public class AddReportController extends AbsctractController {
     private double yOffSet;
 
 
-    public void initialize(){
+    public void initialize() {
 
         addReportService = new AddReportService(this);
 
         List<Research> researchs = DataResearchs.getResearchs();
 
-        if(researchs.isEmpty()) {
+        if (researchs.isEmpty()) {
             Label label = new Label("Não há nenhuma pesquisa criada, crie uma para depois gerar relatórios.");
-            label.setTextFill(Color.color(1,0,0));
+            label.setTextFill(Color.color(1, 0, 0));
             vbAddReportResearchs.getChildren().add(label);
             return;
         }
@@ -57,7 +63,7 @@ public class AddReportController extends AbsctractController {
 
         researchs.remove(0);
 
-        for(Research research: researchs){
+        for (Research research : researchs) {
 
             RadioButton radioButton = new RadioButton(research.getTitle());
             radioButton.setUserData(research);
@@ -68,68 +74,68 @@ public class AddReportController extends AbsctractController {
     }
 
     @FXML
-    private void handleMouseClickedEvent(MouseEvent event){
+    private void handleMouseClickedEvent(MouseEvent event) {
 
         Object source = event.getSource();
 
-        if(source.equals(btnClose))
+        if (source.equals(btnClose))
             stage.close();
 
 
-        if(source.equals(btnIconify))
+        if (source.equals(btnIconify))
             stage.setIconified(true);
     }
 
     @FXML
-    private void handleMouseEnteredEvent(MouseEvent event){
+    private void handleMouseEnteredEvent(MouseEvent event) {
 
         Object source = event.getSource();
 
-        if(source.equals(btnClose)){
+        if (source.equals(btnClose)) {
             btnClose.setImage(StaticUtil.getIcon("white-close-hover.png"));
         }
 
-        if(source.equals(btnIconify)){
+        if (source.equals(btnIconify)) {
             btnIconify.setImage(StaticUtil.getIcon("white-iconify-hover.png"));
         }
     }
 
     @FXML
-    private void handleMouseExitedEvent(MouseEvent event){
+    private void handleMouseExitedEvent(MouseEvent event) {
 
         Object source = event.getSource();
 
-        if(source.equals(btnClose)){
+        if (source.equals(btnClose)) {
             btnClose.setImage(StaticUtil.getIcon("white-close.png"));
         }
 
-        if(source.equals(btnIconify)){
+        if (source.equals(btnIconify)) {
             btnIconify.setImage(StaticUtil.getIcon("white-iconify.png"));
         }
     }
 
     @FXML
-    private void handleActionEvent(ActionEvent actionEvent){
+    private void handleActionEvent(ActionEvent actionEvent) {
 
-        if(actionEvent.getSource() == btnAdd){
+        if (actionEvent.getSource() == btnAdd) {
 
             String title = txtTitle.getText();
 
-            if(toggleGroup.getToggles().isEmpty()){
+            if (toggleGroup.getToggles().isEmpty()) {
                 stage.close();
                 return;
             }
             Research research = (Research) toggleGroup.getSelectedToggle().getUserData();
 
-            if(title.isEmpty()){
+            if (title.isEmpty()) {
                 lblWarning.setText("O título não pode ser vazio");
                 txtTitle.requestFocus();
 
                 return;
             }
 
-            for(Report report: DataReports.getReports()){
-                if(report.getTitle().equals(title)){
+            for (Report report : DataReports.getReports()) {
+                if (report.getTitle().equals(title)) {
 
                     lblWarning.setText("Já existe um relatório com esse título");
                     txtTitle.requestFocus();

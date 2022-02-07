@@ -18,18 +18,18 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ResearchPaneService extends AbstractService{
+public class ResearchPaneService extends AbstractService {
 
-    public ResearchPaneService(AbsctractController controller){
+    public ResearchPaneService(AbsctractController controller) {
         super(controller);
     }
 
-    public void updateResearchsVBox(){
+    public void updateResearchsVBox() {
 
         MainController mainController = (MainController) controller;
 
         mainController.getVbResearchs().getChildren().clear();
-        for(Research research: DataResearchs.getResearchs()){
+        for (Research research : DataResearchs.getResearchs()) {
 
             Button button = new ResearchButton(research.getTitle());
             button.setOnAction(new EventHandler<ActionEvent>() {
@@ -66,9 +66,8 @@ public class ResearchPaneService extends AbstractService{
     }
 
 
-
     @Override
-    public void update(){
+    public void update() {
         updateResearchsVBox();
     }
 }

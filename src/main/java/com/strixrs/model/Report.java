@@ -10,7 +10,7 @@ public class Report implements Serializable {
     private Research research;
     private List<ReportComponent> components;
 
-    public Report(String title, Research research){
+    public Report(String title, Research research) {
 
         this.title = title;
         this.research = research;

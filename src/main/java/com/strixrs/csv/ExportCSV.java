@@ -8,17 +8,17 @@ import java.nio.charset.Charset;
 
 public class ExportCSV {
 
-        public static boolean exportCSV(String path, String name, StringBuilder toBeWrite){
+    public static boolean exportCSV(String path, String name, StringBuilder toBeWrite) {
 
-            try (PrintWriter writer = new PrintWriter(new File(path + "\\" + name + ".csv"), Charset.forName("UTF-8"))) {
+        try (PrintWriter writer = new PrintWriter(new File(path + "\\" + name + ".csv"), Charset.forName("UTF-8"))) {
 
-                writer.write(toBeWrite.toString());
-            } catch (FileNotFoundException e) {
-                return false;
-            } catch (IOException e) {
-                return false;
-            }
-
-            return true;
+            writer.write(toBeWrite.toString());
+        } catch (FileNotFoundException e) {
+            return false;
+        } catch (IOException e) {
+            return false;
         }
+
+        return true;
+    }
 }

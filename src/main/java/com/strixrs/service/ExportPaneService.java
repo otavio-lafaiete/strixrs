@@ -15,9 +15,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class ExportPaneService extends AbstractService{
+public class ExportPaneService extends AbstractService {
 
     private MainController mainController;
+    private static String delimiter = ";";
 
     public ExportPaneService(AbsctractController absctractController) {
 
@@ -31,17 +32,17 @@ public class ExportPaneService extends AbstractService{
 
         File pathFile = dc.showDialog(controller.getStage());
 
-        if(pathFile != null)
+        if (pathFile != null)
             mainController.getTxtExportPath().setText(pathFile.toString());
     }
 
-    public void doExport(){
+    public void doExport() {
 
-        ListView<String> listResearchs =  mainController.getLvExportResearchs();
+        ListView<String> listResearchs = mainController.getLvExportResearchs();
 
         String actualResearchName = listResearchs.getSelectionModel().getSelectedItem();
 
-        if(actualResearchName == null){
+        if (actualResearchName == null) {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
@@ -54,45 +55,45 @@ public class ExportPaneService extends AbstractService{
 
         Research selectedResearch = null;
 
-        for(Research research: DataResearchs.getResearchs()){
-            if(research.getTitle().equals(actualResearchName)){
+        for (Research research : DataResearchs.getResearchs()) {
+            if (research.getTitle().equals(actualResearchName)) {
                 selectedResearch = research;
             }
         }
 
-        if(!selectedResearch.getQuestions().isEmpty()){
+        if (!selectedResearch.getQuestions().isEmpty()) {
             StringBuilder sb = new StringBuilder();
 
-            for(Question question: selectedResearch.getQuestions()){
+            for (Question question : selectedResearch.getQuestions()) {
 
-                sb.append(question.getTitle() + ",");
+                sb.append(question.getTitle() + delimiter);
             }
 
-            if(sb.length() > 0 && sb.charAt(sb.length() - 1) == ','){
+            if (sb.length() > 0 && sb.charAt(sb.length() - 1) == delimiter.charAt(0)) {
                 sb.setCharAt(sb.length() - 1, '\n');
             }
 
             int listAnswersSize = selectedResearch.getQuestions().get(0).getAnswers().size();
 
-            for(int i = 0; i < listAnswersSize; i++){
+            for (int i = 0; i < listAnswersSize; i++) {
 
-                for(Question question: selectedResearch.getQuestions()){
+                for (Question question : selectedResearch.getQuestions()) {
 
-                    sb.append(question.getAnswers().get(i).getAnswer() + ",");
+                    sb.append(question.getAnswers().get(i).getAnswer() + delimiter);
                 }
 
-                if(sb.length() > 0 && sb.charAt(sb.length() - 1) == ','){
+                if (sb.length() > 0 && sb.charAt(sb.length() - 1) == delimiter.charAt(0)) {
                     sb.setCharAt(sb.length() - 1, '\n');
                 }
             }
 
-            if(sb.length() > 0){
+            if (sb.length() > 0) {
                 sb.deleteCharAt(sb.length() - 1);
             }
 
             Path path = Paths.get(mainController.getTxtExportPath().getText());
 
-            if(!path.toFile().exists()){
+            if (!path.toFile().exists()) {
 
 
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -105,7 +106,7 @@ public class ExportPaneService extends AbstractService{
             }
 
             ExportCSV.exportCSV(path.toString(), actualResearchName, sb);
-        }else{
+        } else {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
@@ -123,22 +124,22 @@ public class ExportPaneService extends AbstractService{
         alert.showAndWait();
     }
 
-    public void updateLVResearchs(){
+    public void updateLVResearchs() {
 
-        ListView<String> listResearchs =  mainController.getLvExportResearchs();
+        ListView<String> listResearchs = mainController.getLvExportResearchs();
 
         listResearchs.getItems().clear();
         List<Research> researchs = DataResearchs.getResearchs();
 
-        for(Research research: researchs){
+        for (Research research : researchs) {
             listResearchs.getItems().add(research.getTitle());
         }
 
-        listResearchs.setPrefHeight(researchs.size() * 24 + 2 > 650? 650 : researchs.size() * 24 + 2);
+        listResearchs.setPrefHeight(researchs.size() * 24 + 2 > 650 ? 650 : researchs.size() * 24 + 2);
     }
 
     @Override
-    public void update(){
+    public void update() {
         updateLVResearchs();
     }
 }

@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Optional;
 
-public class QuestionPaneService extends  AbstractService{
+public class QuestionPaneService extends AbstractService {
 
     private Research currentResearch;
 
@@ -42,7 +42,7 @@ public class QuestionPaneService extends  AbstractService{
 
         mainController.getVbQuestions().getChildren().clear();
 
-        for(Question question: currentResearch.getQuestions()){
+        for (Question question : currentResearch.getQuestions()) {
 
             Button button = new ResearchButton(question.getTitle());
             button.setOnAction(new EventHandler<ActionEvent>() {
@@ -89,7 +89,7 @@ public class QuestionPaneService extends  AbstractService{
         alert.setContentText("Têm certeza que deseja excluir a pesquisa atual? ");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             DataResearchs.deleteResearch(currentResearch.getTitle());
 
             MainController mainController = (MainController) controller;
@@ -149,9 +149,9 @@ public class QuestionPaneService extends  AbstractService{
     }
 
     @Override
-    public void update(){
+    public void update() {
 
-        if(currentResearch != null){
+        if (currentResearch != null) {
             MainController mainController = (MainController) this.controller;
 
             mainController.getLblResearchTitle().setText(currentResearch.getTitle());

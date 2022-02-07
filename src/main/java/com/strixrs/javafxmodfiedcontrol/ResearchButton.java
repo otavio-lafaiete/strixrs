@@ -4,7 +4,7 @@ import javafx.scene.control.Button;
 
 public class ResearchButton extends Button {
 
-    public ResearchButton(String title){
+    public ResearchButton(String title) {
 
         super(title);
 

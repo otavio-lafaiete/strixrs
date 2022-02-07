@@ -28,11 +28,11 @@ public abstract class StaticUtil {
         scene.setRoot(parent);
     }
 
-    public static Image getIcon(String iconName){
+    public static Image getIcon(String iconName) {
         return new Image(String.valueOf(App.class.getResource(iconsPath + iconName)));
     }
 
-    public static FXMLLoader getFXML(String name){
+    public static FXMLLoader getFXML(String name) {
         return new FXMLLoader(App.class.getResource(fxmlPath + name + ".fxml"));
     }
 }

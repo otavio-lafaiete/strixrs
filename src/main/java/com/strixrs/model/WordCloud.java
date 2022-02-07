@@ -2,7 +2,7 @@ package com.strixrs.model;
 
 import java.util.ArrayList;
 
-public class WordCloud implements ReportComponent{
+public class WordCloud implements ReportComponent {
 
     private String name;
     private final String componentType = "WordCloud";

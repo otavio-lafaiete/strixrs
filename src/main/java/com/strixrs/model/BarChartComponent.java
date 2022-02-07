@@ -2,7 +2,7 @@ package com.strixrs.model;
 
 import java.util.ArrayList;
 
-public class BarChartComponent implements ReportComponent{
+public class BarChartComponent implements ReportComponent {
 
     private String name;
     private final String componentType = "BarChart";

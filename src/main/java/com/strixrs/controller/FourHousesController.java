@@ -22,27 +22,46 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class FourHousesController extends AbsctractController{
+public class FourHousesController extends AbsctractController {
 
-    @FXML private ImageView btnClose;
-    @FXML private ImageView btnMaximize;
-    @FXML private ImageView btnIconify;
-    @FXML private VBox vbEvocations;
-    @FXML private GridPane gpFirstSquare;
-    @FXML private GridPane gpSecondSquare;
-    @FXML private GridPane gpThirdSquare;
-    @FXML private GridPane gpFourthSquare;
-    @FXML private Button btnGenerateFourHouses;
-    @FXML private Button btnAdjusteParameters;
-    @FXML private Button btnSaveReport;
-    @FXML private Button btnRemove;
-    @FXML private TextField txtFrequence;
-    @FXML private TextField txtOrder;
-    @FXML private TextField txtMinimumFrequence;
-    @FXML private Label lblFirstSquare;
-    @FXML private Label lblSecondSquare;
-    @FXML private Label lblThirdSquare;
-    @FXML private Label lblFourthSquare;
+    @FXML
+    private ImageView btnClose;
+    @FXML
+    private ImageView btnMaximize;
+    @FXML
+    private ImageView btnIconify;
+    @FXML
+    private VBox vbEvocations;
+    @FXML
+    private GridPane gpFirstSquare;
+    @FXML
+    private GridPane gpSecondSquare;
+    @FXML
+    private GridPane gpThirdSquare;
+    @FXML
+    private GridPane gpFourthSquare;
+    @FXML
+    private Button btnGenerateFourHouses;
+    @FXML
+    private Button btnAdjusteParameters;
+    @FXML
+    private Button btnSaveReport;
+    @FXML
+    private Button btnRemove;
+    @FXML
+    private TextField txtFrequence;
+    @FXML
+    private TextField txtOrder;
+    @FXML
+    private TextField txtMinimumFrequence;
+    @FXML
+    private Label lblFirstSquare;
+    @FXML
+    private Label lblSecondSquare;
+    @FXML
+    private Label lblThirdSquare;
+    @FXML
+    private Label lblFourthSquare;
 
     private static Font font = Font.font("System Regular", FontWeight.BOLD, 12);
 
@@ -55,13 +74,13 @@ public class FourHousesController extends AbsctractController{
 
     private SpecificReportPaneService specificReportPaneService;
 
-    public void initializeVBEvocations(){
+    public void initializeVBEvocations() {
 
         List<Question> questions = reportComponent.getReport().getResearch().getQuestions();
 
         ArrayList<Question> fourHousesEvocations = reportComponent.getEvocations();
 
-        for(Question question: questions){
+        for (Question question : questions) {
 
             HBox hBox = new HBox();
             RadioButton radioButton = new RadioButton(question.getTitle());
@@ -78,12 +97,12 @@ public class FourHousesController extends AbsctractController{
 
             hBox.getChildren().add(radioButton);
 
-            if(fourHousesEvocations != null)
-            for(Question fourHousesEvocation: fourHousesEvocations){
-                if(question.getTitle().equals(fourHousesEvocation.getTitle())){
-                    radioButton.setSelected(true);
+            if (fourHousesEvocations != null)
+                for (Question fourHousesEvocation : fourHousesEvocations) {
+                    if (question.getTitle().equals(fourHousesEvocation.getTitle())) {
+                        radioButton.setSelected(true);
+                    }
                 }
-            }
 
             vbEvocations.getChildren().add(hBox);
         }
@@ -99,39 +118,17 @@ public class FourHousesController extends AbsctractController{
         lblThirdSquare.setFont(font);
         lblFourthSquare.setFont(font);
 
-        lblFirstSquare.setText("1º:\t Frequência >= "+ reportComponent.getFrequence() +
+        lblFirstSquare.setText("1º:\t Frequência >= " + reportComponent.getFrequence() +
                 " e Ordem < " + reportComponent.getEvocationOrder());
-        lblSecondSquare.setText("2º:\t Frequência >= "+ reportComponent.getFrequence() +
+        lblSecondSquare.setText("2º:\t Frequência >= " + reportComponent.getFrequence() +
                 " e Ordem >= " + reportComponent.getEvocationOrder());
-        lblThirdSquare.setText("3º:\t Frequência < "+ reportComponent.getFrequence() +
+        lblThirdSquare.setText("3º:\t Frequência < " + reportComponent.getFrequence() +
                 " e Ordem < " + reportComponent.getEvocationOrder());
-        lblFourthSquare.setText("4º:\t Frequência < "+ reportComponent.getFrequence() +
+        lblFourthSquare.setText("4º:\t Frequência < " + reportComponent.getFrequence() +
                 " e Ordem >= " + reportComponent.getEvocationOrder());
     }
 
-    @FXML
-    private void handleActionEvent(ActionEvent actionEvent) throws IOException {
-
-        if(actionEvent.getSource() == btnGenerateFourHouses){
-            generateFourHouses();
-        }
-        if(actionEvent.getSource() == btnAdjusteParameters){
-            String frequence = txtFrequence.getText();
-            String minimumFrequence = txtMinimumFrequence.getText();
-            String order = txtOrder.getText();
-            adjusteParameters(frequence.isBlank()?0:Float.valueOf(frequence),
-                    minimumFrequence.isBlank()?0:Float.valueOf(minimumFrequence),
-                    order.isBlank()?0:Float.valueOf(order));
-        }
-        if(actionEvent.getSource() == btnSaveReport){
-            saveReport();
-        }
-        if(actionEvent.getSource() == btnRemove){
-            remove();
-        }
-    }
-
-    private void generateFourHouses(){
+    private void generateFourHouses() {
         gpFirstSquare.getChildren().clear();
         gpSecondSquare.getChildren().clear();
         gpThirdSquare.getChildren().clear();
@@ -140,7 +137,7 @@ public class FourHousesController extends AbsctractController{
         setHeader();
 
         reportComponent.getEvocations().clear();
-        for(RadioButton radioButton: selectedRadioButtons){
+        for (RadioButton radioButton : selectedRadioButtons) {
 
             Research research = reportComponent.getReport().getResearch();
             for (Question question : research.getQuestions()) {
@@ -156,13 +153,13 @@ public class FourHousesController extends AbsctractController{
         List<Float> answersFrequences = new ArrayList<>();
         List<Float> answersOrders = new ArrayList<>();
 
-        for(Question question: reportComponent.getEvocations()){
+        for (Question question : reportComponent.getEvocations()) {
 
-            for(Answer answer: question.getAnswers()){
+            for (Answer answer : question.getAnswers()) {
 
-                if(!containAnswer(diffAnswers, answer)){
+                if (!containAnswer(diffAnswers, answer)) {
                     float answerFrequence = calculateFrequence(answer.getAnswer());
-                    if(answerFrequence < reportComponent.getMinimumFrequence())
+                    if (answerFrequence < reportComponent.getMinimumFrequence())
                         continue;
                     diffAnswers.add(answer);
                     answersFrequences.add(answerFrequence);
@@ -171,29 +168,29 @@ public class FourHousesController extends AbsctractController{
             }
         }
 
-        if(reportComponent.getFrequence() == 0){
+        if (reportComponent.getFrequence() == 0) {
 
             float totalFrequences = 0;
 
-            for (float frequence: answersFrequences){
+            for (float frequence : answersFrequences) {
                 totalFrequences += frequence;
             }
 
-            if(answersFrequences.size() > 0)
-                reportComponent.setFrequence(totalFrequences/answersFrequences.size());
+            if (answersFrequences.size() > 0)
+                reportComponent.setFrequence(totalFrequences / answersFrequences.size());
         }
 
 
-        if(reportComponent.getEvocationOrder() == 0){
+        if (reportComponent.getEvocationOrder() == 0) {
 
             float totalOrders = 0;
 
-            for (float order: answersOrders){
+            for (float order : answersOrders) {
                 totalOrders += order;
             }
 
-            if(answersOrders.size() > 0)
-                reportComponent.setEvocationOrder(totalOrders/answersOrders.size());
+            if (answersOrders.size() > 0)
+                reportComponent.setEvocationOrder(totalOrders / answersOrders.size());
         }
 
         txtFrequence.setText(String.valueOf(reportComponent.getFrequence()));
@@ -217,9 +214,9 @@ public class FourHousesController extends AbsctractController{
         List<Float> answersOrdersFourthSquare = new ArrayList<>();
 
         //first square
-        for(int i = 0; i < diffAnswers.size(); i++){
+        for (int i = 0; i < diffAnswers.size(); i++) {
 
-            if(answersFrequences.get(i) >= reportComponent.getFrequence() && answersOrders.get(i) < reportComponent.getEvocationOrder()){
+            if (answersFrequences.get(i) >= reportComponent.getFrequence() && answersOrders.get(i) < reportComponent.getEvocationOrder()) {
 
                 diffAnswersFirstSquare.add(diffAnswers.get(i));
                 answersFrequencesFirstSquare.add(answersFrequences.get(i));
@@ -228,9 +225,9 @@ public class FourHousesController extends AbsctractController{
         }
 
         //Second square
-        for(int i = 0; i < diffAnswers.size(); i++){
+        for (int i = 0; i < diffAnswers.size(); i++) {
 
-            if(answersFrequences.get(i) >= reportComponent.getFrequence() && answersOrders.get(i) >= reportComponent.getEvocationOrder()){
+            if (answersFrequences.get(i) >= reportComponent.getFrequence() && answersOrders.get(i) >= reportComponent.getEvocationOrder()) {
 
                 diffAnswersSecondSquare.add(diffAnswers.get(i));
                 answersFrequencesSecondSquare.add(answersFrequences.get(i));
@@ -239,9 +236,9 @@ public class FourHousesController extends AbsctractController{
         }
 
         //Third square
-        for(int i = 0; i < diffAnswers.size(); i++){
+        for (int i = 0; i < diffAnswers.size(); i++) {
 
-            if(answersFrequences.get(i) < reportComponent.getFrequence() && answersOrders.get(i) < reportComponent.getEvocationOrder()){
+            if (answersFrequences.get(i) < reportComponent.getFrequence() && answersOrders.get(i) < reportComponent.getEvocationOrder()) {
 
                 diffAnswersThirdSquare.add(diffAnswers.get(i));
                 answersFrequencesThirdSquare.add(answersFrequences.get(i));
@@ -250,9 +247,9 @@ public class FourHousesController extends AbsctractController{
         }
 
         //Fourth square
-        for(int i = 0; i < diffAnswers.size(); i++){
+        for (int i = 0; i < diffAnswers.size(); i++) {
 
-            if(answersFrequences.get(i) < reportComponent.getFrequence() && answersOrders.get(i) >= reportComponent.getEvocationOrder()){
+            if (answersFrequences.get(i) < reportComponent.getFrequence() && answersOrders.get(i) >= reportComponent.getEvocationOrder()) {
 
                 diffAnswersFourthSquare.add(diffAnswers.get(i));
                 answersFrequencesFourthSquare.add(answersFrequences.get(i));
@@ -265,25 +262,25 @@ public class FourHousesController extends AbsctractController{
         order(diffAnswersThirdSquare, answersFrequencesThirdSquare, answersOrdersThirdSquare);
         order(diffAnswersFourthSquare, answersFrequencesFourthSquare, answersOrdersFourthSquare);
 
-        for(int i = 0; i < diffAnswersFirstSquare.size(); i++){
+        for (int i = 0; i < diffAnswersFirstSquare.size(); i++) {
             gpFirstSquare.add(new Label(String.valueOf(answersFrequencesFirstSquare.get(i))), 0, i + 1);
             gpFirstSquare.add(new Label(diffAnswersFirstSquare.get(i).getAnswer()), 1, i + 1);
             gpFirstSquare.add(new Label(String.valueOf(answersOrdersFirstSquare.get(i))), 2, i + 1);
         }
 
-        for(int i = 0; i < diffAnswersSecondSquare.size(); i++){
+        for (int i = 0; i < diffAnswersSecondSquare.size(); i++) {
             gpSecondSquare.add(new Label(String.valueOf(answersFrequencesSecondSquare.get(i))), 0, i + 1);
             gpSecondSquare.add(new Label(diffAnswersSecondSquare.get(i).getAnswer()), 1, i + 1);
             gpSecondSquare.add(new Label(String.valueOf(answersOrdersSecondSquare.get(i))), 2, i + 1);
         }
 
-        for(int i = 0; i < diffAnswersThirdSquare.size(); i++){
+        for (int i = 0; i < diffAnswersThirdSquare.size(); i++) {
             gpThirdSquare.add(new Label(String.valueOf(answersFrequencesThirdSquare.get(i))), 0, i + 1);
             gpThirdSquare.add(new Label(diffAnswersThirdSquare.get(i).getAnswer()), 1, i + 1);
             gpThirdSquare.add(new Label(String.valueOf(answersOrdersThirdSquare.get(i))), 2, i + 1);
         }
 
-        for(int i = 0; i < diffAnswersFourthSquare.size(); i++){
+        for (int i = 0; i < diffAnswersFourthSquare.size(); i++) {
             gpFourthSquare.add(new Label(String.valueOf(answersFrequencesFourthSquare.get(i))), 0, i + 1);
             gpFourthSquare.add(new Label(diffAnswersFourthSquare.get(i).getAnswer()), 1, i + 1);
             gpFourthSquare.add(new Label(String.valueOf(answersOrdersFourthSquare.get(i))), 2, i + 1);
@@ -343,23 +340,23 @@ public class FourHousesController extends AbsctractController{
         gpFourthSquare.add(lblOrder4, 2, 0);
     }
 
-    private boolean containAnswer(List<Answer> answers, Answer answer){
+    private boolean containAnswer(List<Answer> answers, Answer answer) {
 
-        for(Answer a: answers){
-            if(a.getAnswer().equals(answer.getAnswer()))
+        for (Answer a : answers) {
+            if (a.getAnswer().equals(answer.getAnswer()))
                 return true;
         }
 
         return false;
     }
 
-    private void order(List<Answer> answers, List<Float> frequences, List<Float> orders){
+    private void order(List<Answer> answers, List<Float> frequences, List<Float> orders) {
 
-        for(int x = 0; x < frequences.size() - 1; x++){
+        for (int x = 0; x < frequences.size() - 1; x++) {
 
-            for(int y = x + 1; y < frequences.size(); y++){
+            for (int y = x + 1; y < frequences.size(); y++) {
 
-                if(frequences.get(x) < frequences.get(y)){
+                if (frequences.get(x) < frequences.get(y)) {
 
                     switchFloat(frequences, x, y);
                     switchFloat(orders, x, y);
@@ -369,18 +366,184 @@ public class FourHousesController extends AbsctractController{
         }
     }
 
-    private void switchFloat(List<Float> list, int x, int y){
+    private void switchFloat(List<Float> list, int x, int y) {
 
         Float v = list.get(x);
         list.set(x, list.get(y));
         list.set(y, v);
     }
 
-    private void switchAnswer(List<Answer> list, int x, int y){
+    private void switchAnswer(List<Answer> list, int x, int y) {
 
         Answer v = list.get(x);
         list.set(x, list.get(y));
         list.set(y, v);
+    }
+
+    private float calculateOrder(String evocation) {
+
+        ArrayList<Question> questions = reportComponent.getEvocations();
+
+        ArrayList<Integer> evocationPosition = new ArrayList<>();
+
+        for (int i = 0; i < questions.size(); i++)
+            evocationPosition.add(0);
+
+        for (int i = 0; i < questions.size(); i++) {
+
+            for (Answer answer : questions.get(i).getAnswers()) {
+
+                if (answer.getAnswer().equals(evocation))
+                    evocationPosition.set(i, evocationPosition.get(i) + 1);
+            }
+        }
+
+        float total = 0;
+        int sum = 0;
+
+        for (int i = 1; i <= evocationPosition.size(); i++) {
+
+            total += evocationPosition.get(i - 1);
+            sum += evocationPosition.get(i - 1) * i;
+        }
+
+        if (total == 0)
+            return 0;
+
+        return sum / total;
+    }
+
+    private float calculateFrequence(String evocation) {
+
+        int frequence = 0;
+        int totalAnwers = 0;
+
+        for (Question question : reportComponent.getEvocations()) {
+            for (Answer answer : question.getAnswers()) {
+                totalAnwers += 1;
+                if (answer.getAnswer().equals(evocation))
+                    frequence += 1;
+            }
+        }
+
+        return (frequence * 100) / (float) totalAnwers;
+    }
+
+    private void adjusteParameters(float frequence, float minimumfrequence, float evocationOrder) {
+
+        reportComponent.setFrequence(frequence);
+        reportComponent.setMinimumFrequence(minimumfrequence);
+        reportComponent.setEvocationOrder(evocationOrder);
+        updateFourHousesLabels();
+        generateFourHouses();
+    }
+
+    private void saveReport() {
+        DataReports.addReport(reportComponent.getReport());
+    }
+
+    private void remove() {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exclusão do Componente Atual");
+        alert.setContentText("Têm certeza que deseja excluir o componente atual? ");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            reportComponent.getReport().getComponents().remove(reportComponent);
+            saveReport();
+            stage.close();
+        }
+
+        specificReportPaneService.updateComponentsVBox();
+    }
+
+    @FXML
+    private void handleActionEvent(ActionEvent actionEvent) throws IOException {
+
+        if (actionEvent.getSource() == btnGenerateFourHouses) {
+            generateFourHouses();
+        }
+        if (actionEvent.getSource() == btnAdjusteParameters) {
+            String frequence = txtFrequence.getText();
+            String minimumFrequence = txtMinimumFrequence.getText();
+            String order = txtOrder.getText();
+            adjusteParameters(frequence.isBlank() ? 0 : Float.valueOf(frequence),
+                    minimumFrequence.isBlank() ? 0 : Float.valueOf(minimumFrequence),
+                    order.isBlank() ? 0 : Float.valueOf(order));
+        }
+        if (actionEvent.getSource() == btnSaveReport) {
+            saveReport();
+        }
+        if (actionEvent.getSource() == btnRemove) {
+            remove();
+        }
+    }
+
+    @FXML
+    private void handleMouseClickedEvent(MouseEvent event) {
+
+        Object source = event.getSource();
+
+        if (source.equals(btnClose))
+            stage.close();
+
+        if (source.equals(btnIconify)) {
+            stage.setIconified(true);
+        }
+
+        if (source.equals(btnMaximize)) {
+            stage.setMaximized(!stage.isMaximized());
+            if (stage.isMaximized()) {
+                btnMaximize.setImage(StaticUtil.getIcon("white-minimize-hover.png"));
+            } else {
+                btnMaximize.setImage(StaticUtil.getIcon("white-maximize-hover.png"));
+            }
+        }
+    }
+
+    @FXML
+    private void handleMouseEnteredEvent(MouseEvent event) {
+
+        Object source = event.getSource();
+
+        if (source.equals(btnClose)) {
+            btnClose.setImage(StaticUtil.getIcon("white-close-hover.png"));
+        }
+
+        if (source.equals(btnIconify)) {
+            btnIconify.setImage(StaticUtil.getIcon("white-iconify-hover.png"));
+        }
+
+        if (source.equals(btnMaximize)) {
+            if (stage.isMaximized()) {
+                btnMaximize.setImage(StaticUtil.getIcon("white-minimize-hover.png"));
+            } else {
+                btnMaximize.setImage(StaticUtil.getIcon("white-maximize-hover.png"));
+            }
+        }
+    }
+
+    @FXML
+    private void handleMouseExitedEvent(MouseEvent event) {
+
+        Object source = event.getSource();
+
+        if (source.equals(btnClose)) {
+            btnClose.setImage(StaticUtil.getIcon("white-close.png"));
+        }
+
+        if (source.equals(btnIconify)) {
+            btnIconify.setImage(StaticUtil.getIcon("white-iconify.png"));
+        }
+
+        if (source.equals(btnMaximize)) {
+            if (stage.isMaximized()) {
+                btnMaximize.setImage(StaticUtil.getIcon("white-minimize.png"));
+            } else {
+                btnMaximize.setImage(StaticUtil.getIcon("white-maximize.png"));
+            }
+        }
     }
 
     @Override
@@ -389,7 +552,7 @@ public class FourHousesController extends AbsctractController{
         stageConfig();
     }
 
-    private void stageConfig(){
+    private void stageConfig() {
 
         stage.initStyle(StageStyle.UNDECORATED);
 
@@ -416,156 +579,11 @@ public class FourHousesController extends AbsctractController{
         stage.show();
     }
 
-    @FXML
-    private void handleMouseClickedEvent(MouseEvent event) {
-
-        Object source = event.getSource();
-
-        if (source.equals(btnClose))
-            stage.close();
-
-        if (source.equals(btnIconify)) {
-            stage.setIconified(true);
-        }
-
-        if (source.equals(btnMaximize)) {
-            stage.setMaximized(!stage.isMaximized());
-            if (stage.isMaximized()) {
-                btnMaximize.setImage(StaticUtil.getIcon("white-minimize-hover.png"));
-            } else {
-                btnMaximize.setImage(StaticUtil.getIcon("white-maximize-hover.png"));
-            }
-        }
-    }
-
-    @FXML
-    private void handleMouseEnteredEvent(MouseEvent event){
-
-        Object source = event.getSource();
-
-        if(source.equals(btnClose)){
-            btnClose.setImage(StaticUtil.getIcon("white-close-hover.png"));
-        }
-
-        if(source.equals(btnIconify)){
-            btnIconify.setImage(StaticUtil.getIcon("white-iconify-hover.png"));
-        }
-
-        if(source.equals(btnMaximize)){
-            if(stage.isMaximized()){
-                btnMaximize.setImage(StaticUtil.getIcon("white-minimize-hover.png"));
-            }else{
-                btnMaximize.setImage(StaticUtil.getIcon("white-maximize-hover.png"));
-            }
-        }
-    }
-
-    @FXML
-    private void handleMouseExitedEvent(MouseEvent event){
-
-        Object source = event.getSource();
-
-        if(source.equals(btnClose)){
-            btnClose.setImage(StaticUtil.getIcon("white-close.png"));
-        }
-
-        if(source.equals(btnIconify)){
-            btnIconify.setImage(StaticUtil.getIcon("white-iconify.png"));
-        }
-
-        if(source.equals(btnMaximize)) {
-            if(stage.isMaximized()){
-                btnMaximize.setImage(StaticUtil.getIcon("white-minimize.png"));
-            }else{
-                btnMaximize.setImage(StaticUtil.getIcon("white-maximize.png"));
-            }
-        }
-    }
-
-    private float calculateOrder(String evocation){
-
-        ArrayList<Question> questions = reportComponent.getEvocations();
-
-        ArrayList<Integer> evocationPosition = new ArrayList<>();
-
-        for(int i = 0; i < questions.size(); i++)
-            evocationPosition.add(0);
-
-        for(int i = 0; i < questions.size(); i++){
-
-            for(Answer answer: questions.get(i).getAnswers()){
-
-                if(answer.getAnswer().equals(evocation))
-                    evocationPosition.set(i, evocationPosition.get(i) + 1);
-            }
-        }
-
-        float total = 0;
-        int sum = 0;
-
-        for(int i = 1; i <= evocationPosition.size(); i++){
-
-            total += evocationPosition.get(i - 1);
-            sum += evocationPosition.get(i - 1) * i;
-        }
-
-        if(total == 0)
-            return  0;
-
-        return sum/total;
-    }
-
-    private float calculateFrequence(String evocation){
-
-        int frequence = 0;
-        int totalAnwers = 0;
-
-        for(Question question: reportComponent.getEvocations()){
-            for (Answer answer: question.getAnswers()){
-                totalAnwers += 1;
-                if(answer.getAnswer().equals(evocation))
-                    frequence += 1;
-            }
-        }
-
-        return (frequence * 100)/ (float) totalAnwers;
-    }
-
-    private void adjusteParameters(float frequence, float minimumfrequence, float evocationOrder){
-
-        reportComponent.setFrequence(frequence);
-        reportComponent.setMinimumFrequence(minimumfrequence);
-        reportComponent.setEvocationOrder(evocationOrder);
-        updateFourHousesLabels();
-        generateFourHouses();
-    }
-
-    private void saveReport(){
-
-        DataReports.addReport(reportComponent.getReport());
+    public void setSpecificReportPaneService(SpecificReportPaneService specificReportPaneService) {
+        this.specificReportPaneService = specificReportPaneService;
     }
 
     public void setComponent(FourHouses reportComponent) {
         this.reportComponent = reportComponent;
-    }
-
-    private void remove(){
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Exclusão do Componente Atual");
-        alert.setContentText("Têm certeza que deseja excluir o componente atual? ");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            reportComponent.getReport().getComponents().remove(reportComponent);
-            saveReport();
-            stage.close();
-        }
-
-        specificReportPaneService.updateComponentsVBox();
-    }
-
-    public void setSpecificReportPaneService(SpecificReportPaneService specificReportPaneService) {
-        this.specificReportPaneService = specificReportPaneService;
     }
 }

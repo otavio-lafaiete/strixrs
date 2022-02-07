@@ -23,6 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -34,14 +35,22 @@ import java.util.stream.Collectors;
 
 public class WordCloudController extends AbsctractController {
 
-    @FXML private ImageView btnClose;
-    @FXML private ImageView btnMaximize;
-    @FXML private ImageView btnIconify;
-    @FXML private VBox vbEvocations;
-    @FXML private Button btnGenerateWordCloud;
-    @FXML private Button btnSaveReport;
-    @FXML private Button btnRemove;
-    @FXML private AnchorPane paneCloudWord;
+    @FXML
+    private ImageView btnClose;
+    @FXML
+    private ImageView btnMaximize;
+    @FXML
+    private ImageView btnIconify;
+    @FXML
+    private VBox vbEvocations;
+    @FXML
+    private Button btnGenerateWordCloud;
+    @FXML
+    private Button btnSaveReport;
+    @FXML
+    private Button btnRemove;
+    @FXML
+    private AnchorPane paneCloudWord;
 
     private double xOffSet;
     private double yOffSet;
@@ -88,20 +97,6 @@ public class WordCloudController extends AbsctractController {
         }
 
         generateWordCloud();
-    }
-
-    @FXML
-    private void handleActionEvent(ActionEvent actionEvent) throws IOException {
-
-        if (actionEvent.getSource() == btnGenerateWordCloud) {
-            generateWordCloud();
-        }
-        if (actionEvent.getSource() == btnSaveReport) {
-            saveReport();
-        }
-        if (actionEvent.getSource() == btnRemove) {
-            remove();
-        }
     }
 
     private void generateWordCloud() throws IOException {
@@ -158,37 +153,34 @@ public class WordCloudController extends AbsctractController {
         paneCloudWord.getChildren().add(imView);
     }
 
-    @Override
-    public void setStage(Stage stage) {
-        this.stage = stage;
-        stageConfig();
+    private void remove() {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exclusão do Componente Atual");
+        alert.setContentText("Têm certeza que deseja excluir o componente atual? ");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            reportComponent.getReport().getComponents().remove(reportComponent);
+            saveReport();
+            stage.close();
+        }
+
+        specificReportPaneService.updateComponentsVBox();
     }
 
-    private void stageConfig() {
+    @FXML
+    private void handleActionEvent(ActionEvent actionEvent) throws IOException {
 
-        stage.initStyle(StageStyle.UNDECORATED);
-
-        stage.getScene().setOnMousePressed((MouseEvent event) ->
-        {
-            xOffSet = event.getSceneX();
-            yOffSet = event.getSceneY();
-        });
-
-        stage.getScene().setOnMouseDragged((MouseEvent event) ->
-        {
-            if (!stage.isMaximized() || (stage.getX() != 0 || stage.getY() != 0)) {
-
-                stage.setX(event.getScreenX() - xOffSet);
-                stage.setY(event.getScreenY() - yOffSet);
-            }
-        });
-
-        stage.setWidth(StaticUtil.screenWidth * 0.8);
-        stage.setHeight(StaticUtil.screenHeight * 0.8);
-
-        stage.centerOnScreen();
-
-        stage.show();
+        if (actionEvent.getSource() == btnGenerateWordCloud) {
+            generateWordCloud();
+        }
+        if (actionEvent.getSource() == btnSaveReport) {
+            saveReport();
+        }
+        if (actionEvent.getSource() == btnRemove) {
+            remove();
+        }
     }
 
     @FXML
@@ -257,28 +249,46 @@ public class WordCloudController extends AbsctractController {
         }
     }
 
+    @Override
+    public void setStage(Stage stage) {
+        this.stage = stage;
+        stageConfig();
+    }
+
+    private void stageConfig() {
+
+        stage.initStyle(StageStyle.UNDECORATED);
+
+        stage.getScene().setOnMousePressed((MouseEvent event) ->
+        {
+            xOffSet = event.getSceneX();
+            yOffSet = event.getSceneY();
+        });
+
+        stage.getScene().setOnMouseDragged((MouseEvent event) ->
+        {
+            if (!stage.isMaximized() || (stage.getX() != 0 || stage.getY() != 0)) {
+
+                stage.setX(event.getScreenX() - xOffSet);
+                stage.setY(event.getScreenY() - yOffSet);
+            }
+        });
+
+        stage.setWidth(StaticUtil.screenWidth * 0.8);
+        stage.setHeight(StaticUtil.screenHeight * 0.8);
+
+        stage.centerOnScreen();
+
+        stage.show();
+    }
+
+
     private void saveReport() {
         DataReports.addReport(reportComponent.getReport());
     }
 
     public void setComponent(WordCloud reportComponent) {
         this.reportComponent = reportComponent;
-    }
-
-    private void remove() {
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Exclusão do Componente Atual");
-        alert.setContentText("Têm certeza que deseja excluir o componente atual? ");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            reportComponent.getReport().getComponents().remove(reportComponent);
-            saveReport();
-            stage.close();
-        }
-
-        specificReportPaneService.updateComponentsVBox();
     }
 
     public void setSpecificReportPaneService(SpecificReportPaneService specificReportPaneService) {

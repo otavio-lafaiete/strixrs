@@ -12,25 +12,25 @@ public class ReadSXRS {
 
     private static ObjectInputStream inputStream;
 
-    private static void openFile(Path path){
+    private static void openFile(Path path) {
 
-        try{
+        try {
             inputStream = new ObjectInputStream(Files.newInputStream(path));
-        }catch(IOException ioException){
+        } catch (IOException ioException) {
             System.err.println("Error opening the file");
             System.exit(1);
         }
     }
 
-    private static Research readResearch(){
+    private static Research readResearch() {
 
         Research research = null;
 
-        try{
+        try {
             research = (Research) inputStream.readObject();
-        }catch(IOException ioException){
+        } catch (IOException ioException) {
             System.err.println("Error reading the file");
-        }catch(ClassNotFoundException classNotFoundException){
+        } catch (ClassNotFoundException classNotFoundException) {
             System.err.println("Invalid objetc type");
             System.exit(1);
         }
@@ -38,15 +38,15 @@ public class ReadSXRS {
         return research;
     }
 
-    private static Report readReport(){
+    private static Report readReport() {
 
         Report report = null;
 
-        try{
+        try {
             report = (Report) inputStream.readObject();
-        }catch(IOException ioException){
+        } catch (IOException ioException) {
             System.err.println("Error reading the file");
-        }catch(ClassNotFoundException classNotFoundException){
+        } catch (ClassNotFoundException classNotFoundException) {
             System.err.println("Invalid objetc type");
             System.exit(1);
         }
@@ -54,17 +54,17 @@ public class ReadSXRS {
         return report;
     }
 
-    private static void closeFile(){
-        try{
-            if(inputStream != null)
+    private static void closeFile() {
+        try {
+            if (inputStream != null)
                 inputStream.close();
-        }catch (IOException ioException){
+        } catch (IOException ioException) {
             System.err.println("Error closing the file");
             System.exit(1);
         }
     }
 
-    public static Research readResearch(Path path){
+    public static Research readResearch(Path path) {
 
         Research research;
 

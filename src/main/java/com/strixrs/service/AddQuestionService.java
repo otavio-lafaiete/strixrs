@@ -7,7 +7,7 @@ import com.strixrs.model.Answer;
 import com.strixrs.model.Question;
 import com.strixrs.model.Research;
 
-public class AddQuestionService extends AbstractService{
+public class AddQuestionService extends AbstractService {
 
     public AddQuestionService(AbsctractController controller) {
         super(controller);
@@ -21,9 +21,9 @@ public class AddQuestionService extends AbstractService{
 
         Question question = new Question(title, research);
 
-        if(!research.getQuestions().isEmpty()){
+        if (!research.getQuestions().isEmpty()) {
 
-            for(Answer answer: research.getQuestions().get(0).getAnswers()){
+            for (Answer answer : research.getQuestions().get(0).getAnswers()) {
                 question.getAnswers().add(new Answer("", question));
             }
         }

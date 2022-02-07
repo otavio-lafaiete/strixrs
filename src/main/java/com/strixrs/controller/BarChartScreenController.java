@@ -25,14 +25,22 @@ import java.util.Optional;
 
 public class BarChartScreenController extends AbsctractController {
 
-    @FXML private ImageView btnClose;
-    @FXML private ImageView btnMaximize;
-    @FXML private ImageView btnIconify;
-    @FXML private VBox vbEvocations;
-    @FXML private Button btnGenerateBarChart;
-    @FXML private Button btnSaveReport;
-    @FXML private Button btnRemove;
-    @FXML private BarChart<?, ?> barChart;
+    @FXML
+    private ImageView btnClose;
+    @FXML
+    private ImageView btnMaximize;
+    @FXML
+    private ImageView btnIconify;
+    @FXML
+    private VBox vbEvocations;
+    @FXML
+    private Button btnGenerateBarChart;
+    @FXML
+    private Button btnSaveReport;
+    @FXML
+    private Button btnRemove;
+    @FXML
+    private BarChart<?, ?> barChart;
 
     private double xOffSet;
     private double yOffSet;
@@ -81,20 +89,6 @@ public class BarChartScreenController extends AbsctractController {
         generateBarChart();
     }
 
-    @FXML
-    private void handleActionEvent(ActionEvent actionEvent) throws IOException {
-
-        if (actionEvent.getSource() == btnGenerateBarChart) {
-            generateBarChart();
-        }
-        if (actionEvent.getSource() == btnSaveReport) {
-            saveReport();
-        }
-        if (actionEvent.getSource() == btnRemove) {
-            remove();
-        }
-    }
-
     private void generateBarChart() throws IOException {
 
         if (selectedRadioButtons.isEmpty())
@@ -116,9 +110,9 @@ public class BarChartScreenController extends AbsctractController {
         List<Answer> diffAnswers = new ArrayList<>();
         List<Integer> answersFrequences = new ArrayList<>();
 
-        for(Question question: reportComponent.getEvocations()){
-            for(Answer answer: question.getAnswers()){
-                if(!containAnswer(diffAnswers, answer)){
+        for (Question question : reportComponent.getEvocations()) {
+            for (Answer answer : question.getAnswers()) {
+                if (!containAnswer(diffAnswers, answer)) {
                     int answerFrequence = calculateFrequence(answer.getAnswer());
                     diffAnswers.add(answer);
                     answersFrequences.add(answerFrequence);
@@ -126,15 +120,12 @@ public class BarChartScreenController extends AbsctractController {
             }
         }
 
-
-        for(int i = 0; i < diffAnswers.size(); i++){
+        for (int i = 0; i < diffAnswers.size(); i++) {
             XYChart.Series series = new XYChart.Series<>();
             series.setName(diffAnswers.get(i).getAnswer());
             series.getData().add(new XYChart.Data(diffAnswers.get(i).getAnswer(), answersFrequences.get(i)));
             barChart.getData().addAll(series);
         }
-
-
     }
 
     private boolean containAnswer(List<Answer> answers, Answer answer) {
@@ -145,6 +136,50 @@ public class BarChartScreenController extends AbsctractController {
         }
 
         return false;
+    }
+
+    private int calculateFrequence(String evocation) {
+
+        int frequence = 0;
+
+        for (Question question : reportComponent.getEvocations()) {
+            for (Answer answer : question.getAnswers()) {
+                if (answer.getAnswer().equals(evocation))
+                    frequence += 1;
+            }
+        }
+
+        return frequence;
+    }
+
+    @FXML
+    private void handleActionEvent(ActionEvent actionEvent) throws IOException {
+
+        if (actionEvent.getSource() == btnGenerateBarChart) {
+            generateBarChart();
+        }
+        if (actionEvent.getSource() == btnSaveReport) {
+            saveReport();
+        }
+        if (actionEvent.getSource() == btnRemove) {
+            remove();
+        }
+    }
+
+    private void remove() {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exclusão do Componente Atual");
+        alert.setContentText("Têm certeza que deseja excluir o componente atual? ");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            reportComponent.getReport().getComponents().remove(reportComponent);
+            saveReport();
+            stage.close();
+        }
+
+        specificReportPaneService.updateComponentsVBox();
     }
 
     @Override
@@ -246,43 +281,12 @@ public class BarChartScreenController extends AbsctractController {
         }
     }
 
-    private int calculateFrequence(String evocation) {
-
-        int frequence = 0;
-
-        for (Question question : reportComponent.getEvocations()) {
-            for (Answer answer : question.getAnswers()) {
-                if (answer.getAnswer().equals(evocation))
-                    frequence += 1;
-            }
-        }
-
-        return frequence;
-    }
-
-
     private void saveReport() {
         DataReports.addReport(reportComponent.getReport());
     }
 
     public void setComponent(BarChartComponent reportComponent) {
         this.reportComponent = reportComponent;
-    }
-
-    private void remove() {
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Exclusão do Componente Atual");
-        alert.setContentText("Têm certeza que deseja excluir o componente atual? ");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            reportComponent.getReport().getComponents().remove(reportComponent);
-            saveReport();
-            stage.close();
-        }
-
-        specificReportPaneService.updateComponentsVBox();
     }
 
     public void setSpecificReportPaneService(SpecificReportPaneService specificReportPaneService) {

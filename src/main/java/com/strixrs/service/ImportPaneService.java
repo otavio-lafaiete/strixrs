@@ -10,7 +10,7 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 
-public class ImportPaneService extends AbstractService{
+public class ImportPaneService extends AbstractService {
 
     private MainController mainController;
     private File file;
@@ -27,20 +27,20 @@ public class ImportPaneService extends AbstractService{
 
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV File", "*csv"));
 
-         file = fc.showOpenDialog(controller.getStage());
+        file = fc.showOpenDialog(controller.getStage());
 
-         if(file == null){
-             return;
-         }
+        if (file == null) {
+            return;
+        }
 
 
-         mainController.getTxtFilePath().setText(file.toString());
+        mainController.getTxtFilePath().setText(file.toString());
     }
 
     public void doImport() {
 
         File fileToBeImported = new File(mainController.getTxtFilePath().getText());
-        if(!fileToBeImported.exists()){
+        if (!fileToBeImported.exists()) {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");

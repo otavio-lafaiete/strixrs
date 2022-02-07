@@ -6,7 +6,7 @@ import com.strixrs.controller.MainController;
 import com.strixrs.data.DataResearchs;
 import com.strixrs.model.Question;
 
-public class EditQuestionService extends AbstractService{
+public class EditQuestionService extends AbstractService {
 
     public EditQuestionService(AbsctractController controller) {
         super(controller);

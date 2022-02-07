@@ -7,7 +7,7 @@ import com.strixrs.model.Report;
 import com.strixrs.model.Research;
 
 
-public class AddReportService extends AbstractService{
+public class AddReportService extends AbstractService {
 
     public AddReportService(AbsctractController controller) {
         super(controller);

@@ -14,5 +14,6 @@ public abstract class AbstractService {
         return controller;
     }
 
-    public void update(){}
+    public void update() {
+    }
 }

@@ -9,7 +9,7 @@ import com.strixrs.model.Question;
 
 import java.util.List;
 
-public class AddAnswerService extends AbstractService{
+public class AddAnswerService extends AbstractService {
 
     public AddAnswerService(AbsctractController controller) {
         super(controller);
@@ -21,9 +21,9 @@ public class AddAnswerService extends AbstractService{
 
         List<Question> questions = addAnswerController.getQuestionPaneService().getCurrentResearch().getQuestions();
 
-        for (Question questionAux: questions){
+        for (Question questionAux : questions) {
 
-            if(questionAux.getTitle().equals(question)){
+            if (questionAux.getTitle().equals(question)) {
 
                 Answer answerToBeAdd = new Answer(answer, questionAux);
                 questionAux.getAnswers().add(answerToBeAdd);

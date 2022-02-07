@@ -22,9 +22,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-public class ReportPaneService extends AbstractService{
+public class ReportPaneService extends AbstractService {
 
-    public ReportPaneService(AbsctractController controller){
+    public ReportPaneService(AbsctractController controller) {
         super(controller);
     }
 
@@ -35,9 +35,9 @@ public class ReportPaneService extends AbstractService{
         List<Report> listReports = DataReports.getReports();
         List<Research> listResearch = DataResearchs.getResearchs();
 
-        for(int i = 0; i < listReports.size(); i++){
-            for(int y = 0; y < listResearch.size(); y++){
-                if(listReports.get(i).getResearch().getTitle().equals(listResearch.get(y).getTitle())){
+        for (int i = 0; i < listReports.size(); i++) {
+            for (int y = 0; y < listResearch.size(); y++) {
+                if (listReports.get(i).getResearch().getTitle().equals(listResearch.get(y).getTitle())) {
                     listReports.get(i).setResearch(listResearch.get(y));
                     DataReports.addReport(listReports.get(i));
                     break;
@@ -46,7 +46,7 @@ public class ReportPaneService extends AbstractService{
         }
 
         mainController.getVbReports().getChildren().clear();
-        for(Report report: DataReports.getReports()){
+        for (Report report : DataReports.getReports()) {
 
             Button button = new ResearchButton(report.getTitle());
             button.setOnAction(new EventHandler<ActionEvent>() {
@@ -84,7 +84,7 @@ public class ReportPaneService extends AbstractService{
     }
 
     @Override
-    public void update(){
+    public void update() {
         updateReportsVBox();
     }
 }

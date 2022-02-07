@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Optional;
 
-public class AnswerPaneService extends  AbstractService{
+public class AnswerPaneService extends AbstractService {
 
     private Question currentQuestion;
     private ObservableList<Answer> answersData;
@@ -71,7 +71,7 @@ public class AnswerPaneService extends  AbstractService{
         alert.setContentText("Têm certeza que deseja excluir a evocação atual? ");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             currentQuestion.getResearch().getQuestions().remove(currentQuestion);
             DataResearchs.addResearch(currentQuestion.getResearch());
             MainController mainController = (MainController) controller;
@@ -81,7 +81,7 @@ public class AnswerPaneService extends  AbstractService{
     }
 
     @Override
-    public void update(){
+    public void update() {
         updateAnswers();
     }
 

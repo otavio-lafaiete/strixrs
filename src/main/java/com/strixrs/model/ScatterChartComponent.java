@@ -2,7 +2,7 @@ package com.strixrs.model;
 
 import java.util.ArrayList;
 
-public class ScatterChartComponent implements ReportComponent{
+public class ScatterChartComponent implements ReportComponent {
 
     private String name;
     private final String componentType = "ScatterChart";

@@ -15,12 +15,16 @@ import javafx.stage.StageStyle;
 
 public class EditQuestionController extends AbsctractController {
 
-
-    @FXML private TextField txtTitle;
-    @FXML private Button btnSave;
-    @FXML private Label lblWarning;
-    @FXML private ImageView btnClose;
-    @FXML private ImageView btnIconify;
+    @FXML
+    private TextField txtTitle;
+    @FXML
+    private Button btnSave;
+    @FXML
+    private Label lblWarning;
+    @FXML
+    private ImageView btnClose;
+    @FXML
+    private ImageView btnIconify;
 
     private EditQuestionService editQuestionService = new EditQuestionService(this);
     private AnswerPaneService answerPaneService;
@@ -28,13 +32,72 @@ public class EditQuestionController extends AbsctractController {
     private double xOffSet;
     private double yOffSet;
 
+    @FXML
+    private void handleMouseClickedEvent(MouseEvent event) {
+
+        Object source = event.getSource();
+
+        if (source.equals(btnClose))
+            stage.close();
+
+
+        if (source.equals(btnIconify))
+            stage.setIconified(true);
+    }
+
+    @FXML
+    private void handleMouseEnteredEvent(MouseEvent event) {
+
+        Object source = event.getSource();
+
+        if (source.equals(btnClose)) {
+            btnClose.setImage(StaticUtil.getIcon("white-close-hover.png"));
+        }
+
+        if (source.equals(btnIconify)) {
+            btnIconify.setImage(StaticUtil.getIcon("white-iconify-hover.png"));
+        }
+    }
+
+    @FXML
+    private void handleMouseExitedEvent(MouseEvent event) {
+
+        Object source = event.getSource();
+
+        if (source.equals(btnClose)) {
+            btnClose.setImage(StaticUtil.getIcon("white-close.png"));
+        }
+
+        if (source.equals(btnIconify)) {
+            btnIconify.setImage(StaticUtil.getIcon("white-iconify.png"));
+        }
+    }
+
+    @FXML
+    private void handleActionEvent(ActionEvent actionEvent) {
+
+        if (actionEvent.getSource() == btnSave) {
+
+            String title = txtTitle.getText();
+
+            if (title.isEmpty()) {
+                lblWarning.setText("O título não pode ser vazio");
+                txtTitle.requestFocus();
+
+                return;
+            }
+
+            editQuestionService.editQuestion(title);
+        }
+    }
+
     @Override
     public void setStage(Stage stage) {
         this.stage = stage;
         stageConfig();
     }
 
-    private void stageConfig(){
+    private void stageConfig() {
 
         stage.initStyle(StageStyle.UNDECORATED);
 
@@ -49,7 +112,7 @@ public class EditQuestionController extends AbsctractController {
 
         stage.getScene().setOnMouseDragged((MouseEvent event) ->
         {
-            if(!stage.isMaximized() || (stage.getX() != 0 || stage.getY() != 0)){
+            if (!stage.isMaximized() || (stage.getX() != 0 || stage.getY() != 0)) {
 
                 stage.setX(event.getScreenX() - xOffSet);
                 stage.setY(event.getScreenY() - yOffSet);
@@ -59,45 +122,8 @@ public class EditQuestionController extends AbsctractController {
         stage.centerOnScreen();
     }
 
-    @FXML
-    private void handleMouseClickedEvent(MouseEvent event){
-
-        Object source = event.getSource();
-
-        if(source.equals(btnClose))
-            stage.close();
-
-
-        if(source.equals(btnIconify))
-            stage.setIconified(true);
-    }
-
-    @FXML
-    private void handleMouseEnteredEvent(MouseEvent event){
-
-        Object source = event.getSource();
-
-        if(source.equals(btnClose)){
-            btnClose.setImage(StaticUtil.getIcon("white-close-hover.png"));
-        }
-
-        if(source.equals(btnIconify)){
-            btnIconify.setImage(StaticUtil.getIcon("white-iconify-hover.png"));
-        }
-    }
-
-    @FXML
-    private void handleMouseExitedEvent(MouseEvent event){
-
-        Object source = event.getSource();
-
-        if(source.equals(btnClose)){
-            btnClose.setImage(StaticUtil.getIcon("white-close.png"));
-        }
-
-        if(source.equals(btnIconify)){
-            btnIconify.setImage(StaticUtil.getIcon("white-iconify.png"));
-        }
+    public AnswerPaneService getAnswerPaneService() {
+        return answerPaneService;
     }
 
     public void setAnswerPaneService(AnswerPaneService answerPaneService) {
@@ -106,27 +132,5 @@ public class EditQuestionController extends AbsctractController {
 
     public TextField getTxtTitle() {
         return txtTitle;
-    }
-
-    @FXML
-    private void handleActionEvent(ActionEvent actionEvent){
-
-        if(actionEvent.getSource() == btnSave){
-
-            String title = txtTitle.getText();
-
-            if(title.isEmpty()){
-                lblWarning.setText("O título não pode ser vazio");
-                txtTitle.requestFocus();
-
-                return;
-            }
-
-            editQuestionService.editQuestion(title);
-        }
-    }
-
-    public AnswerPaneService getAnswerPaneService() {
-        return answerPaneService;
     }
 }

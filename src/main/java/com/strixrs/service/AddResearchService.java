@@ -8,12 +8,12 @@ import com.strixrs.model.Research;
 public class AddResearchService extends AbstractService {
 
 
-    public AddResearchService(AbsctractController controller){
+    public AddResearchService(AbsctractController controller) {
 
         super(controller);
     }
 
-    public void addResearch(String title, String description){
+    public void addResearch(String title, String description) {
 
         Research research = new Research(title, description);
 

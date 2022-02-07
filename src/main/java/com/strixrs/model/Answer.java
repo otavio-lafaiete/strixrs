@@ -7,7 +7,7 @@ public class Answer implements Serializable {
     private String answer;
     private Question question;
 
-    public Answer(String answer, Question question){
+    public Answer(String answer, Question question) {
 
         this.answer = answer;
         this.question = question;

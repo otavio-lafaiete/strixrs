@@ -2,7 +2,7 @@ package com.strixrs.model;
 
 import java.util.ArrayList;
 
-public class FourHouses implements ReportComponent{
+public class FourHouses implements ReportComponent {
 
     private String name;
     private final String componentType = "FourHouses";

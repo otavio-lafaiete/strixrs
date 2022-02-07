@@ -10,7 +10,7 @@ public class Question implements Serializable {
     private List<Answer> answers;
     private Research research;
 
-    public Question(String title, Research research){
+    public Question(String title, Research research) {
         answers = new ArrayList<>();
         this.title = title;
         this.research = research;
@@ -26,10 +26,6 @@ public class Question implements Serializable {
 
     public List<Answer> getAnswers() {
         return answers;
-    }
-
-    public void setAnswers(List<Answer> answers) {
-        this.answers = answers;
     }
 
     public Research getResearch() {

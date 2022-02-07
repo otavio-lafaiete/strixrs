@@ -12,13 +12,18 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class AddQuestionController extends AbsctractController{
+public class AddQuestionController extends AbsctractController {
 
-    @FXML private ImageView btnClose;
-    @FXML private ImageView btnIconify;
-    @FXML private TextField txtTitle;
-    @FXML private Button btnAdd;
-    @FXML private Label lblWarning;
+    @FXML
+    private ImageView btnClose;
+    @FXML
+    private ImageView btnIconify;
+    @FXML
+    private TextField txtTitle;
+    @FXML
+    private Button btnAdd;
+    @FXML
+    private Label lblWarning;
 
     private AddQuestionService addQuestionService;
     private QuestionPaneService questionPaneService;
@@ -26,68 +31,68 @@ public class AddQuestionController extends AbsctractController{
     private double xOffSet;
     private double yOffSet;
 
-    public void initialize(){
+    public void initialize() {
 
-       addQuestionService = new AddQuestionService(this);
+        addQuestionService = new AddQuestionService(this);
     }
 
     @FXML
-    private void handleMouseClickedEvent(MouseEvent event){
+    private void handleMouseClickedEvent(MouseEvent event) {
 
         Object source = event.getSource();
 
-        if(source.equals(btnClose))
+        if (source.equals(btnClose))
             stage.close();
 
 
-        if(source.equals(btnIconify))
+        if (source.equals(btnIconify))
             stage.setIconified(true);
     }
 
     @FXML
-    private void handleMouseEnteredEvent(MouseEvent event){
+    private void handleMouseEnteredEvent(MouseEvent event) {
 
         Object source = event.getSource();
 
-        if(source.equals(btnClose)){
+        if (source.equals(btnClose)) {
             btnClose.setImage(StaticUtil.getIcon("white-close-hover.png"));
         }
 
-        if(source.equals(btnIconify)){
+        if (source.equals(btnIconify)) {
             btnIconify.setImage(StaticUtil.getIcon("white-iconify-hover.png"));
         }
     }
 
     @FXML
-    private void handleMouseExitedEvent(MouseEvent event){
+    private void handleMouseExitedEvent(MouseEvent event) {
 
         Object source = event.getSource();
 
-        if(source.equals(btnClose)){
+        if (source.equals(btnClose)) {
             btnClose.setImage(StaticUtil.getIcon("white-close.png"));
         }
 
-        if(source.equals(btnIconify)){
+        if (source.equals(btnIconify)) {
             btnIconify.setImage(StaticUtil.getIcon("white-iconify.png"));
         }
     }
 
     @FXML
-    private void handleActionEvent(ActionEvent actionEvent){
+    private void handleActionEvent(ActionEvent actionEvent) {
 
-        if(actionEvent.getSource() == btnAdd){
+        if (actionEvent.getSource() == btnAdd) {
 
             String title = txtTitle.getText();
 
-            if(title.isEmpty()){
+            if (title.isEmpty()) {
                 lblWarning.setText("O título não pode ser vazio");
                 txtTitle.requestFocus();
 
                 return;
             }
 
-            for(Question question: questionPaneService.getCurrentResearch().getQuestions()){
-                if(question.getTitle().equals(title)){
+            for (Question question : questionPaneService.getCurrentResearch().getQuestions()) {
+                if (question.getTitle().equals(title)) {
 
                     lblWarning.setText("Já existe uma evocação com esse título");
                     txtTitle.requestFocus();
@@ -105,7 +110,7 @@ public class AddQuestionController extends AbsctractController{
         stageConfig();
     }
 
-    private void stageConfig(){
+    private void stageConfig() {
 
         stage.initStyle(StageStyle.UNDECORATED);
 
@@ -117,7 +122,7 @@ public class AddQuestionController extends AbsctractController{
 
         stage.getScene().setOnMouseDragged((MouseEvent event) ->
         {
-            if(!stage.isMaximized() || (stage.getX() != 0 || stage.getY() != 0)){
+            if (!stage.isMaximized() || (stage.getX() != 0 || stage.getY() != 0)) {
 
                 stage.setX(event.getScreenX() - xOffSet);
                 stage.setY(event.getScreenY() - yOffSet);
@@ -131,7 +136,7 @@ public class AddQuestionController extends AbsctractController{
         this.questionPaneService = questionPaneService;
     }
 
-    public QuestionPaneService getQuestionPaneService(){
+    public QuestionPaneService getQuestionPaneService() {
         return questionPaneService;
     }
 }

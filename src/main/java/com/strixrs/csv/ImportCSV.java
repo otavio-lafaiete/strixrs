@@ -11,7 +11,7 @@ public class ImportCSV {
 
     private static String delimiter = ";";
 
-    public static Research importCSV(File file){
+    public static Research importCSV(File file) {
 
         Research research = null;
 
@@ -20,7 +20,7 @@ public class ImportCSV {
             char[] arrayFileNameWithExtension = file.getName().toCharArray();
             char[] fileName = new char[arrayFileNameWithExtension.length - 4];
 
-            for(int i = 0; i < arrayFileNameWithExtension.length - 4; i++){
+            for (int i = 0; i < arrayFileNameWithExtension.length - 4; i++) {
                 fileName[i] = arrayFileNameWithExtension[i];
             }
 
@@ -30,7 +30,7 @@ public class ImportCSV {
 
             String[] arrayQuestions = line.split(delimiter);
 
-            for (String s: arrayQuestions){
+            for (String s : arrayQuestions) {
 
                 Question question = new Question(s, research);
 
@@ -43,11 +43,11 @@ public class ImportCSV {
 
                 String[] arrayAnswers = line.split(delimiter);
 
-                for(int i = 0; i < arrayQuestions.length; i++){
+                for (int i = 0; i < arrayQuestions.length; i++) {
 
-                    for(Question question: research.getQuestions()){
+                    for (Question question : research.getQuestions()) {
 
-                        if(question.getTitle().equals(arrayQuestions[i])){
+                        if (question.getTitle().equals(arrayQuestions[i])) {
 
                             Answer answer = new Answer(arrayAnswers[i], question);
 
@@ -58,8 +58,7 @@ public class ImportCSV {
 
                 line = br.readLine();
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
 

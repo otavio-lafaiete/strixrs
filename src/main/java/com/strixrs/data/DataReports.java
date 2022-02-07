@@ -17,7 +17,8 @@ import java.util.List;
 public class DataReports {
 
     private static List<Report> reports = new ArrayList<>();
-    private static Path reportsPath = Paths.get("C:\\Users\\olafa\\Desktop\\TCC\\Projeto\\src\\main\\resources\\com\\strixrs\\reports");
+    private static Path reportsPath = Paths.get(System.getProperty("user.dir") +
+            "\\src\\main\\resources\\com\\strixrs\\reports");
 
     public static List<Report> getReports() {
         loadReports();
@@ -30,7 +31,7 @@ public class DataReports {
         loadReports();
     }
 
-    private static void loadReports(){
+    private static void loadReports() {
 
         reports.clear();
 
@@ -42,19 +43,19 @@ public class DataReports {
             ioException.printStackTrace();
         }
 
-        if(directoryStream != null){
+        if (directoryStream != null) {
 
-            for(Path path: directoryStream){
-                if(!Files.isDirectory(path))
+            for (Path path : directoryStream) {
+                if (!Files.isDirectory(path))
                     reports.add(ReadSXRS.readReport(path));
             }
         }
     }
 
-    public static void deleteReport(String reportName){
+    public static void deleteReport(String reportName) {
 
         File reportToBeDeleted = new File(reportsPath + "\\" + reportName + ".srep");
-        if(!reportToBeDeleted.delete()){
+        if (!reportToBeDeleted.delete()) {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");

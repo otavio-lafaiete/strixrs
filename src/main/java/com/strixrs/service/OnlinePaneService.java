@@ -15,7 +15,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OnlinePaneService extends AbstractService{
+public class OnlinePaneService extends AbstractService {
 
     public OnlinePaneService(AbsctractController controller) {
         super(controller);
@@ -34,8 +34,7 @@ public class OnlinePaneService extends AbstractService{
                 Connection connection = DriverManager.getConnection(
                         DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
                 Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery(SELECT_QUERY))
-        {
+                ResultSet resultSet = statement.executeQuery(SELECT_QUERY)) {
             ResultSetMetaData metaData = resultSet.getMetaData();
             int numberOfColumns = metaData.getColumnCount();
 
@@ -63,32 +62,30 @@ public class OnlinePaneService extends AbstractService{
             controller.initializeScreenComponents(questions);
 
             stage.showAndWait();
-        }
-        catch (SQLException sqlException)
-        {
+        } catch (SQLException sqlException) {
             throw sqlException;
         }
     }
 
     public void launchCollectOnlineScreen() throws IOException {
 
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
 
-            FXMLLoader fxmlLoader = StaticUtil.getFXML("CollectAnswerOnline");
+        FXMLLoader fxmlLoader = StaticUtil.getFXML("CollectAnswerOnline");
 
-            Parent parent = fxmlLoader.load();
+        Parent parent = fxmlLoader.load();
 
-            Scene scene = new Scene(parent);
+        Scene scene = new Scene(parent);
 
-            stage.setScene(scene);
+        stage.setScene(scene);
 
-            CollectAnswerOnlineController controller = fxmlLoader.getController();
-            controller.setStage(stage);
-            controller.setOnlinePaneService(this);
-            controller.initializeScreenComponents();
+        CollectAnswerOnlineController controller = fxmlLoader.getController();
+        controller.setStage(stage);
+        controller.setOnlinePaneService(this);
+        controller.initializeScreenComponents();
 
-            stage.showAndWait();
+        stage.showAndWait();
     }
 }
 

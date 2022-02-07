@@ -17,7 +17,8 @@ import java.util.List;
 public class DataResearchs {
 
     private static List<Research> researchs = new ArrayList<>();
-    private static Path  researchsPath = Paths.get("C:\\Users\\olafa\\Desktop\\TCC\\Projeto\\src\\main\\resources\\com\\strixrs\\researchs");
+    private static Path researchsPath = Paths.get(System.getProperty("user.dir") +
+            "\\src\\main\\resources\\com\\strixrs\\researchs");
 
     public static List<Research> getResearchs() {
         loadResearchs();
@@ -30,7 +31,7 @@ public class DataResearchs {
         loadResearchs();
     }
 
-    private static void loadResearchs(){
+    private static void loadResearchs() {
 
         researchs.clear();
 
@@ -42,18 +43,18 @@ public class DataResearchs {
             ioException.printStackTrace();
         }
 
-        if(directoryStream != null){
+        if (directoryStream != null) {
 
-            for(Path path: directoryStream){
+            for (Path path : directoryStream) {
                 researchs.add(ReadSXRS.readResearch(path));
             }
         }
     }
 
-    public static void deleteResearch(String researchTitle){
+    public static void deleteResearch(String researchTitle) {
 
         File researchToBeDeleted = new File(researchsPath + "\\" + researchTitle + ".sxrs");
-        if(!researchToBeDeleted.delete()){
+        if (!researchToBeDeleted.delete()) {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");

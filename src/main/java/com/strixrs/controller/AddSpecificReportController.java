@@ -13,18 +13,28 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 
-public class AddSpecificReportController extends AbsctractController{
+public class AddSpecificReportController extends AbsctractController {
 
-    @FXML private ImageView btnClose;
-    @FXML private ImageView btnIconify;
-    @FXML private TextField txtName;
-    @FXML private Button btnAdd;
-    @FXML private Label lblWarning;
-    @FXML private ToggleGroup tgComponent;
-    @FXML private RadioButton rbFourHouses;
-    @FXML private RadioButton rbWordCloud;
-    @FXML private RadioButton rbBarChartFrequence;
-    @FXML private RadioButton rbScatterChart;
+    @FXML
+    private ImageView btnClose;
+    @FXML
+    private ImageView btnIconify;
+    @FXML
+    private TextField txtName;
+    @FXML
+    private Button btnAdd;
+    @FXML
+    private Label lblWarning;
+    @FXML
+    private ToggleGroup tgComponent;
+    @FXML
+    private RadioButton rbFourHouses;
+    @FXML
+    private RadioButton rbWordCloud;
+    @FXML
+    private RadioButton rbBarChartFrequence;
+    @FXML
+    private RadioButton rbScatterChart;
 
     private double xOffSet;
     private double yOffSet;
@@ -32,7 +42,7 @@ public class AddSpecificReportController extends AbsctractController{
     private AddSpecificReportService addSpecificReportService;
     private SpecificReportPaneService specificReportPaneService;
 
-    public void initialize(){
+    public void initialize() {
 
         addSpecificReportService = new AddSpecificReportService(this);
 
@@ -43,62 +53,62 @@ public class AddSpecificReportController extends AbsctractController{
     }
 
     @FXML
-    private void handleMouseClickedEvent(MouseEvent event){
+    private void handleMouseClickedEvent(MouseEvent event) {
 
         Object source = event.getSource();
 
-        if(source.equals(btnClose))
+        if (source.equals(btnClose))
             stage.close();
 
 
-        if(source.equals(btnIconify))
+        if (source.equals(btnIconify))
             stage.setIconified(true);
     }
 
     @FXML
-    private void handleMouseEnteredEvent(MouseEvent event){
+    private void handleMouseEnteredEvent(MouseEvent event) {
 
         Object source = event.getSource();
 
-        if(source.equals(btnClose)){
+        if (source.equals(btnClose)) {
             btnClose.setImage(StaticUtil.getIcon("white-close-hover.png"));
         }
 
-        if(source.equals(btnIconify)){
+        if (source.equals(btnIconify)) {
             btnIconify.setImage(StaticUtil.getIcon("white-iconify-hover.png"));
         }
     }
 
     @FXML
-    private void handleMouseExitedEvent(MouseEvent event){
+    private void handleMouseExitedEvent(MouseEvent event) {
 
         Object source = event.getSource();
 
-        if(source.equals(btnClose)){
+        if (source.equals(btnClose)) {
             btnClose.setImage(StaticUtil.getIcon("white-close.png"));
         }
 
-        if(source.equals(btnIconify)){
+        if (source.equals(btnIconify)) {
             btnIconify.setImage(StaticUtil.getIcon("white-iconify.png"));
         }
     }
 
     @FXML
-    private void handleActionEvent(ActionEvent actionEvent){
+    private void handleActionEvent(ActionEvent actionEvent) {
 
-        if(actionEvent.getSource() == btnAdd){
+        if (actionEvent.getSource() == btnAdd) {
 
             String name = txtName.getText();
             String type = tgComponent.getSelectedToggle().getUserData().toString();
 
-            if(name.isEmpty()){
+            if (name.isEmpty()) {
                 lblWarning.setText("O Nome não pode ser vazio");
                 txtName.requestFocus();
                 return;
             }
 
-            for(ReportComponent reportComponent: getSpecificReportPaneService().getCurrentReport().getComponents()){
-                if(reportComponent.getName().equals(name)){
+            for (ReportComponent reportComponent : getSpecificReportPaneService().getCurrentReport().getComponents()) {
+                if (reportComponent.getName().equals(name)) {
 
                     lblWarning.setText("Já existe um componente com esse título");
                     txtName.requestFocus();

@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Optional;
 
-public class SpecificReportPaneService extends AbstractService{
+public class SpecificReportPaneService extends AbstractService {
 
     private Report currentReport;
 
@@ -32,7 +32,7 @@ public class SpecificReportPaneService extends AbstractService{
         MainController mainController = (MainController) controller;
 
         mainController.getVbReportComponent().getChildren().clear();
-        for(ReportComponent reportComponent: currentReport.getComponents()){
+        for (ReportComponent reportComponent : currentReport.getComponents()) {
 
             Button button = new ResearchButton(reportComponent.getName());
             button.setOnAction(new EventHandler<ActionEvent>() {
@@ -64,7 +64,7 @@ public class SpecificReportPaneService extends AbstractService{
         Scene scene = new Scene(parent);
         stage.setScene(scene);
 
-        switch (componentType){
+        switch (componentType) {
             case "FourHouses":
                 FourHousesController fourHousesController = fxmlLoader.getController();
                 fourHousesController.setStage(stage);
@@ -130,7 +130,7 @@ public class SpecificReportPaneService extends AbstractService{
         alert.setContentText("Têm certeza que deseja excluir o relatório atual? ");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             DataReports.deleteReport(currentReport.getTitle());
 
             MainController mainController = (MainController) controller;
@@ -144,7 +144,7 @@ public class SpecificReportPaneService extends AbstractService{
     }
 
     @Override
-    public void update(){
+    public void update() {
         updateComponentsVBox();
     }
 }

@@ -10,7 +10,7 @@ public class Research implements Serializable {
     private String description;
     private List<Question> questions;
 
-    public Research(String title, String description){
+    public Research(String title, String description) {
 
         this.title = title;
         this.description = description;
@@ -37,7 +37,4 @@ public class Research implements Serializable {
         return questions;
     }
 
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
-    }
 }

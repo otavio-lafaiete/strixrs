@@ -21,7 +21,12 @@ public class DataResearchs {
             "\\src\\main\\resources\\com\\strixrs\\researchs");
 
     public static List<Research> getResearchs() {
-        loadResearchs();
+        if (Files.isDirectory(researchsPath))
+            loadResearchs();
+        else {
+            File d = new File(String.valueOf(researchsPath));
+            d.mkdir();
+        }
         return researchs;
     }
 

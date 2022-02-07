@@ -21,7 +21,12 @@ public class DataReports {
             "\\src\\main\\resources\\com\\strixrs\\reports");
 
     public static List<Report> getReports() {
-        loadReports();
+        if (Files.isDirectory(reportsPath))
+            loadReports();
+        else {
+            File d = new File(String.valueOf(reportsPath));
+            d.mkdir();
+        }
         return reports;
     }
 

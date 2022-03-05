@@ -67,7 +67,7 @@ public class CollectAnswerOnlineService extends AbstractService {
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Transação concluída");
-            alert.setContentText("As respostas online foram mescladas com as locais, deseja limmpar o banco de dados?");
+            alert.setContentText("As respostas online foram mescladas com as locais, deseja limpar o banco de dados?");
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {

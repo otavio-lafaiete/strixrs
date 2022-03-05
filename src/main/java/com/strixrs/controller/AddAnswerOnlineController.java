@@ -136,7 +136,7 @@ public class AddAnswerOnlineController extends AbsctractController {
             try {
                 addAnswerOnlineService.addAnswer(this.questions);
             } catch (SQLException e) {
-                lblWarning.setText("Erro ao se conectar com o banco de dados");
+                lblWarning.setText("Erro ao conectar-se com o banco de dados");
             }
         }
     }
